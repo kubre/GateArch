@@ -1,0 +1,32 @@
+// Variables
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: "Arial", "Helvetica", sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "~bootstrap-vue/dist/bootstrap-vue.css";
+@import "~bootstrap-material-design/dist/css/bootstrap-material-design.min.css";
+@import "~sweetalert2/src/sweetalert2.scss";
+@import "~jquery-ui-bundle/jquery-ui.min.css";
+
+.bg-grey {
+    background: #eaeaea;
+}
