@@ -2,13 +2,23 @@
 
 @section('header')
 <style>
-    html, body {
+    html,
+    body {
         height: 100%
     }
 
-    body { 
+    body {
         font-family: serif;
         background: #fff;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-auto-rows: min-content;
+        grid-gap: 5px 5%;
+        height: 53vh;
+        overflow-y: scroll;
     }
 
     .ic {
@@ -16,6 +26,42 @@
         width: 18px;
         display: inline-block;
     }
+
+    .qc-not-visited {
+        background: url('/images/not-visited.png');
+        color: #000 !important;
+    }
+
+    .qc-visited {
+        background: url('/images/visited.png');
+    }
+
+    .qc-answered {
+        background: url('/images/answered.png');
+    }
+
+    .qc-review {
+        background: url('/images/review.png');
+    }
+
+    .qc-review-answered {
+        background: url('/images/review-answered.png');
+    }
+
+    .qc {
+        background-repeat: no-repeat;
+        font-weight: bolder;
+        color: #fff;
+        background-size: 100% 100%;
+        height: 35px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        .qc {
+            height: 40px;
+        }
+    }
+
 
     .ic-question-paper {
         background: url('/images/Icon-sprite.png') no-repeat -188px -8px;
@@ -81,15 +127,14 @@
                 <a id="openCalculator" class="p-1 px-2 btn"><span class="ic ic-calculator"></span></a>
             </div>
             <div class="px-4 py-1 d-flex justify-content-between">
-                <span>Sections [Attempt any 1 of the @{{ sections != null ? sections.length : '#' }}]</span>
+                <span>Sections [Attempt any 1 of the
+                    @{{ sections != null ? sections.length : '#' }}]</span>
                 <strong id="timer">@{{ exam.timerDisplay }}</strong>
             </div>
             <div class="pl-2 tab-container d-flex justify-content-start">
                 <a href="" class="tab">&ltrif;</a>
-                <a  href="#"
-                v-for="(section, i) in sections" 
-                v-on:click="changeSection(i)" 
-                v-bind:class="{ tab: true, active: i == sectionIndex }">
+                <a href="#" v-for="(section, i) in sections" v-on:click="loadSection(i)"
+                    v-bind:class="{ tab: true, active: i == sectionIndex }">
                     @{{ section.title }}
                     <span class="ic ic-instructions ml-1"></span>
                 </a>
@@ -116,50 +161,59 @@
                 <div class="h-25 px-5 mt-2 container-fluid d-flex flex-column justify-content-around">
                     <div>
                         <label>
-                            <input type="radio" name="answer" id="">
-                            &nbsp;&nbsp;&nbsp;A
+                            <input v-model="tempAnswer" type="radio" value="A">
+                            <span class='ml-3'>A</span>
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input type="radio" name="answer" id="">
-                            &nbsp;&nbsp;&nbsp;B
+                            <input v-model="tempAnswer" type="radio" value="B">
+                            <span class='ml-3'>B</span>
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input type="radio" name="answer" id="">
-                            &nbsp;&nbsp;&nbsp;C
+                            <input v-model="tempAnswer" type="radio" value="C">
+                            <span class='ml-3'>C</span>
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input type="radio" name="answer" id="">
-                            &nbsp;&nbsp;&nbsp;D
+                            <input v-model="tempAnswer" type="radio" value="D">
+                            <span class='ml-3'>D</span>
                         </label>
                     </div>
                 </div>
             </template>
         </div>
-        <div class="col-2 d-flex flex-row justify-content-stretch align-items-start mt-3 pr-4">
-            <template v-if="sections">
-                <a href="#"
-                v-for="(question, i) in section.questions"
-                v-bind:class="{ active: i == questionIndex }"
-                v-on:click="questionIndex = i"
-                class="flex-fill btn btn-success mr-2 mb-2">
-                @{{ question.number }}
-            </a>
-            </template>
+        <div class="col-2">
+        {{-- <div v-on:click="collapseSidebar" class="px-1 py-3 bg-dark text-white" style="border: 1px solid #111;font-size: 1.rem; position: absolute; left: -17px; top: 45%; cursor: pointer">&blacktriangleright;</div> --}}
+        <template v-if="sections">
+            <img src="/images/question-info.png" class="w-100">
+            <h4 class="bg-info text-white text-center py-1" style="margin-left: -15px;">@{{ section.title }}</h4>
+            <div class="grid-container pt-3 pr-4 pl-4">
+                <a href="#" v-for="(question, i) in section.questions"
+                    v-bind:class="states_css[question.state || State.NOT_VISITED]"
+                    v-on:click="loadQuestion(i)"
+                    class="btn qc">
+                    @{{ question.number }}
+                </a>
+            </div>
+        </template>
         </div>
     </div>
-    <div class="px-4 py-1 bg-grey d-flex justify-content-between" style="height: 50px;">
-        <div class="py-1">
-            <a href="" class="btn btn-secondary">Mark for review</a>
-            <a href="" class="btn btn-secondary">Clear response</a>
+    <div class="px-4 pt-2 bg-grey row" style="height: 60px;">
+        <div class="col-10 d-flex justify-content-between">
+            <span>
+                <a href="#" v-on:click="changeState(State.REVIEW)" class="btn btn-outline-dark mr-2">Mark for review</a>
+                <a href="#" v-on:click="clearResponse" class="btn btn-outline-dark">Clear response</a>
+            </span>
+            <span>
+                <a href="#" v-on:click="nextQuestion" class="btn btn-primary active">Save &amp; Next</a>
+            </span>
         </div>
-        <div class="py-1 pr-5">
-            <a href="#" v-on:click="nextQuestion" class="btn btn-primary active">Save &amp; Next</a>
+        <div class="col-2 text-center">
+            <a href="#" v-on:click="nextQuestion" class="btn btn-primary active">Submit</a>
         </div>
     </div>
     <x-exam.calculator />
@@ -181,13 +235,28 @@
                     sections: null,
                     questionIndex: 0,
                     sectionIndex: 0,
+                    tempAnswer: '',
+                    State: Object.freeze({
+                        NOT_VISITED: 0,
+                        VISITED: 1,
+                        REVIEW: 2,
+                        SAVED: 3,
+                        REVIEW_SAVED: 4,
+                    }),
+                    states_css: [
+                        'qc-not-visited',
+                        'qc-visited',
+                        'qc-review',
+                        'qc-answered',
+                        'qc-review-answered'
+                    ]
                 }
             },
             computed: {
-                question: function() {
+                question: function () {
                     return this.sections[this.sectionIndex].questions[this.questionIndex];
                 },
-                section: function() {
+                section: function () {
                     return this.sections[this.sectionIndex];
                 }
             },
@@ -210,20 +279,54 @@
                     // });
                     this.startExam();
                 },
-                startExam: function() {
+
+                startExam: function () {
                     this.startTimer();
+                    this.loadSection(0);
                 },
-                nextQuestion() {
-                    if (this.sections[this.sectionIndex].questions.length - 1 > this.questionIndex) {
-                        this.questionIndex++;
+
+                changeState: function (newState, overwrite) {
+                    var a = [this.State.SAVED, this.State.REVIEW];
+                    if (a.includes(newState) && a.includes(this.question.state)
+                     && newState != this.question.state) {
+                        this.question.state = this.State.REVIEW_SAVED;
+                    } else {
+                        this.question.state = overwrite ? 
+                        newState :
+                        Math.max(this.question.state || 0, newState);
+                    }
+                },
+
+                loadQuestion: function (i) {
+                    this.questionIndex = i;
+                    this.tempAnswer = this.question.userAnswer;
+                    this.changeState(this.State.VISITED);
+                },
+
+                nextQuestion: function () {
+                    if (this.question.state != this.State.SAVED && !this.tempAnswer) {
+                        Swal.fire("You must answer the question to save!");
+                        return;
+                    }
+                    this.question.userAnswer = this.tempAnswer;
+                    if (this.section.questions.length - 1 > this.questionIndex) {
+                        this.changeState(this.State.SAVED);
+                        this.loadQuestion(this.questionIndex + 1);
                     } else {
                         Swal.fire('No more questions');
                     }
                 },
-                changeSection(i) {
-                    this.sectionIndex = i;
-                    this.questionIndex = 0;
+
+                clearResponse: function() {
+                    this.question.userAnswer = '';
+                    this.changeState(this.State.VISITED, true);
                 },
+
+                loadSection: function (i) {
+                    this.sectionIndex = i;
+                    this.loadQuestion(0);
+                },
+
                 startTimer: function () {
                     this.exam.time = parseInt(this.exam.time) * 60;
                     var timer = this.exam.time,
