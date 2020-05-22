@@ -62,7 +62,6 @@
         }
     }
 
-
     .ic-question-paper {
         background: url('/images/Icon-sprite.png') no-repeat -188px -8px;
     }
@@ -122,7 +121,7 @@
     <div class="row">
         <div class="col-10 px-0 border h-100">
             <div class="bg-grey pl-3 d-flex justify-content-between">
-                <span class="px-2 mx-2 d-inline-flex align-items-center bg-primary my-2 text-white">Subject Name<span
+                <span class="px-2 mx-2 d-inline-flex align-items-center bg-primary my-2 text-white">@{{ exam.subject  }}<span
                         class="ic-instructions mx-1"></span></span>
                 <a id="openCalculator" class="p-1 px-2 btn"><span class="ic ic-calculator"></span></a>
             </div>
@@ -141,7 +140,7 @@
             </div>
         </div>
         <div class="col-2 border py-1">
-            <img class="border mr-2" src="/images/profile.png" height=100px"">
+            <img class="border mr-2" src="/images/profile.png" height="100px">
             <span>ABCD</span>
         </div>
     </div>
@@ -149,40 +148,102 @@
         <div class="col-10 border p-0">
             <template v-if="sections">
                 <div class="w-100 border px-4 bg-grey py-1 d-flex justify-content-between m-0">
-                    <strong class="mr-3">Q: @{{ question.number }}.</strong>
+                    <strong class="mr-3">Question: @{{ question.number }}.</strong>
                     <span>
                         <strong class="mr-2 text-success">Marks: @{{ question.marks }}</strong>
                         <strong class="text-danger">Negative Marks @{{ question.negative }}</strong>
                     </span>
                 </div>
-                <div class="container-fluid px-4 mt-2">
-                    <img v-bind:src="'/storage/'+question.image">
+                <div class="container-fluid px-4 my-3">
+                    <img id='imgQuestion' class='shadow-sm rounded' v-on:click='openQuestion("/storage/"+question.image)' v-bind:src="'/storage/'+question.image">
                 </div>
-                <div class="h-25 px-5 mt-2 container-fluid d-flex flex-column justify-content-around">
-                    <div>
-                        <label>
-                            <input v-model="tempAnswer" type="radio" value="A">
-                            <span class='ml-3'>A</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input v-model="tempAnswer" type="radio" value="B">
-                            <span class='ml-3'>B</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input v-model="tempAnswer" type="radio" value="C">
-                            <span class='ml-3'>C</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input v-model="tempAnswer" type="radio" value="D">
-                            <span class='ml-3'>D</span>
-                        </label>
-                    </div>
+                <div class="h-25 px-5 mt-5 container-fluid d-flex flex-column justify-content-around">
+                    <template v-if="question.type == 'mcq'">
+                        <div>
+                            <label>
+                                <input v-model="tempAnswer" type="radio" value="A">
+                                <span class='ml-3'>A</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input v-model="tempAnswer" type="radio" value="B">
+                                <span class='ml-3'>B</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input v-model="tempAnswer" type="radio" value="C">
+                                <span class='ml-3'>C</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input v-model="tempAnswer" type="radio" value="D">
+                                <span class='ml-3'>D</span>
+                            </label>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="mt-5 border p-2" style="width: 270px;">
+                            <div class="mb-2">
+                                <input style="font: mono" v-model='tempAnswer' type="text" class="form-input w-100">
+                            </div>
+                            <div class="row">
+                                <div class='col'>
+                                    <button v-on:click="tempAnswer = tempAnswer.slice(0, -1)" class='btn btn-outline-dark btn-block'>Backspace</button>
+                                </div>
+                                <div class='col'>
+                                    <button v-on:click="tempAnswer = ''" class='btn btn-outline-dark btn-block'>Clear All</button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class='row'>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>7</button>
+                                </div>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>8</button>
+                                </div>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>9</button>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>4</button>
+                                </div>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>5</button>
+                                </div>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>6</button>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>1</button>
+                                </div>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>2</button>
+                                </div>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>3</button>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>0</button>
+                                </div>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>.</button>
+                                </div>
+                                <div class='col-4'>
+                                    <button v-on:click='addInput' class='btn btn-outline-dark btn-block'>-</button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </template>
         </div>
@@ -209,11 +270,11 @@
                 <a href="#" v-on:click="clearResponse" class="btn btn-outline-dark">Clear response</a>
             </span>
             <span>
-                <a href="#" v-on:click="nextQuestion" class="btn btn-primary active">Save &amp; Next</a>
+                <a href="#" v-on:click="saveAndNext" class="btn btn-primary active">Save &amp; Next</a>
             </span>
         </div>
         <div class="col-2 text-center">
-            <a href="#" v-on:click="nextQuestion" class="btn btn-primary active">Submit</a>
+            <a href="#" v-on:click="saveAndNext" class="btn btn-primary active">Submit</a>
         </div>
     </div>
     <x-exam.calculator />
@@ -222,6 +283,11 @@
 
 @push('scripts')
     <script>
+        $(window).keydown(function(e) {
+            if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82)
+                e.preventDefault();
+        });
+        $(document).contextmenu(function(e) { e.preventDefault(); });
         var examApp = new Vue({
             'el': '#examApp',
             data: function () {
@@ -252,6 +318,7 @@
                     ]
                 }
             },
+
             computed: {
                 question: function () {
                     return this.sections[this.sectionIndex].questions[this.questionIndex];
@@ -260,14 +327,17 @@
                     return this.sections[this.sectionIndex];
                 }
             },
+
             mounted: function () {
                 axios.get('/api/exam')
                     .then(this.getQuestions)
                     .catch(function (err) {
-
+                        Swal.fire('Problem getting question please close window and try again!');
                     });
             },
+
             methods: {
+
                 getQuestions: function (result) {
                     this.exam = result.data.exam;
                     this.sections = result.data.sections;
@@ -285,6 +355,35 @@
                     this.loadSection(0);
                 },
 
+                endExam: function() {
+                    
+                },
+
+                loadSection: function (i) {
+                    this.sectionIndex = i;
+                    this.loadQuestion(0);
+                },
+
+                loadQuestion: function (i) {
+                    this.questionIndex = i;
+                    this.tempAnswer = this.question.userAnswer || '';
+                    this.changeState(this.State.VISITED);
+                },
+
+                saveAndNext: function () {
+                    if (this.question.state != this.State.SAVED && !this.tempAnswer) {
+                        Swal.fire("You must answer the question to save!");
+                        return;
+                    }
+                    this.question.userAnswer = this.tempAnswer;
+                    this.changeState(this.State.SAVED);
+                    if (this.section.questions.length - 1 > this.questionIndex) {
+                        this.loadQuestion(this.questionIndex + 1);
+                    } else {
+                        Swal.fire('No more questions');
+                    }
+                },
+
                 changeState: function (newState, overwrite) {
                     var a = [this.State.SAVED, this.State.REVIEW];
                     if (a.includes(newState) && a.includes(this.question.state)
@@ -297,34 +396,21 @@
                     }
                 },
 
-                loadQuestion: function (i) {
-                    this.questionIndex = i;
-                    this.tempAnswer = this.question.userAnswer;
-                    this.changeState(this.State.VISITED);
-                },
-
-                nextQuestion: function () {
-                    if (this.question.state != this.State.SAVED && !this.tempAnswer) {
-                        Swal.fire("You must answer the question to save!");
-                        return;
-                    }
-                    this.question.userAnswer = this.tempAnswer;
-                    if (this.section.questions.length - 1 > this.questionIndex) {
-                        this.changeState(this.State.SAVED);
-                        this.loadQuestion(this.questionIndex + 1);
-                    } else {
-                        Swal.fire('No more questions');
-                    }
-                },
-
                 clearResponse: function() {
                     this.question.userAnswer = '';
                     this.changeState(this.State.VISITED, true);
                 },
 
-                loadSection: function (i) {
-                    this.sectionIndex = i;
-                    this.loadQuestion(0);
+                addInput: function(e) {
+                    this.tempAnswer += e.srcElement.innerText;
+                },
+
+                openQuestion: function(img) {
+                    Swal.fire({
+                        imageUrl: img,
+                        width: $('#imgQuestion').width() + 100,
+                        imageWidth: $('#imgQuestion').width() + 100,
+                    });
                 },
 
                 startTimer: function () {
@@ -347,9 +433,7 @@
                 }
             }
         });
-
         $(function () {
-
             $('#calculator').dialog({
                 title: 'Scientfic Calulator',
                 autoOpen: false,
@@ -359,7 +443,8 @@
                     "ui-dialog-titlebar": "bg-primary text-white"
                 }
             });
-            $("#openCalculator").click(function () {
+
+            $('#openCalculator').click(function () {
                 $("#calculator").dialog('open');
                 $("#calculator").dialog("option", "position", {
                     my: "left top",

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Crud;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Sanjab\Controllers\CrudController;
 use Sanjab\Helpers\CrudProperties;
@@ -39,7 +38,7 @@ class SectionController extends CrudController
                     ->cols(6),
                 SelectWidget::create('type')
                     ->addOption('mcq', 'MCQ')
-                    ->addOption('naq', 'NAQ')
+                    ->addOption('nat', 'NAT')
                     ->cols(4)
                     ->value('mcq'),
                 TextWidget::create('answer')
@@ -50,6 +49,7 @@ class SectionController extends CrudController
                 SelectWidget::create('negative')
                     ->addOption('1/3', '1/3')
                     ->addOption('2/3', '2/3')
+                    ->addOption('0', '0')
                     ->cols(4)
             ]);
         $this->widgets[] = BelongsToPickerWidget::create('exam')
