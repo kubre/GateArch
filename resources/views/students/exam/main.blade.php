@@ -290,6 +290,17 @@
         $(document).contextmenu(function (e) {
             e.preventDefault();
         });
+
+        var images = [];
+
+        function preload() {
+            for (var i = 0; i < arguments.length; i++) {
+                images[i] = new Image();
+                images[i].src = preload.arguments[i];
+            }
+        }
+
+
         var examApp = new Vue({
             'el': '#examApp',
             data: function () {
@@ -334,7 +345,7 @@
                 axios.get('/api/exam')
                     .then(this.getQuestions)
                     .catch(function (err) {
-                        Swal.fire('Problem getting question please close window and try again!');
+                        Swal.fire('Problem getting question please close window and try again!' + err);
                     });
             },
 
@@ -354,7 +365,14 @@
 
                 startExam: function () {
                     this.startTimer();
-                    this.loadSection(1);
+                    this.loadSection(0);
+                    preload(
+                        '/images/not-visited.png',
+                        '/images/visited.png',
+                        '/images/answered.png',
+                        '/images/review.png',
+                        '/images/review-answered.png'
+                    );
                 },
 
                 endExam: function () {
@@ -363,7 +381,7 @@
 
                 loadSection: function (i) {
                     this.sectionIndex = i;
-                    this.loadQuestion(3);
+                    this.loadQuestion(0);
                 },
 
                 loadQuestion: function (i) {
