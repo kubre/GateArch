@@ -56,10 +56,9 @@
         height: 35px;
     }
 
-    @media screen and (min-width: 1280px) {
-        .qc {
-            height: 40px;
-        }
+    <blade media|%20screen%20and%20(min-width%3A%201280px)%20%7B>.qc {
+        height: 40px;
+    }
     }
 
     .ic-question-paper {
@@ -121,7 +120,8 @@
     <div class="row">
         <div class="col-10 px-0 border h-100">
             <div class="bg-grey pl-3 d-flex justify-content-between">
-                <span class="px-2 mx-2 d-inline-flex align-items-center bg-primary my-2 text-white">@{{ exam.subject  }}<span
+                <span
+                    class="px-2 mx-2 d-inline-flex align-items-center bg-primary my-2 text-white">@{{ exam.subject }}<span
                         class="ic-instructions mx-1"></span></span>
                 <a id="openCalculator" class="p-1 px-2 btn"><span class="ic ic-calculator"></span></a>
             </div>
@@ -155,7 +155,8 @@
                     </span>
                 </div>
                 <div class="container-fluid px-4 my-3">
-                    <img id='imgQuestion' class='shadow-sm rounded' v-on:click='openQuestion("/storage/"+question.image)' v-bind:src="'/storage/'+question.image">
+                    <img id='imgQuestion' class='shadow-sm rounded'
+                        v-on:click='openQuestion("/storage/"+question.image)' v-bind:src="'/storage/'+question.image">
                 </div>
                 <div class="h-25 px-5 mt-5 container-fluid d-flex flex-column justify-content-around">
                     <template v-if="question.type == 'mcq'">
@@ -191,10 +192,12 @@
                             </div>
                             <div class="row">
                                 <div class='col'>
-                                    <button v-on:click="tempAnswer = tempAnswer.slice(0, -1)" class='btn btn-outline-dark btn-block'>Backspace</button>
+                                    <button v-on:click="tempAnswer = tempAnswer.slice(0, -1)"
+                                        class='btn btn-outline-dark btn-block'>Backspace</button>
                                 </div>
                                 <div class='col'>
-                                    <button v-on:click="tempAnswer = ''" class='btn btn-outline-dark btn-block'>Clear All</button>
+                                    <button v-on:click="tempAnswer = ''" class='btn btn-outline-dark btn-block'>Clear
+                                        All</button>
                                 </div>
                             </div>
                             <hr>
@@ -248,19 +251,18 @@
             </template>
         </div>
         <div class="col-2">
-        {{-- <div v-on:click="collapseSidebar" class="px-1 py-3 bg-dark text-white" style="border: 1px solid #111;font-size: 1.rem; position: absolute; left: -17px; top: 45%; cursor: pointer">&blacktriangleright;</div> --}}
-        <template v-if="sections">
-            <img src="/images/question-info.png" class="w-100">
-            <h4 class="bg-info text-white text-center py-1" style="margin-left: -15px;">@{{ section.title }}</h4>
-            <div class="grid-container pt-3 pr-4 pl-4">
-                <a href="#" v-for="(question, i) in section.questions"
-                    v-bind:class="states_css[question.state || State.NOT_VISITED]"
-                    v-on:click="loadQuestion(i)"
-                    class="btn qc">
-                    @{{ question.number }}
-                </a>
-            </div>
-        </template>
+            {{-- <div v-on:click="collapseSidebar" class="px-1 py-3 bg-dark text-white" style="border: 1px solid #111;font-size: 1.rem; position: absolute; left: -17px; top: 45%; cursor: pointer">&blacktriangleright;</div> --}}
+            <template v-if="sections">
+                <img src="/images/question-info.png" class="w-100">
+                <h4 class="bg-info text-white text-center py-1" style="margin-left: -15px;">@{{ section.title }}</h4>
+                <div class="grid-container pt-3 pr-4 pl-4">
+                    <a href="#" v-for="(question, i) in section.questions"
+                        v-bind:class="states_css[question.state || State.NOT_VISITED]" v-on:click="loadQuestion(i)"
+                        class="btn qc">
+                        @{{ question.number }}
+                    </a>
+                </div>
+            </template>
         </div>
     </div>
     <div class="px-4 pt-2 bg-grey row" style="height: 60px;">
@@ -283,11 +285,10 @@
 
 @push('scripts')
     <script>
-        $(window).keydown(function(e) {
-            if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82)
-                e.preventDefault();
+        $(window).keydown(false);
+        $(document).contextmenu(function (e) {
+            e.preventDefault();
         });
-        $(document).contextmenu(function(e) { e.preventDefault(); });
         var examApp = new Vue({
             'el': '#examApp',
             data: function () {
@@ -352,16 +353,16 @@
 
                 startExam: function () {
                     this.startTimer();
-                    this.loadSection(0);
+                    this.loadSection(1);
                 },
 
-                endExam: function() {
-                    
+                endExam: function () {
+
                 },
 
                 loadSection: function (i) {
                     this.sectionIndex = i;
-                    this.loadQuestion(0);
+                    this.loadQuestion(3);
                 },
 
                 loadQuestion: function (i) {
@@ -386,26 +387,26 @@
 
                 changeState: function (newState, overwrite) {
                     var a = [this.State.SAVED, this.State.REVIEW];
-                    if (a.includes(newState) && a.includes(this.question.state)
-                     && newState != this.question.state) {
+                    if (a.includes(newState) && a.includes(this.question.state) &&
+                        newState != this.question.state) {
                         this.question.state = this.State.REVIEW_SAVED;
                     } else {
-                        this.question.state = overwrite ? 
-                        newState :
-                        Math.max(this.question.state || 0, newState);
+                        this.question.state = overwrite ?
+                            newState :
+                            Math.max(this.question.state || 0, newState);
                     }
                 },
 
-                clearResponse: function() {
+                clearResponse: function () {
                     this.question.userAnswer = '';
                     this.changeState(this.State.VISITED, true);
                 },
 
-                addInput: function(e) {
+                addInput: function (e) {
                     this.tempAnswer += e.srcElement.innerText;
                 },
 
-                openQuestion: function(img) {
+                openQuestion: function (img) {
                     Swal.fire({
                         imageUrl: img,
                         width: $('#imgQuestion').width() + 100,
