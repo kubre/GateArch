@@ -144,7 +144,7 @@
             <span>ABCD</span>
         </div>
     </div>
-    <div class="row flex-fill">
+    <div class="row flex-fill i-clear-inputs">
         <div class="col-10 border p-0">
             <template v-if="sections">
                 <div class="w-100 border px-4 bg-grey py-1 d-flex justify-content-between m-0">
@@ -184,6 +184,7 @@
                                 <span class='ml-3'>D</span>
                             </label>
                         </div>
+                        <input id='dummyRadio' style='display: none' v-model="tempAnswer" type="radio" value="">
                     </template>
                     <template v-else>
                         <div class="mt-5 border p-2" style="width: 270px;">
@@ -398,6 +399,8 @@
                 },
 
                 clearResponse: function () {
+                    $('.i-clear-inputs input[type="text"]').val('');
+                    $('#dummyRadio').trigger('click');
                     this.question.userAnswer = '';
                     this.changeState(this.State.VISITED, true);
                 },
