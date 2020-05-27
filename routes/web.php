@@ -25,6 +25,11 @@ Route::prefix('students')
             ->name('students.register');
     });
 
-Route::view('/exam/instructions', 'students.exam.instructions');
-Route::view('/calc', 'students.exam.calculator');
-Route::get('/exam/main', 'ExamHandlerController@index');
+Route::prefix('exams')
+    ->namespace('Exam')
+    ->group(function () {
+        Route::get('instructions', 'MainController@showInstructions')->name('exam.instructions');
+        Route::get('start', 'MainController@startExam')->name('exam.start');
+        Route::get('end', 'MainController@endExam')->name('exam.end');
+        Route::view('results', 'students.exam.result');
+    });

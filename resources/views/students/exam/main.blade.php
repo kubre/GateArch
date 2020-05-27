@@ -4,7 +4,7 @@
 <style>
     html,
     body {
-        height: 100%
+        height: 100vh;
     }
 
     body {
@@ -277,7 +277,7 @@
             </span>
         </div>
         <div class="col-2 text-center">
-            <a href="#" v-on:click="saveAndNext" class="btn btn-primary active">Submit</a>
+            <a href="#" v-on:click="endExam" class="btn btn-primary active">Submit</a>
         </div>
     </div>
     <x-exam.calculator />
@@ -376,7 +376,40 @@
                 },
 
                 endExam: function () {
+                    Swal.fire({
+                        text: 'End Exam now?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Look up',
+                        showLoaderOnConfirm: true,
+                        preConfirm: (login) => {
+                            return axios.post('/api/result', {
+                                sections : [{"id":1,"title":"General Aptitude","number":1,"questions":[{"number":"1","image":"ga-2019/1.png","type":"mcq","answer":"C","marks":"1","negative":"1/3","state":3,"userAnswer":"D"},{"number":"2","image":"ga-2019/2.png","type":"mcq","answer":"C","marks":"1","negative":"1/3","state":3,"userAnswer":"D"},{"number":"3","image":"ga-2019/3.png","type":"mcq","answer":"C","marks":"0","negative":"1/3","state":3,"userAnswer":"D"}, {"number":"4","image":"ap-2019/4.png","type":"mcq","answer":"A","marks":"1","negative":"2/3","state":1}],"exam_id":"1","created_at":"2020-05-13T13:54:39.000000Z","updated_at":"2020-05-18T11:09:34.000000Z"},{"id":2,"title":"Architecture and Planning","number":2,"questions":[{"number":"1","image":"ap-2019/1.png","type":"mcq","answer":"A","marks":"1","negative":"1/3","state":1},{"number":"2","image":"ap-2019/2.png","type":"mcq","answer":"C","marks":"1","negative":"1/3"},{"number":"3","image":"ap-2019/3.png","type":"mcq","answer":"B","marks":"1","negative":"1/3"},{"number":"4","image":"ap-2019/21_NAT.png","type":"nat","answer":"22","marks":"1","userAnswer": "23","negative":"0"}],"exam_id":"1","created_at":"2020-05-18T03:09:15.000000Z","updated_at":"2020-05-21T11:00:53.000000Z"}],
+                                totalTime: 120,
+                                time: '80:30',
+                                marks: 100
+                            })
+                            .then(function(res) {
+                                window.location.replace('{{ route('exam.end') }}?'+
+                                'totalQuestions='+ res.data.totalQuestions+
+                                '&totalAttempted='+ res.data.totalAttempted+
+                                '&correctAnswers='+ res.data.correctAnswers+
+                                '&rightMarks='+ res.data.rightMarks+
+                                '&negativeMarks='+ res.data.negativeMarks+
+                                '&totalMarks='+ res.data.totalMarks+
+                                '&totalTime='+ res.data.totalTime+
+                                '&timeTaken='+ res.data.timeTaken+
+                                '&maxMarks='+ examApp.exam.marks
+                                );
+                            });
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    });
+                
+                },
 
+                redirectToresults: function(response) {
+                    console.log(response.data);
+                    
                 },
 
                 loadSection: function (i) {

@@ -186,7 +186,7 @@
                 $("#first").hide();
                 $("#second").hide();
                 $("#third").show();
-                window.location = "/exam/main";
+                window.location = '{{ route('exam.start') }}';
             }
         });
     });

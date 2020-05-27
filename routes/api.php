@@ -33,3 +33,42 @@ Route::get('/exam', function () {
         'sections' => $s
     ];
 });
+
+Route::post('/result', function (Request $r) {
+    $sections = $r->sections;
+    $totalQuestions = 0;
+    $totalAttempted = 0;
+    $correct = 0;
+    $rightMarks = 0;
+    $negativeMarks = 0;
+
+    foreach ($sections as $section) {
+        foreach ($section['questions'] as $question) {
+            $totalQuestions++;
+            if (!empty($question['userAnswer'])) {
+                $totalAttempted++;
+                if ($question['answer'] == $question['userAnswer']) {
+                    $rightMarks += (float) $question['marks'];
+                    $correct++;
+                } else {
+                    if ($question['negative'] != '0') {
+                        $negativeMarks += (float) ($question['negative'] == '1/3' ? 1 / 3 : 2 / 3);
+                    }
+                }
+            }
+        }
+    }
+
+    list($m, $s) = explode(':', $r->time);
+
+    return [
+        'totalQuestions' => $totalQuestions,
+        'totalAttempted' => $totalAttempted,
+        'correctAnswers' => $correct,
+        'rightMarks' => $rightMarks,
+        'negativeMarks' => $negativeMarks,
+        'totalMarks' => $rightMarks - $negativeMarks,
+        'totalTime' => $r->totalTime,
+        'timeTaken' => ($r->totalTime - $m - ($s == '0' ? 0 : 1)) . ':' . (($s == '0' ? '00' : 60 - $s))
+    ];
+});
