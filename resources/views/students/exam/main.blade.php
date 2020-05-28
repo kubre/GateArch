@@ -387,10 +387,10 @@
                         showLoaderOnConfirm: true,
                         preConfirm: (login) => {
                             return axios.post('/api/result', {
-                                sections : JSON.stringify(examApp.sections),
+                                sections : JSON.parse(JSON.stringify(examApp.sections)),
                                 totalTime: examApp.exam.time / 60,
                                 time: examApp.exam.timerDisplay,
-                                marks: examApp.exam.makrs
+                                marks: examApp.exam.marks
                             })
                             .then(function(res) {
                                 window.location.replace('{{ route('exam.end') }}?'+

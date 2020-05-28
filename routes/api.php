@@ -1,5 +1,6 @@
 <?php
 
+use App\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,40 +35,18 @@ Route::get('/exam', function () {
     ];
 });
 
-Route::post('/result', function (Request $r) {
-    $sections = json_decode($r->sections);
-    $totalQuestions = 0;
-    $totalAttempted = 0;
-    $correct = 0;
-    $rightMarks = 0;
-    $negativeMarks = 0;
-
-    foreach ($sections as $section) {
-        foreach ($section->questions as $question) {
-            $totalQuestions++;
-            if (!empty($question->userAnswer)) {
-                $totalAttempted++;
-                if ($question->answer == $question->userAnswer) {
-                    $rightMarks += (float) $question->marks;
-                    $correct++;
-                } else {
-                    if ($question->negative != '0') {
-                        $negativeMarks += (float) ($question->negative == '1/3' ? 1 / 3 : 2 / 3);
-                    }
-                }
-            }
-        }
-    }
-
-    list($m, $s) = explode(':', $r->time);
+Route::post('/result', function (Request $request) {
+    $r = new Result;
+    $r->store($request->all());
     return [
-        'totalQuestions' => $totalQuestions,
-        'totalAttempted' => $totalAttempted,
-        'correctAnswers' => $correct,
-        'rightMarks' => $rightMarks,
-        'negativeMarks' => round($negativeMarks, 2),
-        'totalMarks' => $rightMarks - round($negativeMarks, 2),
-        'totalTime' => $r->totalTime,
-        'timeTaken' => ($r->totalTime - $m - ($s == '0' ? 0 : 1)) . ':' . (($s == '0' ? '00' : 60 - $s))
+        'totalQuestions' => $r->total_questions,
+        'maxMarks' => $r->max_marks,
+        'totalAttempted' => $r->total_attempted,
+        'correctAnswers' => $r->correct_answers,
+        'totalTime' => $r->total_time,
+        'timeTaken' => $r->time_taken,
+        'rightMarks' => $r->right_marks,
+        'negativeMarks' => $r->negative_marks,
+        'totalMarks' => $r->total_marks
     ];
 });
