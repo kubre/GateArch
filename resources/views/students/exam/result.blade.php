@@ -1,4 +1,4 @@
-@extends('students.master')
+@extends('students.exam.master')
 
 @section('content')
 <div id='resultApp' class="container my-5">
@@ -13,7 +13,7 @@
         negative-marks='{{ $negativeMarks }}'
         >
 
-        <button class='btn btn-success active'>Continue</button>
+        <button id='btnResultAction' onclick='window.close()' class='btn btn-info'>Continue</button>
     </x-exam.result>
 </div>
 @endsection

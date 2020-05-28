@@ -23,6 +23,11 @@ Route::prefix('students')
         Route::get('register', 'AuthController@showRegisterForm');
         Route::get('register', 'AuthController@register')
             ->name('students.register');
+
+        Route::get('dashboard', 'PageController@dashboard')->name('students.dashboard');
+        Route::get('profile', 'PageController@profile')->name('students.profile');
+        Route::get('exams', 'PageController@exams')->name('students.exams');
+        Route::get('results', 'PageController@results')->name('students.results');
     });
 
 Route::prefix('exams')

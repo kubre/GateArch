@@ -17,6 +17,8 @@ try {
     console.error(e)
 }
 
+require('sanjab/resources/js/material-dashboard');
+
 // Vue.use(require('./plugin').default);
 
 window.axios = require('axios').default

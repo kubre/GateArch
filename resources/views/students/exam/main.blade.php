@@ -1,4 +1,4 @@
-@extends('students.master')
+@extends('students.exam.master')
 
 @section('header')
 <style>
@@ -53,12 +53,19 @@
         font-weight: bolder;
         color: #fff;
         background-size: 100% 100%;
-        height: 35px;
+        height: 40px;
+        cursor: pointer;
+        padding: 10px 20px;
     }
 
-    <blade media|%20screen%20and%20(min-width%3A%201280px)%20%7B>.qc {
-        height: 40px;
+    .qc:hover, .qc:active {
+        color: #fff;
     }
+
+    @media screen and (min-width : 1280px) {
+        .qc {
+            height: 40px;
+        }
     }
 
     .ic-question-paper {
@@ -123,7 +130,7 @@
                 <span
                     class="px-2 mx-2 d-inline-flex align-items-center bg-primary my-2 text-white">@{{ exam.subject }}<span
                         class="ic-instructions mx-1"></span></span>
-                <a id="openCalculator" class="p-1 px-2 btn"><span class="ic ic-calculator"></span></a>
+                <a id="openCalculator" style='cursor: pointer' class="py-1 px-2 h-100"><span class="ic ic-calculator"></span></a>
             </div>
             <div class="px-4 py-1 d-flex justify-content-between">
                 <span>Sections [Attempt any 1 of the
@@ -187,16 +194,16 @@
                         <input id='dummyRadio' style='display: none' v-model="tempAnswer" type="radio" value="">
                     </template>
                     <template v-else>
-                        <div class="mt-5 border p-2" style="width: 270px;">
+                        <div class="border p-2 bg-white" style="width: 300px; margin-top: 120px;">
                             <div class="mb-2">
-                                <input style="font: mono" v-model='tempAnswer' type="text" class="form-input w-100">
+                                <input style="font: mono" v-model='tempAnswer' type="text" class="form-control w-100">
                             </div>
-                            <div class="row">
-                                <div class='col'>
+                            <div class='d-flex'>
+                                <div class='w-50 mr-1'>
                                     <button v-on:click="tempAnswer = tempAnswer.slice(0, -1)"
                                         class='btn btn-outline-dark btn-block'>Backspace</button>
                                 </div>
-                                <div class='col'>
+                                <div class='w-50'>
                                     <button v-on:click="tempAnswer = ''" class='btn btn-outline-dark btn-block'>Clear
                                         All</button>
                                 </div>
@@ -259,25 +266,25 @@
                 <div class="grid-container pt-3 pr-4 pl-4">
                     <a href="#" v-for="(question, i) in section.questions"
                         v-bind:class="states_css[question.state || State.NOT_VISITED]" v-on:click="loadQuestion(i)"
-                        class="btn qc">
+                        class="qc">
                         @{{ question.number }}
                     </a>
                 </div>
             </template>
         </div>
     </div>
-    <div class="px-4 pt-2 bg-grey row" style="height: 60px;">
+    <div class="px-4 pt-1 bg-grey row" style="height: 60px;">
         <div class="col-10 d-flex justify-content-between">
             <span>
-                <a href="#" v-on:click="markForReview" class="btn btn-outline-dark mr-2">Mark for review</a>
-                <a href="#" v-on:click="clearResponse" class="btn btn-outline-dark">Clear response</a>
+                <a href="#" v-on:click="markForReview" class="btn btn-default mr-2">Mark for review</a>
+                <a href="#" v-on:click="clearResponse" class="btn btn-default">Clear response</a>
             </span>
             <span>
-                <a href="#" v-on:click="saveAndNext" class="btn btn-primary active">Save &amp; Next</a>
+                <a href="#" v-on:click="saveAndNext" class="btn btn-info">Save &amp; Next</a>
             </span>
         </div>
         <div class="col-2 text-center">
-            <a href="#" v-on:click="endExam" class="btn btn-primary active">Submit</a>
+            <a href="#" v-on:click="endExam" class="btn btn-info">Submit</a>
         </div>
     </div>
     <x-exam.calculator />

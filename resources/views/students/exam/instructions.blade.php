@@ -1,4 +1,4 @@
-@extends('students.master')
+@extends('students.exam.master')
 
 @section('header')
 <style>
@@ -111,7 +111,7 @@
     <div class="w-100 bg-light border p-1 pl-3 m-0">
         <h4>Mock Exam {{ date('Y') }}</h4>
     </div>
-    <div class="container-fluid mb-5 border">
+    <div class="container-fluid border">
         <div class="row">
             <div class="col-10 border" style="overflow-y: scroll; height: 90vh;">
                 <div id="first">
@@ -137,7 +137,7 @@
             </div>
         </div>
     </div>
-    <nav class="navbar fixed-bottom bg-light botder-top justify-content-between border-top">
+    <nav class="navbar fixed-bottom bg-light mb-0 px-3 botder-top justify-content-between border-top">
         <div id="disclaimerWrapper" class="my-1" style="display: none;">
             <label>
             <span style=" vertical-align:top"><input type="checkbox" id="disclaimer" style="margin-top:1px;float:left">   </span>
