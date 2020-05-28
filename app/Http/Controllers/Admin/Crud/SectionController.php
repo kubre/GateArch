@@ -50,7 +50,9 @@ class SectionController extends CrudController
                     ->addOption('1/3', '1/3')
                     ->addOption('2/3', '2/3')
                     ->addOption('0', '0')
-                    ->cols(4)
+                    ->cols(4),
+                TextWidget::create('solution')
+                    ->cols(12),
             ]);
         $this->widgets[] = BelongsToPickerWidget::create('exam')
             ->format('%topic')

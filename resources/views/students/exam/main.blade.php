@@ -269,7 +269,7 @@
     <div class="px-4 pt-2 bg-grey row" style="height: 60px;">
         <div class="col-10 d-flex justify-content-between">
             <span>
-                <a href="#" v-on:click="changeState(State.REVIEW)" class="btn btn-outline-dark mr-2">Mark for review</a>
+                <a href="#" v-on:click="markForReview" class="btn btn-outline-dark mr-2">Mark for review</a>
                 <a href="#" v-on:click="clearResponse" class="btn btn-outline-dark">Clear response</a>
             </span>
             <span>
@@ -300,6 +300,17 @@
             }
         }
 
+        Swal.fire({
+            'text': 'Please wait...',
+            onOpen: function() {
+                Swal.showLoading();
+                axios.get('/api/exam')
+                .then(examApp.getQuestions)
+                .catch(function (err) {
+                    Swal.fire('Problem getting question please close the window and try again!' + err);
+                });
+            }
+        });
 
         var examApp = new Vue({
             'el': '#examApp',
@@ -341,17 +352,10 @@
                 }
             },
 
-            mounted: function () {
-                axios.get('/api/exam')
-                    .then(this.getQuestions)
-                    .catch(function (err) {
-                        Swal.fire('Problem getting question please close window and try again!' + err);
-                    });
-            },
-
             methods: {
 
                 getQuestions: function (result) {
+                    Swal.close();
                     this.exam = result.data.exam;
                     this.sections = result.data.sections;
                     // var sectionsSorted = _.map(result.data.sections, function(section) {
@@ -379,14 +383,14 @@
                     Swal.fire({
                         text: 'End Exam now?',
                         showCancelButton: true,
-                        confirmButtonText: 'Look up',
+                        confirmButtonText: 'Yes, End Exam',
                         showLoaderOnConfirm: true,
                         preConfirm: (login) => {
                             return axios.post('/api/result', {
-                                sections : [{"id":1,"title":"General Aptitude","number":1,"questions":[{"number":"1","image":"ga-2019/1.png","type":"mcq","answer":"C","marks":"1","negative":"1/3","state":3,"userAnswer":"D"},{"number":"2","image":"ga-2019/2.png","type":"mcq","answer":"C","marks":"1","negative":"1/3","state":3,"userAnswer":"D"},{"number":"3","image":"ga-2019/3.png","type":"mcq","answer":"C","marks":"0","negative":"1/3","state":3,"userAnswer":"D"}, {"number":"4","image":"ap-2019/4.png","type":"mcq","answer":"A","marks":"1","negative":"2/3","state":1}],"exam_id":"1","created_at":"2020-05-13T13:54:39.000000Z","updated_at":"2020-05-18T11:09:34.000000Z"},{"id":2,"title":"Architecture and Planning","number":2,"questions":[{"number":"1","image":"ap-2019/1.png","type":"mcq","answer":"A","marks":"1","negative":"1/3","state":1},{"number":"2","image":"ap-2019/2.png","type":"mcq","answer":"C","marks":"1","negative":"1/3"},{"number":"3","image":"ap-2019/3.png","type":"mcq","answer":"B","marks":"1","negative":"1/3"},{"number":"4","image":"ap-2019/21_NAT.png","type":"nat","answer":"22","marks":"1","userAnswer": "23","negative":"0"}],"exam_id":"1","created_at":"2020-05-18T03:09:15.000000Z","updated_at":"2020-05-21T11:00:53.000000Z"}],
-                                totalTime: 120,
-                                time: '80:30',
-                                marks: 100
+                                sections : JSON.stringify(examApp.sections),
+                                totalTime: examApp.exam.time / 60,
+                                time: examApp.exam.timerDisplay,
+                                marks: examApp.exam.makrs
                             })
                             .then(function(res) {
                                 window.location.replace('{{ route('exam.end') }}?'+
@@ -413,6 +417,7 @@
                 },
 
                 loadSection: function (i) {
+                    if (i >= this.sections.length) return this.endExam();
                     this.sectionIndex = i;
                     this.loadQuestion(0);
                 },
@@ -424,29 +429,22 @@
                 },
 
                 saveAndNext: function () {
-                    if (this.question.state != this.State.SAVED && !this.tempAnswer) {
-                        Swal.fire("You must answer the question to save!");
-                        return;
-                    }
                     this.question.userAnswer = this.tempAnswer;
-                    this.changeState(this.State.SAVED);
+                    if (this.tempAnswer) 
+                        this.changeState(
+                            this.question.state == this.State.VISITED ?
+                            this.State.SAVED:
+                            this.State.REVIEW_SAVED);
                     if (this.section.questions.length - 1 > this.questionIndex) {
                         this.loadQuestion(this.questionIndex + 1);
                     } else {
-                        Swal.fire('No more questions');
+                        this.loadSection(this.sectionIndex + 1);
                     }
                 },
 
-                changeState: function (newState, overwrite) {
-                    var a = [this.State.SAVED, this.State.REVIEW];
-                    if (a.includes(newState) && a.includes(this.question.state) &&
-                        newState != this.question.state) {
-                        this.question.state = this.State.REVIEW_SAVED;
-                    } else {
-                        this.question.state = overwrite ?
-                            newState :
-                            Math.max(this.question.state || 0, newState);
-                    }
+                markForReview: function() {
+                    this.changeState(this.State.REVIEW);
+                    this.saveAndNext();
                 },
 
                 clearResponse: function () {
@@ -454,6 +452,11 @@
                     $('#dummyRadio').trigger('click');
                     this.question.userAnswer = '';
                     this.changeState(this.State.VISITED, true);
+                },
+
+                changeState: function (newState, clear) {
+                    if (clear) return this.question.state = newState; 
+                    this.question.state = Math.max(this.question.state || 0, newState);
                 },
 
                 addInput: function (e) {

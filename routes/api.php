@@ -35,7 +35,7 @@ Route::get('/exam', function () {
 });
 
 Route::post('/result', function (Request $r) {
-    $sections = $r->sections;
+    $sections = json_decode($r->sections);
     $totalQuestions = 0;
     $totalAttempted = 0;
     $correct = 0;
@@ -43,16 +43,16 @@ Route::post('/result', function (Request $r) {
     $negativeMarks = 0;
 
     foreach ($sections as $section) {
-        foreach ($section['questions'] as $question) {
+        foreach ($section->questions as $question) {
             $totalQuestions++;
-            if (!empty($question['userAnswer'])) {
+            if (!empty($question->userAnswer)) {
                 $totalAttempted++;
-                if ($question['answer'] == $question['userAnswer']) {
-                    $rightMarks += (float) $question['marks'];
+                if ($question->answer == $question->userAnswer) {
+                    $rightMarks += (float) $question->marks;
                     $correct++;
                 } else {
-                    if ($question['negative'] != '0') {
-                        $negativeMarks += (float) ($question['negative'] == '1/3' ? 1 / 3 : 2 / 3);
+                    if ($question->negative != '0') {
+                        $negativeMarks += (float) ($question->negative == '1/3' ? 1 / 3 : 2 / 3);
                     }
                 }
             }
@@ -60,14 +60,13 @@ Route::post('/result', function (Request $r) {
     }
 
     list($m, $s) = explode(':', $r->time);
-
     return [
         'totalQuestions' => $totalQuestions,
         'totalAttempted' => $totalAttempted,
         'correctAnswers' => $correct,
         'rightMarks' => $rightMarks,
-        'negativeMarks' => $negativeMarks,
-        'totalMarks' => $rightMarks - $negativeMarks,
+        'negativeMarks' => round($negativeMarks, 2),
+        'totalMarks' => $rightMarks - round($negativeMarks, 2),
         'totalTime' => $r->totalTime,
         'timeTaken' => ($r->totalTime - $m - ($s == '0' ? 0 : 1)) . ':' . (($s == '0' ? '00' : 60 - $s))
     ];

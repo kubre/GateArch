@@ -40,7 +40,7 @@
                     <div class="col">{{ $timeTaken }}</div>
                     <div class="col">{{ $rightMarks }}</div>
                     <div class="col">{{ $negativeMarks }}</div>
-                    <div class="col">{{ $rightMarks + $negativeMarks }}</div>
+                    <div class="col">{{ $rightMarks - $negativeMarks }}</div>
                 </div>   
             </div>
         </div>
