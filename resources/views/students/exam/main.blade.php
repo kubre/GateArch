@@ -437,7 +437,7 @@
 
                 saveAndNext: function () {
                     this.question.userAnswer = this.tempAnswer;
-                    if (this.tempAnswer) 
+                    if (this.tempAnswer && this.question.state != this.State.SAVED) 
                         this.changeState(
                             this.question.state == this.State.VISITED ?
                             this.State.SAVED:
@@ -450,7 +450,7 @@
                 },
 
                 markForReview: function() {
-                    this.changeState(this.State.REVIEW);
+                    this.changeState(this.State.REVIEW, true);
                     this.saveAndNext();
                 },
 

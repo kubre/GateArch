@@ -1,4 +1,4 @@
-@extends('students.master')
+@extends('students.exam.master')
 
 @section('content')
 <div class="container mt-4">
