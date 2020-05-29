@@ -21,7 +21,7 @@
                 </div>
                 <div class="row bg-white p-2">
                     <div class="col">{{ $totalQuestions }}</div>
-                    <div class="col">{{ $maxMarks}}</div>
+                    <div class="col">{{ $maxMarks }}</div>
                     <div class="col">{{ $totalAttempted }}</div>
                     <div class="col">{{ $totalQuestions - $totalAttempted }}</div>
                     <div class="col">{{ $correctAnswers }}</div>
@@ -33,6 +33,7 @@
                     <div class="col"><strong>Right Marks</strong></div>
                     <div class="col"><strong>Negative Marks</strong></div>
                     <div class="col"><strong>Total Marks</strong></div>
+                    <div class="col"><strong>Percentage</strong></div>
                 </div>
 
                 <div class="row bg-white p-2">
@@ -41,6 +42,7 @@
                     <div class="col">{{ $rightMarks }}</div>
                     <div class="col">{{ $negativeMarks }}</div>
                     <div class="col">{{ $rightMarks - $negativeMarks }}</div>
+                    <div class="col">{{ round(($rightMarks - $negativeMarks) / $maxMarks * 100, 2) }}%</div>
                 </div>   
             </div>
         </div>
