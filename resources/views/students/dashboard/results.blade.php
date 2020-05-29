@@ -7,7 +7,7 @@
 @section('content')
 <div class="content">
     <div id='resultList' class="container">
-        @foreach ($results as $result) 
+        @forelse ($results as $result) 
             <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
                     <div class="card-icon">
@@ -36,7 +36,16 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <strong>No Data Available</strong>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Take tests to see the results here.</p>
+                </div>
+            </div>
+        @endforelse
     </div>
     <div id='resultOverview'>
     </div>

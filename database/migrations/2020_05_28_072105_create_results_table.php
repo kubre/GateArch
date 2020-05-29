@@ -22,8 +22,8 @@ class CreateResultsTable extends Migration
             $table->unsignedInteger('correct_answers');
             $table->unsignedInteger('total_time');
             $table->string('time_taken', 10);
-            $table->unsignedInteger('right_marks');
-            $table->unsignedInteger('negative_marks');
+            $table->unsignedFloat('right_marks');
+            $table->unsignedFloat('negative_marks');
             $table->json('answers');
             $table->timestamps();
         });
