@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/exam', function () {
-    $exam = App\Exam::first();
+Route::get('/exam/{id}', function ($id) {
+    $exam = App\Exam::findOrFail($id);
     $sectionSorted = $exam->sections->map(function ($section) {
         return collect($section->questions)->sortBy('number', SORT_NUMERIC)->values()->all();
     });

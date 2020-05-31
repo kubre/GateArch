@@ -311,7 +311,7 @@
             'text': 'Please wait...',
             onOpen: function() {
                 Swal.showLoading();
-                axios.get('/api/exam')
+                axios.get('/api/exam/{{ $id }}')
                 .then(examApp.getQuestions)
                 .catch(function (err) {
                     Swal.fire('Problem getting question please close the window and try again!' + err);

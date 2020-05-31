@@ -33,8 +33,8 @@ Route::prefix('students')
 Route::prefix('exams')
     ->namespace('Exam')
     ->group(function () {
-        Route::get('instructions', 'MainController@showInstructions')->name('exam.instructions');
-        Route::get('start', 'MainController@startExam')->name('exam.start');
+        Route::get('instructions/{id}', 'MainController@showInstructions')->name('exam.instructions');
+        Route::get('start/{id}', 'MainController@startExam')->name('exam.start');
         Route::get('end', 'MainController@endExam')->name('exam.end');
         Route::view('results', 'students.exam.result');
     });
