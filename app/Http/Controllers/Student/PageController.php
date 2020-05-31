@@ -9,14 +9,25 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:student');
+    }
+
     public function dashboard()
     {
-        return view('students.dashboard.home');
+        $exams_count = Exam::count();
+        $results_count = Result::count();
+        return view('students.dashboard.home', [
+            'exams_count' => $exams_count,
+            'results_count' => $results_count
+        ]);
     }
 
     public function profile()
     {
-        return view('students.dashboard.profile');
+        $user = auth('student')->user();
+        return view('students.dashboard.profile', ['user' => $user]);
     }
 
     public function exams()

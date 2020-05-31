@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('students.login') }}">
+            <a class="nav-link" href="{{ route('students.logout') }}">
               <i class="material-icons">exit_to_app</i>
               <p>Log Out</p>
             </a>
@@ -128,10 +128,10 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="{{ route('students.profile') }}"><i class="material-icons">person</i>Profile</a>
+                  <a class="dropdown-item" href="#"><i class="material-icons">settings</i>Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{{ route('students.login') }}">Log out</a>
+                  <a class="dropdown-item" href="{{ route('students.logout') }}"><i class="material-icons">exit_to_app</i>Log out</a>
                 </div>
               </li>
             </ul>

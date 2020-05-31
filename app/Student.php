@@ -2,10 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticable;
+use Illuminate\Notifications\Notifiable;
 
-class Student extends Model
+class Student extends Authenticable
 {
+    use Notifiable;
+
+    protected $guard = 'student';
+
     protected $fillable = [
         'name', 'email', 'mobile', 'password'
     ];
