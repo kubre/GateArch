@@ -13,7 +13,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest:student');
+        $this->middleware('guest:student')->except('logout');
     }
 
     public function showLoginForm()
@@ -61,6 +61,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('students.login');
+        return redirect()->route('students.login.show');
     }
 }

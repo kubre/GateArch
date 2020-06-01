@@ -18,7 +18,8 @@ Route::prefix('students')
     ->namespace('Student')
     ->name('students.')
     ->group(function () {
-        Route::get('login', 'AuthController@showLoginForm');
+        Route::get('login', 'AuthController@showLoginForm')
+            ->name('login.show');
         Route::post('login', 'AuthController@login')
             ->name('login');
         Route::get('logout', 'AuthController@logout')
