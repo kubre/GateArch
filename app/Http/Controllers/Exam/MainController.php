@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified');
+        $this->middleware('auth:student');
+    }
+
     public function showInstructions($id)
     {
         $exam = Exam::findOrFail($id);

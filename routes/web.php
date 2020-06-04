@@ -14,19 +14,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
+Route::get('email/verify', 'Student\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', 'Student\VerificationController@verify')->name('verification.verify');
+Route::post('email/resend', 'Student\VerificationController@resend')->name('verification.resend');
+
 Route::prefix('students')
     ->namespace('Student')
     ->name('students.')
     ->group(function () {
-        Route::get('login', 'AuthController@showLoginForm')
+        Route::get('login', 'LoginController@showLoginForm')
             ->name('login.show');
-        Route::post('login', 'AuthController@login')
+        Route::post('login', 'LoginController@login')
             ->name('login');
-        Route::get('logout', 'AuthController@logout')
-            ->name('logout');
-        Route::get('register', 'AuthController@showRegisterForm');
-        Route::get('register', 'AuthController@register')
+        Route::get('register', 'RegisterController@showRegisterForm')
+            ->name('register.show');
+        Route::post('register', 'RegisterController@register')
             ->name('register');
+
+        Route::post('logout', 'PageController@logout')
+            ->name('logout');
 
         Route::get('dashboard', 'PageController@dashboard')->name('dashboard');
         Route::get('profile', 'PageController@profile')->name('profile');

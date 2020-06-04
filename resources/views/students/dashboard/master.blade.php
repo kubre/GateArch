@@ -51,7 +51,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('students.logout') }}">
+            <form method='post' id='logoutForm' action="{{ route('students.logout') }}">
+            @csrf
+            </form>
+            <a class="nav-link" href='#' onclick="document.getElementById('logoutForm').submit()">
               <i class="material-icons">exit_to_app</i>
               <p>Log Out</p>
             </a>
@@ -131,7 +134,10 @@
                   <a class="dropdown-item" href="{{ route('students.profile') }}"><i class="material-icons">person</i>Profile</a>
                   <a class="dropdown-item" href="#"><i class="material-icons">settings</i>Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{{ route('students.logout') }}"><i class="material-icons">exit_to_app</i>Log out</a>
+                  <form method='post' class='w-100 pr-2' action="{{ route('students.logout') }}">
+                    @csrf
+                    <button type='submit' class="dropdown-item w-100"><i class="material-icons">exit_to_app</i>Log out</button>
+                  </form>
                 </div>
               </li>
             </ul>

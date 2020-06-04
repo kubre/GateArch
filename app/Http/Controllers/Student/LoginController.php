@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
-class AuthController extends Controller
+class LoginController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('guest:student')->except('logout');
+        $this->middleware('guest:student');
     }
 
     public function showLoginForm()
@@ -22,11 +22,6 @@ class AuthController extends Controller
             'loginRoute' => route('students.login'),
             'forgotPasswordRoute' => '/',
         ]);
-    }
-
-    public function showRegisterForm()
-    {
-        return view('students.auth.register');
     }
 
     public function login(Request $request)
@@ -46,21 +41,5 @@ class AuthController extends Controller
         throw ValidationException::withMessages([
             'email' => [trans('auth.failed')],
         ]);
-    }
-
-    public function register(Request $request)
-    {
-        return true;
-    }
-
-    public function logout(Request $request)
-    {
-        auth('student')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect()->route('students.login.show');
     }
 }

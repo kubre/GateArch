@@ -1,7 +1,7 @@
-@props(['name', 'type', 'label'])
+@props(['name', 'type' => 'text', 'label', 'class'])
 
-<div class="form-group">
-    <label for="{{ $name }}">{{ $label }}</label>
+<div class="form-group {{ $class ?? '' }}">
+    <label class='bmd-label-floating' for="{{ $name }}">{{ $label }}</label>
 
     <input id="{{ $name }}" type="{{ $type }}" class="form-control @error('{{ $name }}') is-invalid @enderror" name="{{ $name }}"
         value="{{ old($name) }}">

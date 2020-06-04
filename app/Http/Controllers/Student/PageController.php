@@ -11,6 +11,7 @@ class PageController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('verified');
         $this->middleware('auth:student');
     }
 
@@ -40,5 +41,16 @@ class PageController extends Controller
     {
         $results = Result::all();
         return view('students.dashboard.results', ['results' => $results]);
+    }
+
+    public function logout(Request $request)
+    {
+        auth('student')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('students.login.show');
     }
 }
