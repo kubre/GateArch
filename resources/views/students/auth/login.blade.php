@@ -37,18 +37,11 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-6">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                    {{ old('remember') ? 'checked' : '' }}>
-                                <span class="form-check-sign">
-                                    <span class="check"></span>
-                                </span>
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
+                        <input class="mr-1" type="checkbox" name="remember" id="remember"
+                            {{ old('remember') ? 'checked' : '' }}>
+                        <label for="remember">
+                            {{ __('Remember Me') }}
+                        </label>
                     </div>
 
 
@@ -64,6 +57,9 @@
                             {{ __('Login') }}
                         </button>
                     </div>
+                </div>
+                <div class="text-muted mt-2 text-center">
+                    Don't have an account <a class="text-success" href='{{ route('students.register.show') }}'><strong>Sign Up now!</strong></a>
                 </div>
             </form>
         </div>

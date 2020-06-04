@@ -139,17 +139,12 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" name="terms" id="terms"
+                        <label class="" for="terms">
+                            <input class="mr-1 @error('terms') is-invalid @enderror" type="checkbox" name="terms" id="terms"
                                 {{ old('terms') ? 'checked' : '' }}>
-                            <span class="form-check-sign">
-                                <span class="check"></span>
-                            </span>
-                            <label class="form-check-label" for="terms">
-                                I've read all the 
-                                <a href="/terms-and-condtions">Terms &amp; Condtions</a>, and I agree to those conditions beofer registering.
-                            </label>
-                        </div>
+                            I've read all the 
+                            <a href="/terms-and-condtions">Terms &amp; Condtions</a>, and I agree to those conditions beofer registering.
+                        </label>
                         @error('terms')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
