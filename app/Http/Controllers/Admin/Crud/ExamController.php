@@ -6,16 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Sanjab\Controllers\CrudController;
 use Sanjab\Helpers\CrudProperties;
 use Sanjab\Helpers\MaterialIcons;
-use Sanjab\Widgets\File\ElFinderWidget;
 use Sanjab\Widgets\IdWidget;
-use Sanjab\Widgets\ItemListWidget;
 use Sanjab\Widgets\NumberWidget;
-use Sanjab\Widgets\Relation\BelongsToManyWidget;
-use Sanjab\Widgets\Relation\BelongsToPickerWidget;
-use Sanjab\Widgets\Relation\HasManyWidget;
-use Sanjab\Widgets\SelectWidget;
-use Sanjab\Widgets\ShowWidget;
-use Sanjab\Widgets\TextAreaWidget;
 use Sanjab\Widgets\TextWidget;
 use Sanjab\Widgets\Wysiwyg\QuillWidget;
 

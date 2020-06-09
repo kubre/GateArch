@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/exam/{id}', function ($id) {
     $exam = App\Exam::findOrFail($id);
+    // TODO use new sorted section method
     $sectionSorted = $exam->sections->map(function ($section) {
         return collect($section->questions)->sortBy('number', SORT_NUMERIC)->values()->all();
     });

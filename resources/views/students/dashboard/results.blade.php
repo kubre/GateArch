@@ -33,6 +33,7 @@
                     </div>
                     <div>
                         <a onclick="showOverview({{ $result->total_questions}}, {{ $result->max_marks }}, {{ $result->total_attempted }}, {{ $result->correct_answers }}, {{ $result->total_time }}, '{{ $result->time_taken }}', {{ $result->right_marks }}, {{ $result->negative_marks }}, {{ $result->total_marks }})" class='btn btn-info btn-sm text-white py-2 px-3'>Overview</a>
+                        <a href='{{ route('students.solution', $result->id) }}' class='btn btn-warning btn-sm text-white py-2 px-3'>Solution</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +68,7 @@
         }
 
         function showOverview(total_questions, max_marks, total_attempted, correct_answers, total_time, time_taken, right_marks, negative_marks, total_marks) {
-             Swal.fire({
+            Swal.fire({
             'text': 'Please wait...',
             onOpen: function() {
                 Swal.showLoading();

@@ -14,4 +14,16 @@ class Exam extends Model
     {
         return $this->hasMany(Section::class);
     }
+
+    public function sectionsSorted()
+    {
+        $sectionSorted = $this->sections->map(function ($section) {
+            return collect($section->questions)->sortBy('number', SORT_NUMERIC)->values()->all();
+        });
+        $s = $this->sections;
+        $sectionSorted->each(function ($questions, $i) use ($s) {
+            $s[$i]->questions = $questions;
+        });
+        return $s;
+    }
 }

@@ -38,8 +38,15 @@ class PageController extends Controller
 
     public function results()
     {
-        $results = Result::all();
+        $results = Result::with('exam')->get();
         return view('students.dashboard.results', ['results' => $results]);
+    }
+
+    public function solution($id)
+    {
+        $result = Result::findOrFail($id);
+        $sections = $result->exam->sectionsSorted();
+        return view('students.dashboard.solution', ['result' => $result, 'sections' => $sections]);
     }
 
     public function logout(Request $request)
