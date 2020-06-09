@@ -50,6 +50,9 @@
     </div>
     <div id='resultOverview'>
     </div>
+    <div class="container mb-5">
+        {{ $results->links() }}
+    </div>
 </div>
 @endsection
 

@@ -45,6 +45,7 @@
                 </div>
             </div>
         @endforelse
+        {{ $exams->links() }}
     </div>
 </div>
 @endsection

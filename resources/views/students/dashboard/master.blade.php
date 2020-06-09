@@ -148,28 +148,28 @@
       <div class="content">
         @yield('content')
       </div>
-      {{-- <footer class="footer">
+      <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
+                <a href="#">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
+                <a href="#">
+                  Contact Us
                 </a>
               </li>
               <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
+                <a href="#">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Terms &amp; Condition
                 </a>
               </li>
             </ul>
@@ -178,11 +178,10 @@
             &copy;
             <script>
               document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            </script> GRID Associates | Designed &amp; Developed <a target='_blank' href='https://kubre.in'>Kubre</a>
           </div>
         </div>
-      </footer> --}}
+      </footer>
     </div>
   </div>
   {{-- <div class="fixed-plugin">
