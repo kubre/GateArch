@@ -38,7 +38,7 @@ class PageController extends Controller
 
     public function results()
     {
-        $results = Result::with('exam')->orderBy('created_at', 'desc')->paginate(10);
+        $results = auth('student')->user()->results()->with('exam')->orderBy('created_at', 'desc')->paginate(10);
         return view('students.dashboard.results', ['results' => $results]);
     }
 

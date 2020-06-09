@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <a 
-                        onclick="startExam('{{ route('exam.instructions', $exam->id) }}'"
+                        onclick="startExam('{{ route('exam.instructions', $exam->id) }}')"
                         class='btn btn-info btn-sm text-white py-2 px-3'>Take Exam</a>
                     </div>
                 </div>

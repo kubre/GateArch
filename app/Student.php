@@ -20,4 +20,9 @@ class Student extends Authenticable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function results()
+    {
+        return $this->hasMany(Result::class);
+    }
 }

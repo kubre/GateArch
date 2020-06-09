@@ -38,7 +38,7 @@ Route::get('/exam/{id}', function ($id) {
 
 Route::post('/result', function (Request $request) {
     $r = new Result;
-    $r->store($request->all());
+    $r->store($request->all(), $request->userId);
     return [
         'totalQuestions' => $r->total_questions,
         'maxMarks' => $r->max_marks,

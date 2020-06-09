@@ -38,7 +38,7 @@
                                     </td>
                                     <td>
                                         Correct Answer: {{ $question['answer'] }}<br>
-                                        Given Answer: {{ $result->answers[$section->id][$question['number']] }}<br>
+                                        Given Answer: {{ $result->answers[$section->id][$question['number']] ?? '-' }}<br>
                                     </td>
                                 </tr>
                             @endforeach

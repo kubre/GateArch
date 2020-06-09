@@ -59,9 +59,10 @@ class Result extends Model
         $this->answers = $this->transformSectionForStoring($data['sections']);
     }
 
-    public function store($sections)
+    public function store($sections, $id)
     {
         $this->calculate($sections);
+        $this->student_id = $id;
         $this->save();
         return $this;
     }
@@ -80,5 +81,10 @@ class Result extends Model
             },
             array_column($sections, 'questions', 'id')
         ), "count");
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
     }
 }

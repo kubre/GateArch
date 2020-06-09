@@ -397,7 +397,8 @@
                                 sections : JSON.parse(JSON.stringify(examApp.sections)),
                                 totalTime: examApp.exam.time / 60,
                                 time: examApp.exam.timerDisplay,
-                                marks: examApp.exam.marks
+                                marks: examApp.exam.marks,
+                                userId: {{ auth('student')->id() }}
                             })
                             .then(function(res) {
                                 window.location.replace('{{ route('exam.end') }}?'+
