@@ -17,8 +17,8 @@ class CreateSectionsTable extends Migration
             $table->id();
             $table->string('title');
             $table->integer('number');
-            $table->json('questions');
-            $table->json('exam_id');
+            $table->longText('questions');
+            $table->unsignedInteger('exam_id');
             $table->timestamps();
         });
     }
