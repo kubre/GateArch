@@ -53,13 +53,13 @@
 
                     </div>
                     <div class="card-footer px-2">
-                        <button type="submit" class="btn btn-info btn-block">
+                        <button type="submit" style='background: #343a40' class="btn btn-light btn-block">
                             {{ __('Login') }}
                         </button>
                     </div>
                 </div>
                 <div class="text-muted mt-2 text-center">
-                    Don't have an account <a class="text-success" href='{{ route('students.register.show') }}'><strong>Sign Up now!</strong></a>
+                    Don't have an account <a class="text-info" href='{{ route('students.register.show') }}'><strong>Sign Up now!</strong></a>
                 </div>
             </form>
         </div>

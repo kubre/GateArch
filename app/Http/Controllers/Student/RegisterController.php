@@ -36,13 +36,15 @@ class RegisterController extends Controller
     public function validator($data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:191',
+            'firstname' => 'required|alpha|max:40',
+            'middlename' => 'required|alpha|max:40',
+            'lastname' => 'required|alpha|max:40',
             'mobile' => 'required|digits:10',
             'email' => 'required|email|max:50|unique:students',
             'dob' => 'required|date|before:today',
             'college_name' => 'required|string|max:191',
             'graduation_status' => 'required|in:appearing,passed',
-            'graduation_year' => 'required_if:graduation_status,passed',
+            'graduation_year' => 'required_if:graduation_status,passed|digits:4',
             'password' => 'required|confirmed|min:6|max:30',
             'terms' => 'required',
         ]);
@@ -51,7 +53,7 @@ class RegisterController extends Controller
     public function create($data)
     {
         return Student::create([
-            'name' => $data['name'],
+            'name' => "{$data['firstname']} {$data['middlename']} {$data['lastname']}",
             'mobile' => $data['mobile'],
             'email' => $data['email'],
             'dob' => $data['dob'],

@@ -131,8 +131,8 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="{{ route('students.profile') }}"><i class="material-icons">person</i>Profile</a>
-                  <a class="dropdown-item" href="#"><i class="material-icons">settings</i>Settings</a>
+                  <a class="dropdown-item" href="{{ route('students.profile') }}"><i class="material-icons">person</i>{{ auth('student')->user()->name }}</a>
+                  <a class="dropdown-item" href="#"><i class="material-icons">settings</i> Settings</a>
                   <div class="dropdown-divider"></div>
                   <form method='post' class='w-100 pr-2' action="{{ route('students.logout') }}">
                     @csrf
