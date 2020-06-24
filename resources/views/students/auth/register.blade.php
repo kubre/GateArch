@@ -81,8 +81,9 @@
                     <div class="form-group col-md-6">
                         <label class='bmd-label-floating' for="mobile">Mobile No.</label>
 
-                        <input id="mobile" type="mobile" class="form-control @error('mobile') is-invalid @enderror"
-                            name="mobile" value="{{ old('mobile') }}">
+                        <input id="mobile" pattern="\d{10}" maxlength="10" minlength="10" class="form-control @error('mobile') is-invalid @enderror"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                        name="mobile" value="{{ old('mobile') }}">
 
                         @error('mobile')
                             <span class="invalid-feedback" role="alert">
@@ -91,8 +92,11 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group mt-4">
-                    <button onclick='$("#first").slideUp(); $("#second").slideDown();' type="button" style='background: #343a40' class="btn btn-light btn-block">
+                <div class="form-group">
+                    <p class="text-muted">You will recieve an OTP on this number for verification.</p>
+                </div>
+                <div class="form-group mt-3">
+                    <button onclick='next()' type="button" style='background: #343a40' class="btn btn-light btn-block">
                         Next
                     </button>
                 </div>
@@ -105,7 +109,7 @@
                     <div class="form-group col-md-12">
                         <label class='bmd-label-floating' for="dob">Date of Birth</label>
 
-                        <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror"
+                        <input id="dob" type="date" onkeydown="return false" class="form-control @error('dob') is-invalid @enderror"
                             name="dob" value="{{ old('dob') }}">
 
                         @error('dob')
@@ -134,9 +138,9 @@
 
 
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="bmd-label-floating">Graduation Details</label>
-                        <select class="form-control custom-select @error('graduation_status') is-invalid  @enderror"
+                    <div class="form-group col">
+                        <label class="bmd-label-floating pl-3">  Graduation Details</label>
+                        <select onchange="$(this).val() == 'passed' ? $('#graduation_year').parent().show() : $('#graduation_year').parent().hide()" class="form-control custom-select @error('graduation_status') is-invalid  @enderror"
                             name="graduation_status" id="graduation_status" placeholder="Select Status">
                             <option disabled selected>Select Graduation Details</option>
                             <option
@@ -153,10 +157,14 @@
                         @enderror
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col" style="display: none">
                         <label class='bmd-label-floating' for="graduation_year">Graduation Year (if passed)</label>
 
-                        <input id="graduation_year" type="number"
+                        <input id="graduation_year" 
+                            maxlength="4"
+                            minlength="4"
+                            pattern="\d{4}"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                             class="form-control @error('graduation_year') is-invalid @enderror"
                             name="graduation_year" value="{{ old('graduation_year') }}">
 
@@ -175,6 +183,8 @@
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password"
                             value="{{ old('password') }}">
+
+                        <span class="help-block text-muted">Password must be 8 characteers long and must contain a letter, number and a symbol.</span>
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -206,7 +216,7 @@
                             id="terms"
                             {{ old('terms') ? 'checked' : '' }}>
                         I've read all the
-                        <a class='text-info' href="/terms-and-condtions">Terms &amp; Condtions</a>, and I agree to those conditions
+                        <a class='text-info' target="_blank" href="/terms-and-conditions">Terms &amp; Condtions</a>, and I agree to those conditions
                         beofer registering.
                     </label>
                     @error('terms')
@@ -217,12 +227,12 @@
                 </div>
                 <div class="form-group mt-3 row">
                     <div class="col-4">
-                        <button  onclick='$("#second").slideUp(); $("#first").slideDown();' type="button" style='border: 1px solid #343a40' class="btn btn-dark btn-block">
+                        <button  onclick='btnBack()' type="button" style='border: 1px solid #343a40' class="btn btn-dark btn-block">
                             Back
                         </button>
                     </div>
                     <div class="col">
-                        <button type="submit" style='background: #343a40' class="btn btn-light btn-block">
+                        <button id="submit" disabled type="submit" style='background: #343a40' class="btn btn-light btn-block">
                             {{ __('Register') }}
                         </button>
                     </div>
@@ -236,3 +246,44 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $('#second input, #second select, #terms').change(function() {
+            var canSubmit = true;
+            $('#dob, #college_name, #graduation_status, #password, #password_confirmation').each(function(i, e) {
+                if ($(e).val().trim().length < 1) canSubmit = false;
+            });
+
+            if ($('#graduation_status').val() == 'passed' && $('#graduation_year').val().trim().length != 4) canSubmit = false;
+
+            if (!$("#terms").is(':checked')) canSubmit = false;
+
+            if (canSubmit) $("#submit").removeAttr('disabled');
+            else $("#submit").attr('disabled', true);
+        })
+
+        $(document).keypress(function (event) {
+            if (event.which == '13') event.preventDefault();
+        });
+        function next() {
+            var validated = true;
+            $("#first input").each(function(i, inp) {
+                if ($(inp).val().trim().length < 1) {
+                    validated = false;
+                    $(inp).addClass('is-invalid');
+                } else {
+                    $(inp).addClass('is-valid');
+                }
+            });
+            if (!validated) return;
+            $("#first").slideUp();
+            $("#second").slideDown();
+        }
+
+        function btnBack() {
+            $("#second").slideUp();
+            $("#first").slideDown();
+        }
+    </script>
+@endpush

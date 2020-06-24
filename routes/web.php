@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome');
+Route::view('/terms-and-conditions', 'terms');
 
 Route::get('email/verify', 'Student\VerificationController@show')->name('verification.notice');
 Route::get('email/verify/{id}/{hash}', 'Student\VerificationController@verify')->name('verification.verify');
