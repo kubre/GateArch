@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Student;
 
 use App\Exam;
-use App\Http\Controllers\Controller;
 use App\Result;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -12,6 +13,7 @@ class PageController extends Controller
     public function __construct()
     {
         $this->middleware('auth:student');
+        $this->middleware('verified.otp');
     }
 
     public function dashboard()

@@ -24,9 +24,12 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
+        /** @var Student */
         $student = $this->create($request->all());
 
         $student->sendEmailVerificationNotification();
+
+        $student->sendMobileVerificationNotification();
 
         auth('student')->login($student);
 

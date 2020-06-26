@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Student extends Authenticable implements MustVerifyEmail
 {
-    use Notifiable, MustVerifyEmailTrait;
+    use Notifiable, MustVerifyEmailTrait, MustVerifyMobile;
 
     protected $guard = 'student';
 

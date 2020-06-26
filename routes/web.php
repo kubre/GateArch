@@ -35,6 +35,12 @@ Route::prefix('students')
         Route::post('logout', 'PageController@logout')
             ->name('logout');
 
+        Route::get('verify/mobile', 'OTPVerificationController@showForm')->name('otp.verify.show');
+
+        Route::get('verify/mobile/resend', 'OTPVerificationController@resendOTP')->name('otp.verify.resend');
+
+        Route::post('verify/mobile', 'OTPVerificationController@verify')->name('otp.verify');
+
         Route::get('dashboard', 'PageController@dashboard')->name('dashboard');
         Route::get('profile', 'PageController@profile')->name('profile');
         Route::get('exams', 'PageController@exams')->name('exams');
