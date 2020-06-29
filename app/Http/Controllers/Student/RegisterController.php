@@ -48,7 +48,7 @@ class RegisterController extends Controller
             'college_name' => 'required|string|max:191',
             'graduation_status' => 'required|in:appearing,passed',
             'graduation_year' => 'required_if:graduation_status,passed|digits:4',
-            'password' => 'required|confirmed|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/|min:8|max:30',
+            'password' => 'required|confirmed|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!@$#%]).*$/|min:8|max:30',
             'terms' => 'required',
         ]);
     }

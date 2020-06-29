@@ -5,18 +5,20 @@
     <style>
         html, body {
             height: 100%;
+            width: 100%;
+            overflow-x: hidden;
         }
     </style>
 @endsection
 
 @section('content')
-<div class="w-100 d-flex h-100 align-items-stretch">
-    <div style="color: #dfdfdf;" class="w-25 bg-dark d-flex flex-column align-items-center justify-content-center px-4">
+<div class="row h-100 align-items-stretch">
+    <div style="color: #dfdfdf;" class="col-md-3 bg-dark d-flex flex-column align-items-center justify-content-center px-4 hidden-md-down">
         {{-- <img src="/images/student.png" height="150" style='object-fit: contain'> --}}
         <h3><i class="material-icons mr-2" style="font-size: 1.5em;vertical-align: bottom">school</i><span>Register</span></h3>
         <p>Already have an account? <a class="text-info" href="{{ route('students.login.show') }}">Sign In</a></p>
     </div>
-    <div class="w-50 bg-white h-100 px-5 d-flex align-items-center justify-content-center" style="box-shadow: 10px 1px 32px 2px rgba(0,0,0,0.16); overflow-y: auto">
+    <div class="col bg-white px-5-lg px-2-md d-flex align-items-center justify-content-center" style="box-shadow: 10px 1px 32px 2px rgba(0,0,0,0.16); overflow-y: auto">
         <form class='w-100' method="POST" action="{{ route('students.register') }}">
             <div style='max-width: 650px;' class="p-5 mx-auto">
                 @csrf
@@ -140,7 +142,7 @@
                 <div class="row">
                     <div class="form-group col">
                         <label class="bmd-label-floating pl-3">  Graduation Details</label>
-                        <select onchange="$(this).val() == 'passed' ? $('#graduation_year').parent().show() : $('#graduation_year').parent().hide()" class="form-control custom-select @error('graduation_status') is-invalid  @enderror"
+                        <select class="form-control custom-select @error('graduation_status') is-invalid  @enderror"
                             name="graduation_status" id="graduation_status" placeholder="Select Status">
                             <option disabled selected>Select Graduation Details</option>
                             <option
@@ -160,13 +162,13 @@
                     <div class="form-group col" style="display: none">
                         <label class='bmd-label-floating' for="graduation_year">Graduation Year (if passed)</label>
 
-                        <input id="graduation_year" 
-                            maxlength="4"
-                            minlength="4"
-                            pattern="\d{4}"
-                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                            class="form-control @error('graduation_year') is-invalid @enderror"
-                            name="graduation_year" value="{{ old('graduation_year') }}">
+                        <select class="form-control @error('graduation_year') is-invalid @enderror" name="graduation_year" id="graduation_year">
+                            @for ($i = date('Y'); $i > date('Y') - 20; $i--)
+                                <option @if(old('graduation_year') == $i) selected @endif value="{{ $i }}">
+                                    {{ $i }}
+                                </option>
+                            @endfor
+                        </select>
 
                         @error('graduation_year')
                             <span class="invalid-feedback" role="alert">
@@ -184,7 +186,7 @@
                             class="form-control @error('password') is-invalid @enderror" name="password"
                             value="{{ old('password') }}">
 
-                        <span class="help-block text-muted">Password must be 8 characteers long and must contain a letter, number and a symbol.</span>
+                        <span class="help-block text-muted">Password must be 8 characters long and must contain a letter, a number and a symbol from (!, @, $, #, %).</span>
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -226,7 +228,7 @@
                     @enderror
                 </div>
                 <div class="form-group mt-3 row">
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <button  onclick='btnBack()' type="button" style='border: 1px solid #343a40' class="btn btn-dark btn-block">
                             Back
                         </button>
@@ -241,7 +243,7 @@
             </div>
         </form>
     </div>
-    <div class="w-25">
+    <div class="col-md-3">
 
     </div>
 </div>
@@ -249,6 +251,15 @@
 
 @push('scripts')
     <script>
+        $(function() {
+            checkStatus()
+            $("#graduation_status").change(checkStatus);
+        });
+
+        function checkStatus() {
+             $('#graduation_status').val() == 'passed' ? $('#graduation_year').parent().show() : $('#graduation_year').parent().hide()
+        }
+
         $('#second input, #second select, #terms').change(function() {
             var canSubmit = true;
             $('#dob, #college_name, #graduation_status, #password, #password_confirmation').each(function(i, e) {
@@ -258,6 +269,8 @@
             if ($('#graduation_status').val() == 'passed' && $('#graduation_year').val().trim().length != 4) canSubmit = false;
 
             if (!$("#terms").is(':checked')) canSubmit = false;
+
+            if ($("#password").val() != $("#password_confirmation").val()) canSubmit = false;
 
             if (canSubmit) $("#submit").removeAttr('disabled');
             else $("#submit").attr('disabled', true);
