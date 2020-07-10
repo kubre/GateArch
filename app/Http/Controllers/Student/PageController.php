@@ -44,9 +44,8 @@ class PageController extends Controller
         return view('students.dashboard.results', ['results' => $results]);
     }
 
-    public function solution($id)
+    public function solution(Result $result)
     {
-        $result = Result::findOrFail($id);
         $sections = $result->exam->sectionsSorted();
         return view('students.dashboard.solution', ['result' => $result, 'sections' => $sections]);
     }

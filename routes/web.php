@@ -45,7 +45,7 @@ Route::prefix('students')
         Route::get('profile', 'PageController@profile')->name('profile');
         Route::get('exams', 'PageController@exams')->name('exams');
         Route::get('results', 'PageController@results')->name('results');
-        Route::get('solution/{id}', 'PageController@solution')->name('solution');
+        Route::get('solution/{result}', 'PageController@solution')->name('solution');
     });
 
 Route::prefix('exams')
