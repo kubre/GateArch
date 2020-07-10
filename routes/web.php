@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +14,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 Route::view('/terms-and-conditions', 'terms');
-
-Route::get('/test', function () {
-    Mail::raw('Hello!', function ($message) {
-        $message->to('v@kubre.in', 'Vaibhav Kubre');
-    });
-});
 
 Route::get('email/verify', 'Student\VerificationController@show')->name('verification.notice');
 Route::get('email/verify/{id}/{hash}', 'Student\VerificationController@verify')->name('verification.verify');
