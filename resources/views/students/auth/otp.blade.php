@@ -48,7 +48,7 @@
         $(function() {
             setTimeout(function () {
                 $("#resend").slideDown();
-            }, 6000); 
+            }, 60000); 
         });
     </script>
 @endpush
