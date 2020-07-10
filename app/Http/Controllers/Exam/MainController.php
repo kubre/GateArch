@@ -10,19 +10,18 @@ class MainController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('verified');
+        $this->middleware('verified.otp');
         $this->middleware('auth:student');
     }
 
-    public function showInstructions($id)
+    public function showInstructions(Exam $exam)
     {
-        $exam = Exam::findOrFail($id);
         return view('students.exam.instructions', ['exam' => $exam]);
     }
 
-    public function startExam($id)
+    public function startExam(Exam $exam)
     {
-        return view('students.exam.main', ['id' => $id]);
+        return view('students.exam.main', ['exam' => $exam]);
     }
 
     public function endExam(Request $request)

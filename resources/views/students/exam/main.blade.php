@@ -307,18 +307,6 @@
             }
         }
 
-        Swal.fire({
-            'text': 'Please wait...',
-            onOpen: function() {
-                Swal.showLoading();
-                axios.get('/api/exam/{{ $id }}')
-                .then(examApp.getQuestions)
-                .catch(function (err) {
-                    Swal.fire('Problem getting question please close the window and try again!' + err);
-                });
-            }
-        });
-
         var examApp = new Vue({
             'el': '#examApp',
             data: function () {
@@ -359,18 +347,15 @@
                 }
             },
 
+            mounted: function() {
+                this.getQuestions();
+            },
+
             methods: {
 
-                getQuestions: function (result) {
-                    Swal.close();
-                    this.exam = result.data.exam;
-                    this.sections = result.data.sections;
-                    // var sectionsSorted = _.map(result.data.sections, function(section) {
-                    //     return _.sortBy(section.questions, 'number');
-                    // });
-                    // _.forEach(sectionsSorted, function(questions, i) {
-                    //     examApp.sections[i].questions = questions;
-                    // });
+                getQuestions: function () {
+                    this.exam = {!! json_encode($exam->toArray(), JSON_HEX_TAG) !!};
+                    this.sections = {!! json_encode($exam->sectionsSorted(), JSON_HEX_TAG) !!};
                     this.startExam();
                 },
 
@@ -414,14 +399,9 @@
                                 );
                             });
                         },
-                        allowOutsideClick: () => !Swal.isLoading()
+                        allowOutsideClick: function() { !Swal.isLoading(); }
                     });
                 
-                },
-
-                redirectToresults: function(response) {
-                    console.log(response.data);
-                    
                 },
 
                 loadSection: function (i) {

@@ -15,26 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-
-Route::get('/exam/{id}', function ($id) {
-    $exam = App\Exam::findOrFail($id);
-    // TODO use new sorted section method
-    $sectionSorted = $exam->sections->map(function ($section) {
-        return collect($section->questions)->sortBy('number', SORT_NUMERIC)->values()->all();
-    });
-    $s = $exam->sections;
-    $sectionSorted->each(function ($questions, $i) use ($s) {
-        $s[$i]->questions = $questions;
-    });
-    return [
-        'exam' => $exam,
-        'sections' => $s
-    ];
-});
 
 Route::post('/result', function (Request $request) {
     $r = new Result;
