@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:student');
     }
 
     public function showRegisterForm()
@@ -24,7 +24,6 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        /** @var Student */
         $student = $this->create($request->all());
 
         $student->sendEmailVerificationNotification();
