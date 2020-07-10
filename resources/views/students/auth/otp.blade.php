@@ -1,7 +1,7 @@
 @extends('students.exam.master')
 
 @section('content')
-<div class="container pt-5" style="width: 600px">
+<div class="container pt-5" style="max-width: 600px">
 
     @isset($resend)
     <div class="alert alert-success mb-4 px-3 pb-1">

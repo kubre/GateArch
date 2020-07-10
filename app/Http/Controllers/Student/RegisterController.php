@@ -41,7 +41,7 @@ class RegisterController extends Controller
             'firstname' => 'required|alpha|max:40',
             'middlename' => 'required|alpha|max:40',
             'lastname' => 'required|alpha|max:40',
-            'mobile' => 'required|digits:10',
+            'mobile' => 'required|digits:10|unique:students',
             'email' => 'required|email|max:50|unique:students',
             'dob' => 'required|date|before:today',
             'college_name' => 'required|string|max:191',
