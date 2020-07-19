@@ -36,3 +36,7 @@ $cyan: #6cb2eb;
 .form-control.is-invalid {
     border-bottom: 1px solid $red !important;
 }
+
+.collapse.show {
+    display: block !important;
+}

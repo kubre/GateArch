@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticable;
@@ -24,5 +25,25 @@ class Student extends Authenticable implements MustVerifyEmail
     public function results()
     {
         return $this->hasMany(Result::class);
+    }
+
+
+    public function isMember()
+    {
+        return !is_null($this->member_at) &&
+            $this->member_at->addDays(365)->isAfter(Carbon::now());
+    }
+
+
+    public function renewMembership()
+    {
+        $this->forceFill([
+            'member_at' => $this->freshTimestamp(),
+        ])->save();
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class)->orderBy('created_at', 'DESC');
     }
 }

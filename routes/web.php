@@ -12,8 +12,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'index', ['exams' => App\Exam::orderBy('created_at', 'DESC')->take(3)->get()]);
+Route::view('/gatearch', 'gatearch');
+Route::view('/about-us', 'about');
+Route::view('/contact-us', 'contact');
 Route::view('/terms-and-conditions', 'terms');
+Route::view('/privacy-policy', 'privacy');
 
 Route::get('email/verify', 'Student\VerificationController@show')->name('verification.notice');
 Route::get('email/verify/{id}/{hash}', 'Student\VerificationController@verify')->name('verification.verify');
@@ -41,11 +45,17 @@ Route::prefix('students')
 
         Route::post('verify/mobile', 'OTPVerificationController@verify')->name('otp.verify');
 
+
         Route::get('dashboard', 'PageController@dashboard')->name('dashboard');
         Route::get('profile', 'PageController@profile')->name('profile');
         Route::get('exams', 'PageController@exams')->name('exams');
         Route::get('results', 'PageController@results')->name('results');
         Route::get('solution/{result}', 'PageController@solution')->name('solution');
+
+
+        Route::get('membership', 'MemberController@showForm')->name('membership.show');
+        Route::post('membership/success', 'MemberController@success')->name('membership.success');
+        Route::post('membership/failure', 'MemberController@failure')->name('membership.failure');
     });
 
 Route::prefix('exams')
