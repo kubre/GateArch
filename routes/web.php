@@ -9,13 +9,16 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+| 
 */
 
 Route::view('/', 'index', ['exams' => App\Exam::orderBy('created_at', 'DESC')->take(3)->get()]);
 Route::view('/gatearch', 'gatearch');
 Route::view('/about-us', 'about');
-Route::view('/contact-us', 'contact');
+Route::get('/contact-us', function () {
+    return view('contact');
+});
+Route::post('/contact-us', 'Student\ActionController@contactUs');
 Route::view('/terms-and-conditions', 'terms');
 Route::view('/privacy-policy', 'privacy');
 

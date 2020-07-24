@@ -153,32 +153,29 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="#">
+                <a href="/about-us">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/contact-us">
                   Contact Us
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/privacy-policy">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/terms-and-conditions">
                   Terms &amp; Condition
                 </a>
               </li>
             </ul>
           </nav>
           <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script> GRID Associates | Designed &amp; Developed <a target='_blank' href='https://kubre.in'>Kubre</a>
+            &copy; {{ date('Y') }} Developed by <a target="_blank" href="https://kubre.in">Kubre</a> for Cognimize
           </div>
         </div>
       </footer>

@@ -20,6 +20,7 @@ return [
         App\Http\Controllers\Admin\Crud\ExamController::class,
         App\Http\Controllers\Admin\Crud\SectionController::class,
         App\Http\Controllers\Admin\Setting\GeneralSettingController::class,
+        App\Http\Controllers\Admin\Crud\InquiryController::class,
     ],
 
     /*

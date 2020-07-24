@@ -1,19 +1,4 @@
-<x-layout>
-    <x-slot name="header">
-        <style>
-            h3 {
-                font-weight: bold;
-                color: #1188dd;
-            }
-
-            table, td, tr {
-                border: 1px solid #333;
-                border-collapse: collapse;
-                padding: 5px 20px;
-            }
-        </style>
-    </x-slot>
-    <div style="max-width: 700px" class="container mx-md-auto mb-5 mt-3 bg-white shadow-lg px-4 px-md-5 rounded py-3 mx-3">
+<x-simple-layout title="GATE Architecture">
         <h3>What is GATE?</h3>
         <p>Graduate Aptitude Test in Engineering (GATE) is an all India entrance Examination conducted jointly by the Indian Institute of Science (IISc), Bangalore and the seven Indian Institutes of Technology (at Bombay, Delhi, Guwahati, Kanpur, Kharagpur, Madras, and Roorkee). It is conducted every year in the month of February. The GATE Score/Rank is mandatory for admission into and/or financial assistance to Master’s programs and direct Doctoral programs in Engineering/Technology/Architecture in IISc, IITs and other prestigious Institutes / Universities in India. The GATE Score is also used by many PSUs for the recruitment of candidates into prestigious jobs with attractive salary packages. Some of the PSUs which use GATE score for providing jobs include BARC, BHEL, IOCL, HPCL, NTPC, Powergrid, NHPC etc.</p>
         <p>GATE is an exam that primarily tests the comprehensive understanding of the candidate in various undergraduate subjects in Engineering/Technology/Architecture and post-graduate level subjects in Science. The GATE score reflects the relative performance level of the candidate in a particular subject. GATE score is valid for THREE years.</p>
@@ -137,5 +122,4 @@
                 <li>Previous Year Papers 2012-2019 & Latest Syllabus.</li>
             </ol>
         </p>
-    </div>
-</x-layout>
+</x-simple-layout>

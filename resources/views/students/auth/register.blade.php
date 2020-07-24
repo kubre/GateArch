@@ -1,22 +1,24 @@
-@extends('students.exam.master')
+<x-layout>
 
+    <x-slot name="header">
+        <style>
+            html, body {
+                height: 100%;
+                width: 100%;
+                overflow-x: hidden;
+            }
+        </style>
+    </x-slot>
 
-@section('header')
-    <style>
-        html, body {
-            height: 100%;
-            width: 100%;
-            overflow-x: hidden;
-        }
-    </style>
-@endsection
-
-@section('content')
-<div class="row h-100 align-items-stretch">
-    <div style="color: #dfdfdf;" class="col-md-3 bg-dark d-flex flex-column align-items-center justify-content-center px-4 hidden-md-down">
-        {{-- <img src="/images/student.png" height="150" style='object-fit: contain'> --}}
-        <h3><i class="material-icons mr-2" style="font-size: 1.5em;vertical-align: bottom">school</i><span>Register</span></h3>
-        <p>Already have an account? <a class="text-info" href="{{ route('students.login.show') }}">Sign In</a></p>
+<div class="row align-items-stretch">
+    <div style="color: #dfdfdf;" class="col-md-3 bg-dark d-flex flex-column align-items-center justify-content-between px-4 pt-2 pb-3 py-md-5 hidden-md-down">
+        <img src="/images/index/logo-negative-v.png" class="d-none d-md-inline-block" style="max-width: 100px;">
+        <div class="text-center">
+            <h3>Register</h3>
+            <hr style="width: 80px;background: #ff9900">
+            <p>Already have an account? <a class="text-info" href="{{ route('students.login.show') }}">Sign In</a></p>
+        </div>
+        <a style="color: #1188aa;" href="/terms-and-conditions">Terms &amp; Conditions</a>
     </div>
     <div class="col bg-white px-5-lg px-2-md d-flex align-items-center justify-content-center" style="box-shadow: 10px 1px 32px 2px rgba(0,0,0,0.16); overflow-y: auto">
         <form class='w-100' method="POST" action="{{ route('students.register') }}">
@@ -244,12 +246,10 @@
         </form>
     </div>
     <div class="col-md-3">
-
     </div>
 </div>
-@endsection
 
-@push('scripts')
+    <x-slot name="scripts">
     <script>
         $(function() {
             checkStatus()
@@ -299,4 +299,5 @@
             $("#first").slideDown();
         }
     </script>
-@endpush
+    </x-slot>
+</x-layout>

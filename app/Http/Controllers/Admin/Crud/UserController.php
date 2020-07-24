@@ -18,10 +18,11 @@ class UserController extends CrudController
     protected static function properties(): CrudProperties
     {
         return CrudProperties::create('users')
-                ->model(User::class)
-                ->icon(MaterialIcons::PERSON)
-                ->title(trans('sanjab::sanjab.user'))
-                ->titles(trans('sanjab::sanjab.users'));
+            ->model(User::class)
+            ->icon(MaterialIcons::PERSON)
+            ->globalSearch(true)
+            ->title(trans('sanjab::sanjab.user'))
+            ->titles(trans('sanjab::sanjab.users'));
     }
 
     protected function init(string $type, Model $item = null): void
@@ -29,25 +30,25 @@ class UserController extends CrudController
         $this->widgets[] = IdWidget::create();
 
         $this->widgets[] = TextWidget::create('name', trans('sanjab::sanjab.name'))
-                ->rules('required|string');
+            ->rules('required|string');
 
         $this->widgets[] = TextWidget::create('email', trans('sanjab::sanjab.email'))
-                ->rules('required|email|unique:users,email,'.optional($item)->id.',id');
+            ->rules('required|email|unique:users,email,' . optional($item)->id . ',id');
 
         $this->widgets[] = PasswordWidget::create('password', trans('sanjab::sanjab.password'))
-                ->createRules('required')
-                ->editRules('nullable')
-                ->rules('min:6|confirmed');
+            ->createRules('required')
+            ->editRules('nullable')
+            ->rules('min:6|confirmed');
 
         $this->widgets[] = PasswordWidget::create('password_confirmation', trans('sanjab::sanjab.password_confirmation'))
-                ->onStore(false);
+            ->onStore(false);
 
         $this->widgets[] = BelongsToManyWidget::create('roles', trans('sanjab::sanjab.roles'))
-                ->format('%title')
-                ->query(function (Builder $query) use ($type) {
-                    if ($type != 'show') {
-                        $query->where('name', '!=', 'super_admin');
-                    }
-                });
+            ->format('%title')
+            ->query(function (Builder $query) use ($type) {
+                if ($type != 'show') {
+                    $query->where('name', '!=', 'super_admin');
+                }
+            });
     }
 }

@@ -19,6 +19,8 @@ class ExamController extends CrudController
             ->model(\App\Exam::class)
             ->title('Exam')
             ->titles('Exams')
+            ->globalSearch(true)
+            ->itemFormat('%topic')
             ->icon(MaterialIcons::LIST);
     }
 

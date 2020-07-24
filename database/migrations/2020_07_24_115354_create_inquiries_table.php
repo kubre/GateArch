@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMemberAtToStudents extends Migration
+class CreateInquiriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class AddMemberAtToStudents extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->timestamp('member_at')->nullable();
+        Schema::create('inquiries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('subject');
+            $table->string('message', 500);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ class AddMemberAtToStudents extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
-            $table->dropColumn('member_at');
-        });
+        Schema::dropIfExists('inquiries');
     }
 }

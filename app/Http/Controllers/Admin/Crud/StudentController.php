@@ -19,6 +19,7 @@ class StudentController extends CrudController
             ->model(\App\Student::class)
             ->title('Student')
             ->titles('Students')
+            ->globalSearch(true)
             ->icon(MaterialIcons::PEOPLE);
     }
 

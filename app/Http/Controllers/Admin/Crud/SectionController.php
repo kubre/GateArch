@@ -22,6 +22,7 @@ class SectionController extends CrudController
             ->model(\App\Section::class)
             ->title('Section')
             ->titles('Sections')
+            ->globalSearch(true)
             ->icon(MaterialIcons::TAB);
     }
 
