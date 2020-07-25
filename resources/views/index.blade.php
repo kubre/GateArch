@@ -5,73 +5,26 @@
         <div class="w-100 d-flex flex-column text-center justify-content-around align-items-center py-3">
             <h2 class="text-gate" style="text-decoration: underline; text-decoration-color: orange; font-weight: bold">Study with us</h2>
             <h3 style="font-weight: bold; max-width: 990px" class="text-gate-alt px-2 mt-0 mt-md-2">Explore our Exclusive Exam analysis, Study Materials & Test Series</h3>
-            {{-- Slider Large Screen --}}
-            <div id="carouselExampleInterval" class="carousel slide px-5 d-none d-md-block" style="height: 170px" data-ride="carousel">
-              
-                <div class="carousel-inner h-100 px-md-5">
-                    <div class="carousel-item active h-100">
-                        <img src="/images/index/slider-1.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-2.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-3.png" class="h-100">
-                    </div>
-                    <div class="carousel-item h-100">
-                        <img src="/images/index/slider-2.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-3.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-4.png" class="h-100">
-                    </div>
-                    <div class="carousel-item h-100">
-                        <img src="/images/index/slider-3.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-4.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-5.png" class="h-100">
-                    </div>
-                    <div class="carousel-item h-100">
-                        <img src="/images/index/slider-4.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-5.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-1.png" class="h-100">
-                    </div>
-                    <div class="carousel-item h-100">
-                        <img src="/images/index/slider-5.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-1.png" class="h-100 mr-3">
-                        <img src="/images/index/slider-2.png" class="h-100">
-                    </div>
-                </div>
-                <a style="padding: 6px 12px 5px 10px; width: auto; height: 45px; margin: auto" class="carousel-control-prev bg-gate-alt rounded-circle d-flex" href="#carouselExampleInterval" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a style="padding: 6px 10px 5px 12px; width: auto; height: 45px; margin: auto;" class="carousel-control-next bg-gate-alt rounded-circle d-flex" href="#carouselExampleInterval" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+            
+            <div class="glider-contain" style="max-width: 700px; max-height: 180px; padding: 0px 50px;">
+              <div style="overflow-x: hidden;" class="glider">
+                <img class="mr-2" style="max-height: 190px" src="/images/index/slider-1.png">
+                <img class="mr-2" style="max-height: 190px" src="/images/index/slider-2.png">
+                <img class="mr-2" style="max-height: 190px" src="/images/index/slider-3.png">
+                <img class="mr-2" style="max-height: 190px" src="/images/index/slider-4.png">
+                <img src="/images/index/slider-5.png">
+              </div>
+              <button style="padding: 6px 12px 5px 10px; width: auto; height: 45px;" class="carousel-control-prev bg-gate-alt rounded-circle d-flex glider-prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+              </button>
+              <button style="z-index: 0;padding: 6px 10px 5px 12px; width: auto; height: 45px;" class="carousel-control-next bg-gate-alt rounded-circle d-flex glider-next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+              </button>
+              <div role="tablist" class="dots"></div>
             </div>
-            {{-- Slider Small Screen --}}
-            <div id="carouselExampleInterval2" class="carousel slide px-5 d-md-none" style="height: 170px" data-ride="carousel">
-                <div class="carousel-inner h-100 px-3">
-                    <div class="carousel-item active h-100" data-interval="10000">
-                        <img src="/images/index/slider-1.png" class="h-100">
-                    </div>
-                    <div class="carousel-item h-100">
-                      <img src="/images/index/slider-2.png" class="h-100">
-                    </div>
-                    <div class="carousel-item h-100">
-                        <img src="/images/index/slider-3.png" class="h-100">
-                    </div>
-                    <div class="carousel-item h-100">
-                      <img src="/images/index/slider-4.png" class="h-100">
-                    </div>
-                    <div class="carousel-item h-100">
-                        <img src="/images/index/slider-5.png" class="h-100">
-                    </div>
-                </div>
-                <a style="padding: 6px 12px 5px 10px; width: auto; height: 45px; margin: auto" class="carousel-control-prev bg-gate-alt rounded-circle d-flex" href="#carouselExampleInterval2" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a style="z-index: 0;padding: 6px 10px 5px 12px; width: auto; height: 45px; margin: auto;" class="carousel-control-next bg-gate-alt rounded-circle d-flex" href="#carouselExampleInterval2" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
+
             <a href="{{ route('students.exams') }}" class="btn btn-warning rounded-pill bg-gate-alt text-uppercase mt-md-3">free demo tests</a>
         </div>
       </section>
@@ -143,7 +96,7 @@
          </aside>
        </div>
        <div class="mt-4 mb-5">
-         <h2 class="text-center mt-3" style="text-decoration: underline; font-weight: bold">Upcoming Exams</h2>
+         <h2 class="text-center mt-3" style="text-decoration: underline; font-weight: bold">Upcoming Tests</h2>
          <hr style="background: #ff9900; width: 80px;">
         <section class="h-100 d-flex flex-column flex-md-row px-1 align-items-center">
           <aside class="w-100 h-100 mt-3 px-3 px-md-5 d-flex flex-column justify-content-between align-items-stretch">
@@ -211,10 +164,37 @@
 
     <x-slot name="scripts">
         <script>
-            $('.navbar-toggler').click(function () {
-                $('.navbar-toggler .material-icons').text($('.navbar-toggler .material-icons').text() ==
-                    'menu' ? 'close' : 'menu');
+          $(function() {
+            new Glider(document.querySelector('.glider'), {
+              // Mobile-first defaults
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              scrollLock: true,
+              dots: '.dots',
+              arrows: {
+                prev: '.glider-prev',
+                next: '.glider-next'
+              },
+              responsive: [
+                {
+                  // screens greater than >= 775px
+                  breakpoint: 775,
+                  settings: {
+                    // Set to `auto` and provide item width to adjust to viewport
+                    slidesToShow: '3',
+                    slidesToScroll: '1',
+                    itemWidth: 150,
+                    duration: 0.25
+                  }
+                }
+              ]
             });
+
+            $('.navbar-toggler').click(function () {
+              $('.navbar-toggler .material-icons').text($('.navbar-toggler .material-icons').text() ==
+                  'menu' ? 'close' : 'menu');
+            });
+          });
         </script>
     </x-slot>
 </x-layout>
