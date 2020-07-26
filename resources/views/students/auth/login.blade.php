@@ -1,4 +1,3 @@
-
 <x-layout>
 
 <x-slot name="header">
@@ -72,17 +71,15 @@
                 </label>
             </div>
 
-
-            @if(Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }}
-                </a>
-            @endif
-            <div class="form-group mt-3">
+            <div class="form-group mt-0">
                 <button type="submit" style='background: #343a40' class="btn btn-light btn-block">
                     {{ __('Login') }}
                 </button>
             </div>
+
+            <a class="btn btn-link" href="{{ route('password.request') }}">
+                {{ __('Forgot Your Password?') }}
+            </a>
             </div>
     </form>
 </div>

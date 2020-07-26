@@ -26,6 +26,11 @@ Route::get('email/verify', 'Student\VerificationController@show')->name('verific
 Route::get('email/verify/{id}/{hash}', 'Student\VerificationController@verify')->name('verification.verify');
 Route::post('email/resend', 'Student\VerificationController@resend')->name('verification.resend');
 
+Route::get('password/reset', 'Student\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Student\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Student\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Student\ResetPasswordController@reset')->name('password.update');
+
 Route::prefix('students')
     ->namespace('Student')
     ->name('students.')

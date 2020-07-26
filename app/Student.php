@@ -4,18 +4,20 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
+use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Notifications\Notifiable;
 
-class Student extends Authenticable implements MustVerifyEmail
+class Student extends Authenticable implements MustVerifyEmail, CanResetPassword
 {
-    use Notifiable, MustVerifyEmailTrait, MustVerifyMobile;
+    use Notifiable, MustVerifyEmailTrait, MustVerifyMobile, CanResetPasswordTrait;
 
     protected $guard = 'student';
 
     protected $fillable = [
-        'name', 'photo', 'mobile', 'email', 'dob', 'college_name', 'graduation_status', 'graduation_year', 'password', 'email_verified_at'
+        'name', 'photo', 'mobile', 'email', 'dob', 'college_name', 'graduation_status', 'graduation_year', 'password', 'email_verified_at', 'member_at'
     ];
 
     protected $hidden = [
