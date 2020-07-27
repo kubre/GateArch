@@ -1,6 +1,14 @@
 @extends('students.dashboard.master')
 @section('content')
-<div class="container-fluid px-5" >
+<div class="container-fluid px-5">
+
+    @if(date('dm') == date('dm', strtotime(auth()->user()->dob)))
+    <div style="width: max-content" class="card mx-auto">
+        <div class="card-body">
+            🎂 &nbsp;&nbsp; Happy Birthday, {{ explode(" ", auth('student')->user()->name)[0] }}!
+        </div>
+    </div>
+    @endif
 
     @empty(auth()->user()->email_verified_at)
     <div class="row justify-content-center">

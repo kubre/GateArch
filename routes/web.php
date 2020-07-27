@@ -56,6 +56,7 @@ Route::prefix('students')
 
         Route::get('dashboard', 'PageController@dashboard')->name('dashboard');
         Route::get('profile', 'PageController@profile')->name('profile');
+        Route::post('profile', 'PageController@updateProfile')->name('profile.update');
         Route::get('exams', 'PageController@exams')->name('exams');
         Route::get('results', 'PageController@results')->name('results');
         Route::get('solution/{result}', 'PageController@solution')->name('solution');

@@ -6,7 +6,11 @@ use App\Exam;
 use App\Result;
 
 use App\Http\Controllers\Controller;
+use App\Student;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
@@ -30,6 +34,32 @@ class PageController extends Controller
     {
         $user = auth('student')->user();
         return view('students.dashboard.profile', ['user' => $user]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        /** @var Student */
+        $user = auth('student')->user();
+        $data = $request->validate([
+            'mobile' => ['required', 'digits:10', Rule::unique('students')->ignore($user->id)],
+            'college_name' => 'required|string|max:191',
+            'graduation_status' => 'required|in:appearing,passed',
+            'graduation_year' => 'required_if:graduation_status,passed|digits:4',
+            'password' => 'nullable|confirmed|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!@$#%]).*$/|min:8|max:30',
+        ]);
+
+        if ($request->has('password'))
+            $data['password'] = Hash::make($data['password']);
+
+        $isMobileChanged = $user->mobile != $data['mobile'];
+
+        if ($isMobileChanged) $user->mobile_verified_at = null;
+
+        $user->update($data);
+
+        if ($isMobileChanged) $user->sendMobileVerificationNotification();
+
+        return back()->with('status', 'Profile updated!');
     }
 
     public function exams()
