@@ -121,7 +121,7 @@
             </div>
         </div>
     </section>
-    <nav class="navbar navbar-expand-lg px-3 px-md-5 mb-0"
+    <nav class="navbar navbar-expand-lg sticky-top px-3 px-md-5 mb-0"
         style="background: #f2f2f6 !important; height: 80px; box-shadow: none; border-bottom: 7px solid #ff9900">
         <a class="navbar-brand" style="height: 100%" href="/">
             <img src="/images/index/logo.png" style="height: 100%" alt="logo">

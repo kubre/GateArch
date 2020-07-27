@@ -165,12 +165,15 @@
     <x-slot name="scripts">
         <script>
           $(function() {
-            new Glider(document.querySelector('.glider'), {
+            var slide = 0;
+            var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+            var slider = new Glider(document.querySelector('.glider'), {
               // Mobile-first defaults
               slidesToShow: 1,
               slidesToScroll: 1,
               scrollLock: true,
               dots: '.dots',
+              duration: 2,
               arrows: {
                 prev: '.glider-prev',
                 next: '.glider-next'
@@ -184,11 +187,16 @@
                     slidesToShow: '3',
                     slidesToScroll: '1',
                     itemWidth: 150,
-                    duration: 0.25
+                    duration: 2
                   }
                 }
               ]
             });
+
+            setInterval(function() {
+              if (slide == (isMobile ? 4 : 2)) slide = -1;
+              slider.scrollItem(++slide);
+            }, 5000);
 
             $('.navbar-toggler').click(function () {
               $('.navbar-toggler .material-icons').text($('.navbar-toggler .material-icons').text() ==
