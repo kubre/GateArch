@@ -7,8 +7,8 @@
     <meta name='viewport'
         content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="author" content="vaibhav kubre">
-    <meta name="keywords" content="gatearch, gate, jee, exams, kubre, vaibhav kubre, gatearch.in, cognimize, indian exams">
+    <meta name="keywords" content="gatearch, gate, jee, exams, gatearch.in, cognimize, indian exams">
+    <meta name="google-site-verification" content="uHR0x5VmLX0E5msmK4N98Ij-VQMa23poTygkKbbrCpE" />
     <title>@if(! empty($__env->yieldContent('title'))) @yield('title') -
         @endif{{ config('app.name') }}</title>
 
