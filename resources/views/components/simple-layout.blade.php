@@ -12,6 +12,15 @@
             color: #388087;
         }
 
+        h3::after {
+            content: "-";
+            font-size: 0px;
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #ee9900;
+        }
+
         table, td, tr {
             border: 1px solid #333;
             border-collapse: collapse;

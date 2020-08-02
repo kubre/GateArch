@@ -35,64 +35,60 @@
           <h2 class="text-center mb-0 mt-3" style="text-decoration: underline; font-weight: bold">Exams</h2>
          <hr style="background: #ff9900; width: 80px;">
          <aside class="mt-3 grid-3">
-          <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
+          <a style="color: inherit" href="/gatearch"><div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
               GATE 2021
             </strong>
-            <div class='mt-2'>General Aptitude Entrance Test</div>
+            <div class='mt-2'>Graduate Aptitude Test in Engineering</div>
           </div>
-          <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
+          </a>
+          <a style="color: inherit" href="/tests/dda"><div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
               D.D.A. Recruitment
             </strong>
             <div class='mt-2'>Delhi Development Authority</div>
           </div>
-
+          </a>
+          <a style="color: inherit" href="/tests/mah">
           <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
-              MH-CET (Architecture)
+              MAH-M.Arch-CET
             </strong>
             <div class='mt-2'>Maharashtra Common Entrance Test</div>
           </div>
-
+          </a>
+          <a style="color: inherit" href="/tests/upsc">
           <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
               UPSC Recruitment
             </strong>
             <div class='mt-2'>For Assistant Architect</div>
           </div>
-
+        </a>
+        <a style="color: inherit" href="/tests/isro">
           <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
               ISRO Recruitment
             </strong>
             <div class='mt-2'>Indian Space Research Organisation</div>
           </div>
-
+        </a>
+        <a style="color: inherit" href="/tests/kcet">
           <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
               K-CET (Architecture)
             </strong>
             <div class='mt-2'>Karnataka Common Entrance Test</div>
           </div>
+        </a>
+        <a style="color: inherit" href="/tests/aai">
           <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
-              DMRC Recruitment
+              AAI Recruitment 
             </strong>
-            <div class='mt-2'>Delhi Metro Rail Corporation</div>
+            <div class="mt-2">Airport Authority Of India</div>
           </div>
-          <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
-            <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
-              LMRC Recruitment 
-            </strong>
-            <div class="mt-2">Indian Space Research Organisation</div>
-          </div>
-          <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
-            <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
-              NBCC Recruitment 
-            </strong>
-            <div class="mt-2">National Buildings Construction Corporation</div>
-          </div>
+        </a>
          </aside>
        </div>
        <div class="mt-4 mb-5">

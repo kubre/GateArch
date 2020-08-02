@@ -21,6 +21,17 @@ Route::get('/contact-us', function () {
 Route::post('/contact-us', 'Student\ActionController@contactUs');
 Route::view('/terms-and-conditions', 'terms');
 Route::view('/privacy-policy', 'privacy');
+Route::view('/online-test-series', 'testseries');
+
+Route::prefix('tests')->group(function () {
+    Route::view('aai', 'site.aai');
+    Route::view('isro', 'site.isro');
+    Route::view('upsc', 'site.upsc');
+    Route::view('dda', 'site.dda');
+    Route::view('mah', 'site.mah');
+    Route::view('kcet', 'site.kcet');
+});
+
 
 Route::get('email/verify', 'Student\VerificationController@show')->name('verification.notice');
 Route::get('email/verify/{id}/{hash}', 'Student\VerificationController@verify')->name('verification.verify');

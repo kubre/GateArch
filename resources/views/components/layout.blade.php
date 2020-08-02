@@ -162,7 +162,7 @@
                     <a class="nav-link" style="font-weight: bold !important" href="/gatearch">Gate Architecture</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="font-weight: bold !important" href="{{ route('students.exams') }}">Online Test Series</a>
+                    <a class="nav-link" style="font-weight: bold !important" href="/online-test-series">Online Test Series</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="font-weight: bold !important" href="/contact-us">Contact Us</a>
