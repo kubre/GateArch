@@ -13,7 +13,7 @@
                 <div class="my-3 alert alert-success">{{ session('status') }}</div>
             @endif
                 <div class="card">
-                    <div class="card-header card-header-info">
+                    <div class="card-header bg-gate card-header-info">
                         <h4 class="card-title">Edit Profile</h4>
                         <p class="card-category">Complete your profile</p>
                     </div>
@@ -135,7 +135,7 @@
                 
                 <div class="form-group mt-3 row">
                     <div class="col-md-6">
-                        <button id="submit" type="submit" class="btn btn-info btn-block">
+                        <button id="submit" type="submit" class="btn bg-gate btn-info btn-block">
                             {{ __('Update') }}
                         </button>
                     </div>
@@ -147,7 +147,7 @@
             </div>
             <div class="col-md-4">
                 <div class="card card-profile">
-                    <div class="card-avatar bg-info text-white pt-3 pb-1 px-4">
+                    <div class="card-avatar bg-gate-alt text-white pt-3 pb-1 px-4">
                        <h1>{{ $user->name[0] }}</h1> 
                     </div>
                     <div class="card-body">

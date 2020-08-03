@@ -11,21 +11,58 @@
         @endif{{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        .bg-gate {
+          color: #fff !important;
+          background: #388087 !important;
+        }
 
+        .text-gate {
+            color: #388087
+        }
+
+
+        .text-gate-alt {
+            color: #ff9900 !important;
+        }
+
+        .bg-gate-alt {
+            color: #fff !important;
+            background: #ff9900 !important;
+        }
+
+        li.active a {
+          color: #fff !important;
+          background: #388087 !important;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+        }
+
+         @media screen and (max-width: 991px){
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+          }
+    </style>
     @yield('header')
 </head>
 
 <body>
     <div class="wrapper ">
-    <div class="sidebar" data-color="azure" data-background-color="white">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-      <div class="logo text-center" style='font-weight: bold'>Student Panel</div>
+    <div class="sidebar" data-color="azure" data-background-color="black">
+      <div class="logo text-center" style='font-weight: bold; color: #fff'>Student's Panel</div>
       <div class="sidebar-wrapper">
         <ul class="nav">
+          <li class="nav-item">
+              <a class="nav-link" href="/">
+              <i class="material-icons">home</i>
+              <p>Home</p>
+            </a>
+          </li>
           <li class="nav-item {{ Route::is('students.dashboard') ? 'active' : '' }}">
               <a class="nav-link" href="{{ route('students.dashboard') }}">
               <i class="material-icons">dashboard</i>
@@ -107,7 +144,7 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-              <li class="nav-item dropdown">
+              {{-- <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
                   <span class="notification">0</span>
@@ -115,14 +152,14 @@
                     Some Actions
                   </p>
                 </a>
-                {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="#">Mike John responded to your email</a>
                   <a class="dropdown-item" href="#">You have 5 new tasks</a>
                   <a class="dropdown-item" href="#">You're now friend with Andrew</a>
                   <a class="dropdown-item" href="#">Another Notification</a>
                   <a class="dropdown-item" href="#">Another One</a>
-                </div> --}}
-              </li>
+                </div>
+              </li> --}}
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
@@ -131,12 +168,11 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="{{ route('students.profile') }}"><i class="material-icons">person</i>{{ auth('student')->user()->name }}</a>
-                  <a class="dropdown-item" href="#"><i class="material-icons">settings</i> Settings</a>
+                  <a class="dropdown-item" href="{{ route('students.profile') }}"><i class="material-icons">person</i>  {{ auth('student')->user()->name }}</a>
                   <div class="dropdown-divider"></div>
                   <form method='post' class='w-100 pr-2' action="{{ route('students.logout') }}">
                     @csrf
-                    <button type='submit' class="dropdown-item w-100"><i class="material-icons">exit_to_app</i>Log out</button>
+                    <button type='submit' class="dropdown-item w-100"><i class="material-icons">exit_to_app</i>  Log out</button>
                   </form>
                 </div>
               </li>

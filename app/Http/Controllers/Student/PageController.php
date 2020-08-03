@@ -7,7 +7,6 @@ use App\Result;
 
 use App\Http\Controllers\Controller;
 use App\Student;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -26,7 +25,8 @@ class PageController extends Controller
         $results_count = Result::count();
         return view('students.dashboard.home', [
             'exams_count' => $exams_count,
-            'results_count' => $results_count
+            'results_count' => $results_count,
+            'user' => auth('student')->user(),
         ]);
     }
 
@@ -64,13 +64,13 @@ class PageController extends Controller
 
     public function exams()
     {
-        $exams = Exam::orderBy('created_at', 'desc')->paginate(10);
+        $exams = (new Exam)->getValidExams()->orderBy('created_at', 'desc')->paginate(6);
         return view('students.dashboard.exams', ['exams' => $exams]);
     }
 
     public function results()
     {
-        $results = auth('student')->user()->results()->with('exam')->orderBy('created_at', 'desc')->paginate(10);
+        $results = auth('student')->user()->results()->with('exam')->orderBy('created_at', 'desc')->paginate(6);
         return view('students.dashboard.results', ['results' => $results]);
     }
 

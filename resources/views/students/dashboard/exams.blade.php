@@ -7,11 +7,11 @@
 
 @section('content')
 <div class="content">
-    <div class="container">
+    <div class="container grid-3">
         @forelse ($exams as $exam)    
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
-                    <div class="card-icon">
+                    <div class="card-icon bg-gate">
                     <i class="material-icons">content_paste</i>
                     </div>
                     <p class="card-category">{{ $exam->subject }}</p>
@@ -19,25 +19,29 @@
                 </div>
                 <div class="card-footer">
                     <div>
-                        <div class="stats mr-2">
-                            <i class="material-icons text-info">flag</i>
-                            <a href="javascript:;">{{ $exam->marks }}</a>
-                        </div>
                         <div class="stats">
-                            <i class="material-icons text-danger">watch_later</i>
-                            <a href="javascript:;">{{ $exam->time }} Min.</a>
+                            <i class="material-icons">flag</i>
+                            <span>{{ $exam->marks }}</span>
+                        </div>
+                        <div class="stats ml-2">
+                            <i class="material-icons">watch_later</i>
+                            <span>{{ $exam->time }} Min.</span>
+                        </div>
+                        <div class="stats ml-2">
+                            <i class="material-icons">today</i>
+                            <span>{{ $exam->created_at }}</span>
                         </div>
                     </div>
                     <div>
                         <a 
                         onclick="startExam('{{ route('exam.instructions', $exam->id) }}')"
-                        class='btn btn-info btn-sm text-white py-2 px-3'>Take Exam</a>
+                        class='btn bg-gate-alt btn-info btn-sm text-white py-2 px-3'>Take Exam</a>
                     </div>
                 </div>
             </div>
         @empty
             <div class="card">
-                <div class="card-header card-header-info">
+                <div class="card-header bg-gate card-header-info">
                     <strong>No Data Available</strong>
                 </div>
                 <div class="card-body">

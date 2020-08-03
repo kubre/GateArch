@@ -2,20 +2,24 @@
 @section('content')
 <div class="container-fluid px-5">
 
-    @if(date('dm') == date('dm', strtotime(auth()->user()->dob)))
+    @if(date('dm') == date('dm', strtotime($user->dob)))
     <div style="width: max-content" class="card mx-auto">
         <div class="card-body">
-            🎂 &nbsp;&nbsp; Happy Birthday, {{ explode(" ", auth('student')->user()->name)[0] }}!
+            🎂 &nbsp;&nbsp; Happy Birthday, {{ explode(" ", $user->name)[0] }}!
         </div>
     </div>
     @endif
+    <div class="card mx-auto bg-gate shadow-md">
+        <div class="card-body">
+           <strong>Note: Please use desktop/laptop device to take exams.</strong>
+        </div>
+    </div>
 
-    @empty(auth()->user()->email_verified_at)
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    @empty($user->email_verified_at)
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-warning">{{ __('Verify Your Email Address') }}</div>
-
                 <div class="card-body">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
@@ -35,21 +39,36 @@
     </div>
     @endempty
 
+    {{-- @empty ($user->member_at)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-success">
+                    Become a Plus Member
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Unlock all exams, support GateArch, receive badge(✅) next to your profile and many more benefits <a stye="font-weight: bold" href="{{ route('students.membership.show') }}">Click here for more info</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endempty --}}
+
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
+                            <div class="card-icon bg-gate">
                             <i class="material-icons">content_paste</i>
                             </div>
-                            <p class="card-category">Total Exams Moudles Available</p>
+                            <p class="card-category">Total Exams Modules Available</p>
                             <h3 class="card-title">{{ $exams_count }}</h3>
                         </div>
                         <div class="card-footer">
                             <div>
-                                <a href='{{ route('students.exams') }}' class='btn btn-info btn-sm text-white py-2 px-3'>More</a>
+                                <a href='{{ route('students.exams') }}' class='btn bg-gate-alt btn-info btn-sm text-white py-2 px-3'>More</a>
                             </div>
                         </div>
                     </div>
@@ -57,7 +76,7 @@
                 <div class="col-md-6">
                     <div class="card card-stats">
                         <div class="card-header card-header-danger card-header-icon">
-                            <div class="card-icon">
+                            <div class="card-icon bg-gate">
                             <i class="material-icons">library_books</i>
                             </div>
                             <p class="card-category">Total Results</p>
@@ -65,7 +84,7 @@
                         </div>
                         <div class="card-footer">
                             <div>
-                                <a href='{{ route('students.exams') }}' class='btn btn-info btn-sm text-white py-2 px-3'>More</a>
+                                <a href='{{ route('students.exams') }}' class='btn bg-gate-alt btn-info btn-sm text-white py-2 px-3'>More</a>
                             </div>
                         </div>
                     </div>

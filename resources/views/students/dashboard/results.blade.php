@@ -10,7 +10,7 @@
         @forelse ($results as $result) 
             <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
-                    <div class="card-icon">
+                    <div class="card-icon bg-gate-alt">
                     <i class="material-icons">library_books</i>
                     </div>
                     <p class="card-category">{{ $result->exam->subject }}</p>
@@ -19,21 +19,21 @@
                 <div class="card-footer">
                     <div>
                         <div class="stats mr-2">
-                            <i class="material-icons text-info">flag</i>
-                            <a class='text-dark' href="javascript:;">Obtained Marks: <strong>{{ $result->total_marks }}</strong></a>
+                            <i class="material-icons">flag</i>
+                            <span class='text-dark'>Obtained Marks: <strong>{{ $result->total_marks }}</strong></span>
                         </div>
                         <div class="stats mr-2">
-                            <i class="material-icons text-warning">watch_later</i>
-                            <a class='text-dark' href="javascript:;">Time Taken: <strong>{{ $result->time_taken }}</strong></a>
+                            <i class="material-icons">watch_later</i>
+                            <span class='text-dark'>Time Taken: <strong>{{ $result->time_taken }}</strong></span>
                         </div>
                         <div class="stats">
-                            <i class="material-icons text-success">event</i>
-                            <a class='text-dark' href="javascript:;">Date & Time: <strong>{{ $result->created_at->format('d/m/y h:j') }}</strong></a>
+                            <i class="material-icons">event</i>
+                            <span class='text-dark'>Date & Time: <strong>{{ $result->created_at->format('d/m/y h:j') }}</strong></span>
                         </div>
                     </div>
                     <div>
-                        <a onclick="showOverview({{ $result->total_questions}}, {{ $result->max_marks }}, {{ $result->total_attempted }}, {{ $result->correct_answers }}, {{ $result->total_time }}, '{{ $result->time_taken }}', {{ $result->right_marks }}, {{ $result->negative_marks }}, {{ $result->total_marks }})" class='btn btn-info btn-sm text-white py-2 px-3'>Overview</a>
-                        <a href='{{ route('students.solution', $result->id) }}' class='btn btn-warning btn-sm text-white py-2 px-3'>Solution</a>
+                        <a onclick="showOverview({{ $result->total_questions}}, {{ $result->max_marks }}, {{ $result->total_attempted }}, {{ $result->correct_answers }}, {{ $result->total_time }}, '{{ $result->time_taken }}', {{ $result->right_marks }}, {{ $result->negative_marks }}, {{ $result->total_marks }})" class='btn bg-gate btn-light btn-sm text-white py-2 px-3'>Overview</a>
+                        <a href='{{ route('students.solution', $result->id) }}' class='btn bg-gate btn-light btn-sm text-white py-2 px-3'>Solution</a>
                     </div>
                 </div>
             </div>

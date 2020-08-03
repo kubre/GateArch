@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Exam extends Model
 {
     protected $fillable = [
-        'topic', 'subject', 'time', 'marks', 'instructions'
+        'topic', 'subject', 'time', 'marks', 'instructions', 'start_at', 'end_at',
+    ];
+
+    protected $dates = [
+        'start_at', 'end_at',
     ];
 
     public function sections()
@@ -25,5 +29,19 @@ class Exam extends Model
             $s[$i]->questions = $questions;
         });
         return $s;
+    }
+
+    public function getValidExams()
+    {
+        // (start_at is null or start_at <= current_date) and (end_at is null or end_at >= current_date)
+        return $this
+            ->where(function ($query) {
+                $query->whereNull('start_at')
+                    ->orWhereDate('start_at', '<=', 'CURDATE()');
+            })
+            ->where(function ($query) {
+                $query->whereNull('end_at')
+                    ->orWhereDate('end_at', '>=', 'CURDATE()');
+            });
     }
 }
