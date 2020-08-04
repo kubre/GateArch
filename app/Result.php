@@ -33,13 +33,22 @@ class Result extends Model
                 $totalQuestions++;
                 if (!empty($question['userAnswer'])) {
                     $totalAttempted++;
-                    if ($question['answer'] == $question['userAnswer']) {
+                    $ans = explode(",", $question['answer']);
+                    $isCorrect = false;
+                    if ($question['type'] == 'mcq') {
+                        $isCorrect = in_array($question['userAnswer'], $ans);
+                    } else {
+                        if (count($ans) == 1)
+                            $isCorrect = $ans[0] == $question['userAnswer'];
+                        else
+                            $isCorrect = $question['userAnswer'] >= $ans[0] && $question['userAnswer'] <= $ans[1];
+                    }
+
+                    if ($isCorrect) {
                         $rightMarks += (float) $question['marks'];
                         $correct++;
-                    } else {
-                        if ($question['negative'] != '0') {
-                            $negativeMarks += (float) ($question['negative'] == '1/3' ? 1 / 3 : 2 / 3);
-                        }
+                    } elseif ($question['negative'] != '0') {
+                        $negativeMarks += (float) ($question['negative'] == '1/3' ? 1 / 3 : 2 / 3);
                     }
                 }
             }

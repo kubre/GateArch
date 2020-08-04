@@ -40,9 +40,9 @@ class SectionController extends CrudController
                 SelectWidget::create('type')
                     ->addOption('mcq', 'MCQ')
                     ->addOption('nat', 'NAT')
-                    ->cols(4)
-                    ->value('mcq'),
+                    ->cols(4),
                 TextWidget::create('answer')
+                    ->description("You can use , to add multiple answers or for range, ex. A,B or 22.9,45.9")
                     ->cols(4),
                 NumberWidget::create('marks')
                     ->value(1)
