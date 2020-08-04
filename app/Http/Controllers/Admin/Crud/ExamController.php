@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Crud;
 
-
+use App\Exam;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Sanjab\Cards\StatsCard;
 use Sanjab\Controllers\CrudController;
 use Sanjab\Helpers\CrudProperties;
 use Sanjab\Helpers\MaterialIcons;
@@ -62,5 +64,19 @@ class ExamController extends CrudController
                 $exam->end_at = $request->end_at ?: null;
             })
             ->rules('nullable|date|after_or_equal:today');
+
+
+        $this->cards[] = StatsCard::create('Ongoing Exams')
+            ->icon(MaterialIcons::TIMER)
+            ->variant('warning')
+            ->value((new Exam)->getValidExams()->count());
+        $this->cards[] = StatsCard::create('Expired Exams')
+            ->icon(MaterialIcons::TIMER_OFF)
+            ->variant('danger')
+            ->value(Exam::where('end_at', '<', Carbon::today())->count());
+        $this->cards[] = StatsCard::create('Not Started')
+            ->icon(MaterialIcons::AV_TIMER)
+            ->variant('info')
+            ->value(Exam::where('start_at', '>', Carbon::today())->count());
     }
 }

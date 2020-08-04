@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Crud;
 
+use App\Student;
 use Illuminate\Database\Eloquent\Model;
+use Sanjab\Cards\StatsCard;
 use Sanjab\Controllers\CrudController;
 use Sanjab\Helpers\CrudProperties;
 use Sanjab\Helpers\MaterialIcons;
@@ -37,5 +39,10 @@ class StudentController extends CrudController
         $this->widgets[] = PasswordWidget::create('password')
             ->createRules('required|min:6')
             ->editRules('nullable');
+
+        $this->cards[] = StatsCard::create('Verified Students')
+            ->icon(MaterialIcons::CHECK_CIRCLE)
+            ->variant('success')
+            ->value(Student::whereNotNull('mobile_verified_at')->count());
     }
 }

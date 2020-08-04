@@ -27,9 +27,9 @@ class InquiryController extends CrudController
     protected function init(string $type, Model $item = null): void
     {
         $this->widgets[] = IdWidget::create();
-        $this->widgets[] = ShowWidget::create('name');
-        $this->widgets[] = ShowWidget::create('subject');
-        $this->widgets[] = ShowWidget::create('message');
-        $this->widgets[] = ShowWidget::create('date', 'Date');
+        $this->widgets[] = ShowWidget::create('name')->searchable(true);
+        $this->widgets[] = ShowWidget::create('subject')->searchable(true);
+        $this->widgets[] = ShowWidget::create('message')->searchable(true);
+        $this->widgets[] = ShowWidget::create('date', 'Date')->searchable(true);
     }
 }

@@ -11,11 +11,11 @@ class GeneralSettingController extends SettingController
     protected static function properties(): SettingProperties
     {
         return SettingProperties::create('general')
-            ->title('General Settings');
+            ->title('Site Settings');
     }
 
     protected function init(): void
     {
-        $this->widgets[] = TextWidget::create('example');
+        $this->widgets[] = TextWidget::create('keywords', 'Keyword Meta Tag')->description('meta tag keywords on all pages . Use , to seperate multiple keywords');
     }
 }

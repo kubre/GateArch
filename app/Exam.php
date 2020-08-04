@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Exam extends Model
 {
@@ -37,11 +38,11 @@ class Exam extends Model
         return $this
             ->where(function ($query) {
                 $query->whereNull('start_at')
-                    ->orWhereDate('start_at', '<=', 'CURDATE()');
+                    ->orWhere('start_at', '<=', Carbon::today());
             })
             ->where(function ($query) {
                 $query->whereNull('end_at')
-                    ->orWhereDate('end_at', '>=', 'CURDATE()');
+                    ->orWhere('end_at', '>=', Carbon::today());
             });
     }
 }

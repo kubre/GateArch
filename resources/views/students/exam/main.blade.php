@@ -148,7 +148,7 @@
         </div>
         <div class="col-2 border py-1">
             <img class="border mr-2" src="/images/profile.png" height="100px">
-            <span>ABCD</span>
+            <span>{{ auth('student')->user()->name }}</span>
         </div>
     </div>
     <div class="row flex-fill i-clear-inputs">
