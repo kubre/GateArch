@@ -18,7 +18,8 @@
         grid-auto-rows: min-content;
         grid-gap: 5px 5%;
         height: 53vh;
-        overflow-y: scroll;
+        overflow-y: auto;
+        margin: 0 auto;
     }
 
     .ic {
@@ -109,7 +110,7 @@
 @section('content')
 <div id="examApp" style="overflow-x: hidden;" class="w-100 h-100 d-flex flex-column">
     <div class="w-100 bg-light border p-1 pl-3">
-        <h4>Mock Exam {{ date('Y') }}</h4>
+        <h4>GateArch.in {{ date('Y') }}</h4>
     </div>
     <div class="w-100 bg-dark py-1 px-3 d-flex justify-content-between">
         <span class="text-warning"> @{{ exam.topic }} </span>
@@ -125,7 +126,7 @@
         </span>
     </div>
     <div class="row">
-        <div class="col-10 px-0 border h-100">
+        <div class="col-9 px-0 border h-100">
             <div class="bg-grey pl-3 d-flex justify-content-between">
                 <span
                     class="px-2 mx-2 d-inline-flex align-items-center bg-primary my-2 text-white">@{{ exam.subject }}<span
@@ -146,13 +147,13 @@
                 </a>
             </div>
         </div>
-        <div class="col-2 border py-1">
+        <div class="col-3 border py-1">
             <img class="border mr-2" src="/images/profile.png" height="100px">
             <span>{{ auth('student')->user()->name }}</span>
         </div>
     </div>
     <div class="row flex-fill i-clear-inputs">
-        <div class="col-10 border p-0">
+        <div class="col-9 border p-0">
             <template v-if="sections">
                 <div class="w-100 border px-4 bg-grey py-1 d-flex justify-content-between m-0">
                     <strong class="mr-3">Question: @{{ question.number }}.</strong>
@@ -258,12 +259,12 @@
                 </div>
             </template>
         </div>
-        <div class="col-2">
+        <div class="col-3">
             {{-- <div v-on:click="collapseSidebar" class="px-1 py-3 bg-dark text-white" style="border: 1px solid #111;font-size: 1.rem; position: absolute; left: -17px; top: 45%; cursor: pointer">&blacktriangleright;</div> --}}
             <template v-if="sections">
                 <img src="/images/question-info.png" class="w-100">
                 <h4 class="bg-info text-white text-center py-1" style="margin-left: -15px;">@{{ section.title }}</h4>
-                <div class="grid-container pt-3 pr-4 pl-4">
+                <div style="max-width: 330px" class="grid-container pt-3 pr-4 pl-4">
                     <a href="#" v-for="(question, i) in section.questions"
                         v-bind:class="states_css[question.state || State.NOT_VISITED]" v-on:click="loadQuestion(i)"
                         class="qc">
@@ -273,8 +274,8 @@
             </template>
         </div>
     </div>
-    <div class="px-4 pt-1 bg-grey row" style="height: 60px;">
-        <div class="col-10 d-flex justify-content-between">
+    <div class="px-4 pt-1 bg-grey row fixed-bottom" style="height: 60px;">
+        <div class="col-9 d-flex justify-content-between">
             <span>
                 <a href="#" v-on:click="markForReview" class="btn btn-default mr-2">Mark for review</a>
                 <a href="#" v-on:click="clearResponse" class="btn btn-default">Clear response</a>
@@ -283,7 +284,7 @@
                 <a href="#" v-on:click="saveAndNext" class="btn btn-info">Save &amp; Next</a>
             </span>
         </div>
-        <div class="col-2 text-center">
+        <div class="col-3 text-right">
             <a href="#" v-on:click="endExam" class="btn btn-info">Submit</a>
         </div>
     </div>
