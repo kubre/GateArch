@@ -15,6 +15,7 @@ use Sanjab\Widgets\IdWidget;
 use Sanjab\Widgets\NumberWidget;
 use Sanjab\Widgets\TextWidget;
 use Sanjab\Widgets\DateTimeWidget;
+use Sanjab\Widgets\Relation\BelongsToPickerWidget;
 use Sanjab\Widgets\Wysiwyg\QuillWidget;
 
 class ExamController extends CrudController
@@ -64,6 +65,9 @@ class ExamController extends CrudController
                 $exam->end_at = $request->end_at ?: null;
             })
             ->rules('nullable|date|after_or_equal:today');
+
+        $this->widgets[] = BelongsToPickerWidget::create('test_series')
+            ->format('%title (₹ %price)');
 
 
         $this->cards[] = StatsCard::create('Ongoing Exams')

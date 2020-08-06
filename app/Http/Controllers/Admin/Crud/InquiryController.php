@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Sanjab\Controllers\CrudController;
 use Sanjab\Helpers\CrudProperties;
 use Sanjab\Helpers\MaterialIcons;
+use Sanjab\Widgets\DateTimeWidget;
 use Sanjab\Widgets\IdWidget;
 use Sanjab\Widgets\ShowWidget;
 use Sanjab\Widgets\TextWidget;
@@ -28,8 +29,10 @@ class InquiryController extends CrudController
     {
         $this->widgets[] = IdWidget::create();
         $this->widgets[] = ShowWidget::create('name')->searchable(true);
+        $this->widgets[] = ShowWidget::create('email')->searchable(true);
         $this->widgets[] = ShowWidget::create('subject')->searchable(true);
         $this->widgets[] = ShowWidget::create('message')->searchable(true);
-        $this->widgets[] = ShowWidget::create('date', 'Date')->searchable(true);
+        $this->widgets[] = DateTimeWidget::create('created_at', 'Date')
+            ->searchable(true);
     }
 }

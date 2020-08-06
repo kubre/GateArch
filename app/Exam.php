@@ -20,6 +20,11 @@ class Exam extends Model
         return $this->hasMany(Section::class);
     }
 
+    public function test_series()
+    {
+        return $this->belongsTo(TestSeries::class);
+    }
+
     public function sectionsSorted()
     {
         $sectionSorted = $this->sections->map(function ($section) {

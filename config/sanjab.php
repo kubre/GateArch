@@ -17,6 +17,7 @@ return [
         App\Http\Controllers\Admin\DashboardController::class,
         App\Http\Controllers\Admin\Crud\UserController::class,
         App\Http\Controllers\Admin\Crud\StudentController::class,
+        App\Http\Controllers\Admin\Crud\TestSeriesController::class,
         App\Http\Controllers\Admin\Crud\ExamController::class,
         App\Http\Controllers\Admin\Crud\SectionController::class,
         App\Http\Controllers\Admin\Crud\InquiryController::class,
