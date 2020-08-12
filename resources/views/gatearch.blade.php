@@ -1,7 +1,21 @@
 <x-simple-layout title="GATE Architecture">
         <h3>What is GATE?</h3>
-        <p>Graduate Aptitude Test in Engineering (GATE) is an all India entrance Examination conducted jointly by the Indian Institute of Science (IISc), Bangalore and the seven Indian Institutes of Technology (at Bombay, Delhi, Guwahati, Kanpur, Kharagpur, Madras, and Roorkee). It is conducted every year in the month of February. The GATE Score/Rank is mandatory for admission into and/or financial assistance to Master’s programs and direct Doctoral programs in Engineering/Technology/Architecture in IISc, IITs and other prestigious Institutes / Universities in India. The GATE Score is also used by many PSUs for the recruitment of candidates into prestigious jobs with attractive salary packages. Some of the PSUs which use GATE score for providing jobs include BARC, BHEL, IOCL, HPCL, NTPC, Powergrid, NHPC etc.</p>
-        <p>GATE is an exam that primarily tests the comprehensive understanding of the candidate in various undergraduate subjects in Engineering/Technology/Architecture and post-graduate level subjects in Science. The GATE score reflects the relative performance level of the candidate in a particular subject. GATE score is valid for THREE years.</p>
+        <p>Graduate Aptitude Test in Engineering (GATE) is an all India entrance Examination 
+        conducted jointly by the Indian Institute of Science (IISc), Bangalore and the seven 
+        Indian Institutes of Technology (at Bombay, Delhi, Guwahati, Kanpur, Kharagpur, 
+        Madras, and Roorkee). It is conducted every year in the month of February. The 
+        GATE Score/Rank is mandatory for admission into and/or financial assistance to 
+        Master’s programs and direct Doctoral programs in 
+        Engineering/Technology/Architecture in IISc, IITs and other prestigious Institutes / 
+        Universities in India. The GATE Score is also used by many PSUs for the recruitment 
+        of candidates into prestigious jobs with attractive salary packages. Some of the 
+        PSUs which use GATE score for providing jobs include BARC, BHEL, IOCL, HPCL, 
+        NTPC, Powergrid, NHPC etc.</p>
+        <p>GATE is an exam that primarily tests the comprehensive understanding of the 
+        candidate in various undergraduate subjects in Engineering/Technology/Architecture 
+        and post-graduate level subjects in Science. The GATE score reflects the relative 
+        performance level of the candidate in a particular subject. GATE score is valid for 
+        THREE years.</p>
         <hr>
         <h3>Why GATE?</h3>
         <p>
@@ -24,15 +38,15 @@
             <tbody>
                 <tr>
                     <td>GATE Notification 2021 Date</td>
-                    <td>01st week of September 2020</td>
+                    <td>9th August 2020</td>
                 </tr>
                 <tr>
                     <td>GATE Application Form 2021</td>
-                    <td>04th week of September 2020</td>
+                    <td>14th September 2020</td>
                 </tr>
                 <tr>
                     <td>Last Date of GATE Registration</td>
-                    <td>01st week of October 2020</td>
+                    <td>30th September 2020</td>
                 </tr>
                 <tr>
                     <td>GATE Application Correction Date</td>
@@ -40,27 +54,27 @@
                 </tr>
                 <tr>
                     <td>Last Date to Apply with Late Fees (Extended)</td>
-                    <td>03rd week of October 2020</td>
+                    <td>7th October 2020</td>
                 </tr>
                 <tr>
                     <td>Last Date for Change of Exam City</td>
-                    <td>03rd week of November 2020</td>
+                    <td>13th November 2020</td>
                 </tr>
                 <tr>
                     <td>GATE Admit Card 2021 Download Date</td>
-                    <td>01st week of January 2021</td>
+                    <td>8th January 2021</td>
                 </tr>
                 <tr>
                     <td>GATE Exam Date 2021</td>
-                    <td>01st week of February 2021</td>
+                    <td>1st & 2nd week of February</td>
                 </tr>
                 <tr>
                     <td>GATE Answer Key 2021</td>
-                    <td>03rd week of February 2021</td>
+                    <td>3rd or 4th week of February</td>
                 </tr>
                 <tr>
                     <td>GATE Result Date 2021</td>
-                    <td>02nd week of March 2021</td>
+                    <td>22nd March 2021</td>
                 </tr>
                 <tr>
                     <td>GATE Score Card Date</td>
