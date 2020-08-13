@@ -28,7 +28,7 @@
                 <h3>Basic Details</h3>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class='bmd-label-floating' for="name">First Name</label>
+                        <label class='bmd-label-floating' for="name">First Name <span class="text-danger">*</span></label>
 
                         <input id="firstname" type="firstname" class="form-control @error('firstname') is-invalid @enderror"
                             name="firstname" value="{{ old('firstname') }}">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class='bmd-label-floating' for="middlename">Middle Name</label>
+                        <label class='bmd-label-floating' for="middlename">Middle Name <span class="text-danger">*</span></label>
 
                         <input id="middlename" type="middlename" class="form-control @error('middlename') is-invalid @enderror"
                             name="middlename" value="{{ old('middlename') }}">
@@ -56,7 +56,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class='bmd-label-floating' for="lastname">Last Name</label>
+                        <label class='bmd-label-floating' for="lastname">Last Name <span class="text-danger">*</span></label>
 
                         <input id="lastname" type="lastname" class="form-control @error('lastname') is-invalid @enderror"
                             name="lastname" value="{{ old('lastname') }}">
@@ -71,7 +71,7 @@
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class='bmd-label-floating' for="email">Email</label>
+                        <label class='bmd-label-floating' for="email">Email <span class="text-danger">*</span></label>
 
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}">
@@ -83,7 +83,7 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label class='bmd-label-floating' for="mobile">Mobile No.</label>
+                        <label class='bmd-label-floating' for="mobile">Mobile No. <span class="text-danger">*</span></label>
 
                         <input id="mobile" pattern="\d{10}" maxlength="10" minlength="10" class="form-control @error('mobile') is-invalid @enderror"
                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
@@ -111,7 +111,7 @@
                 <h3>Other Details</h3>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class='bmd-label-floating' for="dob">Date of Birth</label>
+                        <label class='bmd-label-floating' for="dob">Date of Birth <span class="text-danger">*</span></label>
 
                         <input id="dob" type="date" onkeydown="return false" class="form-control @error('dob') is-invalid @enderror"
                             name="dob" value="{{ old('dob') }}">
@@ -126,7 +126,7 @@
 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class='bmd-label-floating' for="college_name">College Name</label>
+                        <label class='bmd-label-floating' for="college_name">College Name <span class="text-danger">*</span></label>
 
                         <input id="college_name" type="text"
                             class="form-control @error('college_name') is-invalid @enderror" name="college_name"
@@ -143,7 +143,7 @@
 
                 <div class="row">
                     <div class="form-group col">
-                        <label class="bmd-label-floating pl-3">  Graduation Details</label>
+                        <label class="bmd-label-floating pl-3">  Graduation Details <span class="text-danger">*</span></label>
                         <select class="form-control custom-select @error('graduation_status') is-invalid  @enderror"
                             name="graduation_status" id="graduation_status" placeholder="Select Status">
                             <option disabled selected>Select Graduation Details</option>
@@ -162,7 +162,7 @@
                     </div>
 
                     <div class="form-group col" style="display: none">
-                        <label class='bmd-label-floating' for="graduation_year">Graduation Year (if passed)</label>
+                        <label class='bmd-label-floating' for="graduation_year">Graduation Year (if passed) <span class="text-danger">*</span></label>
 
                         <select class="form-control @error('graduation_year') is-invalid @enderror" name="graduation_year" id="graduation_year">
                             @for ($i = date('Y'); $i > date('Y') - 20; $i--)
@@ -182,7 +182,7 @@
 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class='bmd-label-floating' for="password">Password</label>
+                        <label class='bmd-label-floating' for="password">Password <span class="text-danger">*</span></label>
 
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password"
@@ -199,7 +199,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class='bmd-label-floating' for="password_confirmation">Confirm Password</label>
+                        <label class='bmd-label-floating' for="password_confirmation">Confirm Password <span class="text-danger">*</span></label>
 
                         <input id="password_confirmation" type="password"
                             class="form-control @error('password_confirmation') is-invalid @enderror"
