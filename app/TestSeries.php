@@ -14,4 +14,9 @@ class TestSeries extends Model
     {
         return $this->hasMany(Exam::class);
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
 }

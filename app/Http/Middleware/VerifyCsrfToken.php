@@ -13,6 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     // TODO pass csrf to payment gateway instead
     protected $except = [
-        '/students/membership/*',
+        '/students/purchase/*',
     ];
 }

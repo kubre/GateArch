@@ -48,4 +48,9 @@ class Student extends Authenticable implements MustVerifyEmail, CanResetPassword
     {
         return $this->hasMany(Payment::class)->orderBy('created_at', 'DESC');
     }
+
+    public function test_series()
+    {
+        return $this->belongsToMany(TestSeries::class);
+    }
 }

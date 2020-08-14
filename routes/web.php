@@ -22,6 +22,9 @@ Route::post('/contact-us', 'Student\ActionController@contactUs');
 Route::view('/terms-and-conditions', 'terms');
 Route::view('/privacy-policy', 'privacy');
 Route::view('/online-test-series', 'testseries');
+Route::view('/faqs', 'site.coming');
+Route::view('/blog', 'site.coming');
+Route::view('/shop', 'site.coming');
 
 Route::prefix('tests')->group(function () {
     Route::view('aai', 'site.aai');
@@ -68,14 +71,18 @@ Route::prefix('students')
         Route::get('dashboard', 'PageController@dashboard')->name('dashboard');
         Route::get('profile', 'PageController@profile')->name('profile');
         Route::post('profile', 'PageController@updateProfile')->name('profile.update');
+        Route::get('test-series', 'PageController@testSeries')->name('testseries');
         Route::get('exams', 'PageController@exams')->name('exams');
         Route::get('results', 'PageController@results')->name('results');
         Route::get('solution/{result}', 'PageController@solution')->name('solution');
 
+        Route::get('purchase/{id}', 'PurchaseController@show')->name('purchase.show')->middleware('auth:student');
+        Route::post('purchase/success', 'PurchaseController@success')->name('purchase.success');
+        Route::post('purchase/failure', 'PurchaseController@failure')->name('purchase.failure');
 
-        Route::get('membership', 'MemberController@showForm')->name('membership.show');
-        Route::post('membership/success', 'MemberController@success')->name('membership.success');
-        Route::post('membership/failure', 'MemberController@failure')->name('membership.failure');
+        // Route::get('membership', 'MemberController@showForm')->name('membership.show');
+        // Route::post('membership/success', 'MemberController@success')->name('membership.success');
+        // Route::post('membership/failure', 'MemberController@failure')->name('membership.failure');
     });
 
 Route::prefix('exams')

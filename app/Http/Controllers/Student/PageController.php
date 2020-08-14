@@ -7,6 +7,7 @@ use App\Result;
 
 use App\Http\Controllers\Controller;
 use App\Student;
+use App\TestSeries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -66,6 +67,20 @@ class PageController extends Controller
     {
         $exams = (new Exam)->getValidExams()->orderBy('created_at', 'desc')->paginate(6);
         return view('students.dashboard.exams', ['exams' => $exams]);
+    }
+
+    public function testSeries()
+    {
+        return view('students.dashboard.testseries', [
+            'serieses' => TestSeries::with('exams')
+                ->whereNotIn(
+                    'id',
+                    auth('student')->user()->test_series()->get(['test_series.id'])->pluck('id')->toArray()
+                )
+                ->orderBy('price')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(10),
+        ]);
     }
 
     public function results()

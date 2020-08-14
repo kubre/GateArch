@@ -75,10 +75,16 @@
               <p>Profile</p>
             </a>
           </li>
+          <li class="nav-item {{ Route::is('students.testseries') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('students.testseries') }}">
+              <i class="material-icons">apps</i>  
+              <p>Test Series</p>
+            </a>
+          </li>
           <li class="nav-item {{ Route::is('students.exams') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('students.exams') }}">
               <i class="material-icons">content_paste</i>
-              <p>Exams</p>
+              <p>My Exams</p>
             </a>
           </li>
           <li class="nav-item {{ Route::is('students.results') ? 'active' : '' }}">
