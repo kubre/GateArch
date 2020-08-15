@@ -73,6 +73,7 @@ Route::prefix('students')
         Route::post('profile', 'PageController@updateProfile')->name('profile.update');
         Route::get('test-series', 'PageController@testSeries')->name('testseries');
         Route::get('exams', 'PageController@exams')->name('exams');
+        Route::get('myexams/{series}', 'PageController@myExams')->name('myexams');
         Route::get('results', 'PageController@results')->name('results');
         Route::get('solution/{result}', 'PageController@solution')->name('solution');
 

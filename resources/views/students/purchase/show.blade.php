@@ -11,7 +11,7 @@
         <a href=""></a>
     </p>
 
-    <form class='w-100' target="_top" action="https://sandboxsecure.payu.in/_payment" method="post">
+    <form class='w-100' target="_top" action="https://secure.payu.in/_payment" method="post">
         <input type="hidden" name="key" value="{{ $key }}" />
         <input type="hidden" name="hash" value="{{ $hash }}" />
         <input type="hidden" name="txnid" value="{{ $txnId }}" />

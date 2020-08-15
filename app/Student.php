@@ -53,4 +53,9 @@ class Student extends Authenticable implements MustVerifyEmail, CanResetPassword
     {
         return $this->belongsToMany(TestSeries::class);
     }
+
+    public function canTake(Exam $exam)
+    {
+        return $this->test_series()->where('test_series.id', optional($exam->test_series)->id)->exists();
+    }
 }

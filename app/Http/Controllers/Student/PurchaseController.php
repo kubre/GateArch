@@ -16,7 +16,16 @@ class PurchaseController extends Controller
     public function show($id)
     {
         $series = TestSeries::findOrFail($id);
+        /** @var Student */
         $user = auth('student')->user();
+
+        if ($series->price == 0) {
+            $user
+                ->test_series()
+                ->syncWithoutDetaching([(int)$id]);
+            return redirect(route('students.exams'))
+                ->with('message', 'Added Test Series SuccessfullY!');
+        }
 
         $txnId = Str::random(20);
         $key = config('payu.key');

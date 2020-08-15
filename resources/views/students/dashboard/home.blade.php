@@ -1,4 +1,8 @@
 @extends('students.dashboard.master')
+@section('page-title')
+    Dashboard
+@endsection
+
 @section('content')
 <div class="container-fluid px-5">
 

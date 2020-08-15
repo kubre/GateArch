@@ -9,11 +9,15 @@ use App\Http\Controllers\Controller;
 use App\Student;
 use App\TestSeries;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
+    /** @var Student */
+    protected $student = null;
+
     public function __construct()
     {
         $this->middleware('auth:student');
@@ -22,27 +26,30 @@ class PageController extends Controller
 
     public function dashboard()
     {
-        $exams_count = Exam::count();
+        $exams_count = $this->student()->with('test_series.exams')->first()->test_series->count();
         $results_count = Result::count();
         return view('students.dashboard.home', [
             'exams_count' => $exams_count,
             'results_count' => $results_count,
-            'user' => auth('student')->user(),
+            'user' => $this->student(),
         ]);
     }
 
     public function profile()
     {
-        $user = auth('student')->user();
-        return view('students.dashboard.profile', ['user' => $user]);
+        return view(
+            'students.dashboard.profile',
+            ['user' => $this->student()]
+        );
     }
 
     public function updateProfile(Request $request)
     {
-        /** @var Student */
-        $user = auth('student')->user();
         $data = $request->validate([
-            'mobile' => ['required', 'digits:10', Rule::unique('students')->ignore($user->id)],
+            'mobile' => [
+                'required', 'digits:10',
+                Rule::unique('students')->ignore($this->student()->id)
+            ],
             'college_name' => 'required|string|max:191',
             'graduation_status' => 'required|in:appearing,passed',
             'graduation_year' => 'required_if:graduation_status,passed|digits:4',
@@ -52,21 +59,32 @@ class PageController extends Controller
         if ($request->has('password'))
             $data['password'] = Hash::make($data['password']);
 
-        $isMobileChanged = $user->mobile != $data['mobile'];
+        $isMobileChanged = $this->student()->mobile != $data['mobile'];
 
-        if ($isMobileChanged) $user->mobile_verified_at = null;
+        if ($isMobileChanged) $this->student()->mobile_verified_at = null;
 
-        $user->update($data);
+        $this->student()->update($data);
 
-        if ($isMobileChanged) $user->sendMobileVerificationNotification();
+        if ($isMobileChanged) $this->student()->sendMobileVerificationNotification();
 
         return back()->with('status', 'Profile updated!');
     }
 
     public function exams()
     {
-        $exams = (new Exam)->getValidExams()->orderBy('created_at', 'desc')->paginate(6);
-        return view('students.dashboard.exams', ['exams' => $exams]);
+        $tests = $this->student()->test_series()->get();
+        return view(
+            'students.dashboard.listseries',
+            ['tests' => $tests]
+        );
+    }
+
+    public function myExams(TestSeries $series)
+    {
+        return view(
+            'students.dashboard.exams',
+            ['exams' => $series->exams]
+        );
     }
 
     public function testSeries()
@@ -75,7 +93,7 @@ class PageController extends Controller
             'serieses' => TestSeries::with('exams')
                 ->whereNotIn(
                     'id',
-                    auth('student')->user()->test_series()->get(['test_series.id'])->pluck('id')->toArray()
+                    $this->student()->test_series()->get(['test_series.id'])->pluck('id')->toArray()
                 )
                 ->orderBy('price')
                 ->orderBy('created_at', 'DESC')
@@ -85,7 +103,7 @@ class PageController extends Controller
 
     public function results()
     {
-        $results = auth('student')->user()->results()->with('exam')->orderBy('created_at', 'desc')->paginate(6);
+        $results = $this->student()->results()->with('exam')->orderBy('created_at', 'desc')->paginate(6);
         return view('students.dashboard.results', ['results' => $results]);
     }
 
@@ -104,5 +122,10 @@ class PageController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('students.login.show');
+    }
+
+    public function student(): Student
+    {
+        return $this->student ?? ($this->student = auth('student')->user());
     }
 }

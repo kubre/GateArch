@@ -50,4 +50,19 @@ class Exam extends Model
                     ->orWhere('end_at', '>=', Carbon::today());
             });
     }
+
+    public function isValid()
+    {
+        return $this->isStarted() && !$this->isFinished();
+    }
+
+    public function isStarted()
+    {
+        return is_null($this->start_at) || $this->start_at->isBefore(Carbon::tomorrow());
+    }
+
+    public function isFinished()
+    {
+        return (bool) optional($this->end_at)->isBefore(Carbon::today());
+    }
 }
