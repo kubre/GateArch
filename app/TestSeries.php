@@ -7,8 +7,17 @@ use Illuminate\Support\Carbon;
 
 class TestSeries extends Model
 {
+    protected $fillable = [
+        'title', 'description', 'price', 'discount', 'start_date'
+    ];
+
     protected $casts = [
-        'price' => 'int'
+        'price' => 'int',
+        'discount' => 'float',
+    ];
+
+    protected $dates = [
+        'start_date',
     ];
 
     public function exams()
@@ -19,6 +28,11 @@ class TestSeries extends Model
     public function students()
     {
         return $this->belongsToMany(Student::class);
+    }
+
+    public function getDiscountedPriceAttribute()
+    {
+        return $this->price - round($this->price * $this->discount / 100, 0);
     }
 
     public function validExams()
@@ -34,5 +48,10 @@ class TestSeries extends Model
                 $query->whereNull('end_at')
                     ->orWhere('end_at', '>=', Carbon::today());
             });
+    }
+
+    public function isStarted()
+    {
+        return is_null($this->start_at) || $this->start_at->isBefore(Carbon::tomorrow());
     }
 }

@@ -1,16 +1,27 @@
 <x-simple-layout title="Become a member">
 <div class="container d-flex flex-column justify-content-center pt-5">
     <h3>{{ $series->title }}</h3>
-
+    <p>{!! $series->description !!}</p>
     <p>
+        <strong>This Test series will include following exams: </strong>
         <ul>
-            @foreach ($series->exams as $exam)
+            @forelse ($series->exams as $exam)
                 <li>{{ $exam->topic }}</li>
-            @endforeach
+            @empty
+                <li>Coming Soon...</li>
+            @endforelse
         </ul>
-        <a href=""></a>
     </p>
-
+    <div class="d-flex align-items-center my-2"><span class="material-icons mr-2">today</span> Available from: {{ optional($series->start_date)->format('d M Y') ?? $series->created_at->format('d M Y') }}</div>
+    <div class="mt-2 mb-4">
+     <x-discount 
+        prefix="Price: "
+        price="{{ $series->price }}"
+        discount="{{ $series->discount }}"
+        discountedPrice="{{ $amount }}"
+        />
+    </div>
+    @if ($series->isStarted())
     <form class='w-100' target="_top" action="https://secure.payu.in/_payment" method="post">
         <input type="hidden" name="key" value="{{ $key }}" />
         <input type="hidden" name="hash" value="{{ $hash }}" />
@@ -24,7 +35,8 @@
         <input type="hidden" name="surl" value="{{ route('students.purchase.success') }}">
         <input type="hidden" name="furl" value="{{ route('students.purchase.failure') }}">
         <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
-        <button class="btn btn-light bg-gate btn-block" value="submit">Buy for {{ $amount }}</button>    
+        <button style="font-weight: bold" class="btn btn-light bg-gate btn-block" value="submit">Buy Now</button>    
     </form>
+    @endif
 </div>
 </x-simple-layout>

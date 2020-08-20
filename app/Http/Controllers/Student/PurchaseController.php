@@ -31,7 +31,7 @@ class PurchaseController extends Controller
         $key = config('payu.key');
         $salt = config('payu.salt');
         $firstName = explode(' ', $user->name)[0];
-        $amount = $series->price;
+        $amount = $series->discounted_price;
         $product = $series->id;
         $hash = "$key|$txnId|$amount|$product|$firstName|{$user->email}|{$user->id}||||||||||$salt";
         $hash = strtolower(hash('sha512', $hash));
