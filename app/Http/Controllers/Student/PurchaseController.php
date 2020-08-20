@@ -51,7 +51,7 @@ class PurchaseController extends Controller
     public function success(Request $request)
     {
         abort_unless($this->isValidPaymentRequest($request), Response::HTTP_FORBIDDEN);
-        Auth::loginUsingId($request->udf1);
+        Auth::guard('student')->loginUsingId($request->udf1);
 
         $data = $this->mapRequestToTransaction($request);
 
@@ -69,7 +69,7 @@ class PurchaseController extends Controller
     public function failure(Request $request)
     {
         abort_unless($this->isValidPaymentRequest($request), Response::HTTP_FORBIDDEN);
-        Auth::loginUsingId($request->udf1);
+        Auth::guard('student')->loginUsingId($request->udf1);
 
         $data = $this->mapRequestToTransaction($request);
         $data['admin_comment'] = $request->field9;

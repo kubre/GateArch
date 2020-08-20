@@ -94,6 +94,14 @@
                 margin: 0px auto;
                 width: 80%;
             }
+
+            .navbar .dropdown-menu.show {
+                background: #fff !important;
+                height: auto !important;
+                overflow: hidden !important;
+                box-shadow: 0 0 12px 17px rgba(0, 0, 0, .16) !important; 
+                padding-bottom: 0 !important;
+            }
         }
 
         .bg-gate {
@@ -173,7 +181,7 @@
         </div>
         
         @auth('student')
-        <div class="dropdown show">
+        <div class="dropdown">
             <a class="btn bg-gate rounded-pill px-4 ml-md-4 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Hello {{ explode(" ", auth('student')->user()->name)[0] }}
             </a>

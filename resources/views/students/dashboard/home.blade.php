@@ -88,7 +88,7 @@
                         </div>
                         <div class="card-footer">
                             <div>
-                                <a href='{{ route('students.exams') }}' class='btn bg-gate-alt btn-info btn-sm text-white py-2 px-3'>More</a>
+                                <a href='{{ route('students.results') }}' class='btn bg-gate-alt btn-info btn-sm text-white py-2 px-3'>More</a>
                             </div>
                         </div>
                     </div>

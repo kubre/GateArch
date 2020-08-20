@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Admin\Crud;
 
 use App\Student;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Sanjab\Cards\StatsCard;
 use Sanjab\Controllers\CrudController;
 use Sanjab\Helpers\CrudProperties;
 use Sanjab\Helpers\MaterialIcons;
+use Sanjab\Widgets\DateTimeWidget;
 use Sanjab\Widgets\IdWidget;
 use Sanjab\Widgets\NumberWidget;
 use Sanjab\Widgets\PasswordWidget;
+use Sanjab\Widgets\Relation\BelongsToManyWidget;
+use Sanjab\Widgets\SelectWidget;
 use Sanjab\Widgets\TextWidget;
 
 class StudentController extends CrudController
@@ -39,6 +44,16 @@ class StudentController extends CrudController
         $this->widgets[] = PasswordWidget::create('password')
             ->createRules('required|min:6')
             ->editRules('nullable');
+        $this->widgets[] = DateTimeWidget::create('dob')
+            ->nullable()
+            ->dateOnly()
+            ->maxDateTime(Carbon::today());
+        $this->widgets[] = TextWidget::create('college_name');
+        $this->widgets[] = SelectWidget::create('graduation_status')
+            ->addOption('appearing', 'Appearing')
+            ->addOption('passed', 'Passed');
+        $this->widgets[] = NumberWidget::create('graduation_year');
+        $this->widgets[] = BelongsToManyWidget::create('test_series')->format('%title - %price');
 
         $this->cards[] = StatsCard::create('Verified Students')
             ->icon(MaterialIcons::CHECK_CIRCLE)

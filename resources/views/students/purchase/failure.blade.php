@@ -37,7 +37,7 @@
                 </td>
             </tr>
         </table>
-        <p>Please log out and log back in.</p>
+        <p>To obtain print of this transaction please refer to the Purchase History section in your dashboard.</p> 
         <p class="text-danger">IF YOU HAVE ANY ISSUES REGARDING TO PURCHASE PLEASE CONTACT OUR SUPPORT.</p>
     </div>
 </x-simple-layout>
