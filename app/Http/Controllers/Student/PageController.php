@@ -8,6 +8,7 @@ use App\Result;
 use App\Http\Controllers\Controller;
 use App\Student;
 use App\TestSeries;
+use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -105,6 +106,20 @@ class PageController extends Controller
     {
         $results = $this->student()->results()->with('exam')->orderBy('created_at', 'desc')->paginate(6);
         return view('students.dashboard.results', ['results' => $results]);
+    }
+
+    public function history()
+    {
+        return view('students.dashboard.history', [
+            'transactions' => $this->student()->transactions()->paginate(10),
+        ]);
+    }
+
+    public function transaction(Transaction $transaction)
+    {
+        return view('students.dashboard.transaction', [
+            'transaction' => $transaction,
+        ]);
     }
 
     public function solution(Result $result)

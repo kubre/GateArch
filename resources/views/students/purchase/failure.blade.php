@@ -37,7 +37,9 @@
                 </td>
             </tr>
         </table>
-        <p>To obtain print of this transaction please refer to the Purchase History section in your dashboard.</p> 
+        <div class="my-2">
+        <a class="btn btn-info bg-gate" href="{{ route('students.transaction', $transaction->id) }}">Details/Print Mode</a>
+        </div>
         <p class="text-danger">IF YOU HAVE ANY ISSUES REGARDING TO PURCHASE PLEASE CONTACT OUR SUPPORT.</p>
     </div>
 </x-simple-layout>

@@ -77,6 +77,8 @@ Route::prefix('students')
         Route::get('exams', 'PageController@exams')->name('exams');
         Route::get('myexams/{series}', 'PageController@myExams')->name('myexams');
         Route::get('results', 'PageController@results')->name('results');
+        Route::get('history', 'PageController@history')->name('purchase.history');
+        Route::get('/history/{transaction}', 'PageController@transaction')->name('transaction');
         Route::get('solution/{result}', 'PageController@solution')->name('solution');
 
         Route::get('purchase/{id}', 'PurchaseController@show')->name('purchase.show')->middleware('auth:student');

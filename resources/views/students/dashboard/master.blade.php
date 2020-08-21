@@ -93,6 +93,12 @@
               <p>Results</p>
             </a>
           </li>
+          <li class="nav-item {{ Route::is('students.purchase.history') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('students.purchase.history') }}">
+              <i class="material-icons">history</i>
+              <p>Purchase History</p>
+            </a>
+          </li>
           <li class="nav-item">
             <form method='post' id='logoutForm' action="{{ route('students.logout') }}">
             @csrf

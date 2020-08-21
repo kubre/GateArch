@@ -103,9 +103,7 @@ class PurchaseController extends Controller
 
     public function makeTransaction($data): Transaction
     {
-        $transaction = Transaction::where('student_id', (int)$data['student_id'])
-            ->where('test_series_id', (int)$data['test_series_id'])
-            ->where('status', $data['status'])
+        $transaction = Transaction::where('txn_id', $data['txn_id'])
             ->first();
         if (!$transaction)
             $transaction = Transaction::create($data);
