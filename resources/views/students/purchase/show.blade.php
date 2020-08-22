@@ -1,6 +1,5 @@
-<x-simple-layout title="Become a member">
-<div class="container d-flex flex-column justify-content-center pt-5">
-    <h3>{{ $series->title }}</h3>
+<x-simple-layout title="{{ $series->title }}">
+<div class="container d-flex flex-column justify-content-center">
     <p>{!! $series->description !!}</p>
     <p>
         <strong>This Test series will include following exams: </strong>
@@ -37,6 +36,8 @@
         <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
         <button style="font-weight: bold" class="btn btn-light bg-gate btn-block" value="submit">Buy Now</button>    
     </form>
+    @else
+    <strong class="bg-gate text-white py-2 px-4 rounded">This test series will be available on {{ optional($series->start_date)->format('d M Y') }}, You can come back later on the day to Add/Purchase it.</strong>
     @endif
 </div>
 </x-simple-layout>

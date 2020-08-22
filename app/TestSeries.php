@@ -52,6 +52,6 @@ class TestSeries extends Model
 
     public function isStarted()
     {
-        return is_null($this->start_at) || $this->start_at->isBefore(Carbon::tomorrow());
+        return is_null($this->start_date) || $this->start_date->isBefore(Carbon::tomorrow());
     }
 }

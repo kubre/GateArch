@@ -46,7 +46,7 @@
                     <strong>No Data Available</strong>
                 </div>
                 <div class="card-body">
-                  profile  <p class="card-text">No exams are available.</p>
+                  profile  <p class="card-text">No sreies available.</p>
                 </div>
             </div>
         @endforelse
@@ -54,16 +54,3 @@
     </div>
 </div>
 @endsection
-
-@push('scripts')
-    <script>
-        var examWindow;
-        function startExam(url) {
-            examWindow = window.open(url, '_blank', 'location=yes,scrollbars=yes,status=yes');
-            examWindow.onbeforeunload = function () {
-                window.location = '{{ route('students.results') }}';
-            }
-        }
-
-    </script>    
-@endpush
