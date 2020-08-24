@@ -13,18 +13,22 @@
                 @endforelse
             </ul>
         </p>
-        <div class="d-flex align-items-center my-2"><span class="material-icons mr-2">today</span> Available from: {{ optional($series->start_date)->format('d M Y') ?? $series->created_at->format('d M Y') }}</div>
-        <div class="mt-2 mb-4">
+        
+        <div class="mt-2 mb-4 row">
+        <div class="d-flex align-items-center col-md-4"><span class="material-icons mr-2">today</span> Available from: {{ optional($series->start_date)->format('d M Y') ?? $series->created_at->format('d M Y') }}</div>
         <x-discount 
+            class="col-md-8 text-right"
             prefix="Price: "
             price="{{ $series->price }}"
             discount="{{ $series->discount }}"
             discountedPrice="{{ $series->discounted_price }}"
             />
         </div>
+        @if($series->isStarted())
         <a href="{{ route('students.purchase.show', $series->id) }}" class='btn bg-gate btn-sm text-white py-2 px-3'>
-            {{ $series->discounted_price == 0 ? "Add for Free" : "Purchase" }}
+            {{ $series->discounted_price == 0 ? "Add Free" : "Buy Now" }}
         </a>
+        @endif
     </div>
     @empty
     <strong>No Data Available</strong>

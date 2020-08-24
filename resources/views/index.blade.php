@@ -8,10 +8,10 @@
             
             <div class="glider-contain" style="max-width: 700px; max-height: 180px; padding: 0px 50px;">
               <div style="overflow-x: hidden;" class="glider">
-                <img class="mr-2" style="max-height: 190px" src="/images/index/slider-1.png">
-                <img class="mr-2" style="max-height: 190px" src="/images/index/slider-2.png">
-                <img class="mr-2" style="max-height: 190px" src="/images/index/slider-3.png">
-                <img class="mr-2" style="max-height: 190px" src="/images/index/slider-4.png">
+                <img class="mr-4" style="max-height: 190px" src="/images/index/slider-1.png">
+                <img class="mr-4" style="max-height: 190px" src="/images/index/slider-2.png">
+                <img class="mr-4" style="max-height: 190px" src="/images/index/slider-3.png">
+                <img class="mr-4" style="max-height: 190px" src="/images/index/slider-4.png">
                 <img src="/images/index/slider-5.png">
               </div>
               <button style="padding: 6px 12px 5px 10px; width: auto; height: 45px;" class="carousel-control-prev bg-gate-alt rounded-circle d-flex glider-prev">
@@ -167,6 +167,7 @@
               // Mobile-first defaults
               slidesToShow: 1,
               slidesToScroll: 1,
+              rewind: true,
               scrollLock: true,
               dots: '.dots',
               duration: 2,
@@ -176,14 +177,14 @@
               },
               responsive: [
                 {
-                  // screens greater than >= 775px
                   breakpoint: 775,
                   settings: {
-                    // Set to `auto` and provide item width to adjust to viewport
                     slidesToShow: '3',
                     slidesToScroll: '1',
                     itemWidth: 150,
-                    duration: 2
+                    duration: 2,
+                    scrollLock: true,
+                    rewind: true,
                   }
                 }
               ]
