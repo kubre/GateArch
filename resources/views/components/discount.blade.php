@@ -1,6 +1,6 @@
 @props(['class', 'price', 'discount', 'discountedPrice', 'prefix'])
 
-<span class="{{$class}}">
+<span class="{{ $class ?? '' }}">
     <span>{{ $prefix }}</span>
     @if ($discount != 0)
     <del class="text-danger ml-2">₹ {{ $price }}</del>

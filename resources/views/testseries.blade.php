@@ -15,9 +15,9 @@
         </p>
         
         <div class="mt-2 mb-4 row">
-        <div class="d-flex align-items-center col-md-4"><span class="material-icons mr-2">today</span> Available from: {{ optional($series->start_date)->format('d M Y') ?? $series->created_at->format('d M Y') }}</div>
+        <div class="d-flex align-items-center col-md-6"><span class="material-icons mr-2">today</span> Available from: {{ optional($series->start_date)->format('d M Y') ?? $series->created_at->format('d M Y') }}</div>
         <x-discount 
-            class="col-md-8 text-right"
+            class="col-md-6 text-right"
             prefix="Price: "
             price="{{ $series->price }}"
             discount="{{ $series->discount }}"
