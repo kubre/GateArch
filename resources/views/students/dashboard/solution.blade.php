@@ -34,7 +34,7 @@
                                     <td>
                                         <img class='d-block mb-1' src="/storage/{{ $question['image'] }}">
                                         <button onclick="$(this).siblings('p').fadeToggle()" class='btn btn-info btn-sm'>Show Solution</button>
-                                        <p style="display: none; margin-top: 20px;"><strong>Solution: </strong> {{ $question['solution'] ?: '-- No Solution --' }}</p>
+                                        <p style="display: none; margin-top: 20px;"><strong>Solution: </strong> <img src="/storage/{{ $question['solution'] }}" alt="-- No Solution --"> </p>
                                     </td>
                                     <td>
                                         Correct Answer: {{ $question['answer'] }}<br>

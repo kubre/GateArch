@@ -52,7 +52,8 @@ class SectionController extends CrudController
                     ->addOption('2/3', '2/3')
                     ->addOption('0', '0')
                     ->cols(4),
-                TextWidget::create('solution')
+                ElFinderWidget::create('solution')
+                    ->nullable(true)
                     ->cols(12),
             ]);
         $this->widgets[] = BelongsToPickerWidget::create('exam')
