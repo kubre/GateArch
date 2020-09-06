@@ -92,6 +92,14 @@ class Result extends Model
         ), "count");
     }
 
+    public function getRank()
+    {
+        // returns rank/total ex. 23/390
+        return
+            $this->where('exam_id', $this->exam_id)
+            ->whereRaw('right_marks - negative_marks >= ?', $this->total_marks)->count() . '/' . $this->where('exam_id', $this->exam_id)->count();
+    }
+
     public function student()
     {
         return $this->belongsTo(Student::class);

@@ -11,6 +11,7 @@
         time-taken='{{ $timeTaken }}'
         right-marks='{{ $rightMarks }}'
         negative-marks='{{ $negativeMarks }}'
+        rank='{{ $rank }}'
         >
 
         <button id='btnResultAction' onclick='window.close()' class='btn btn-info'>Continue</button>

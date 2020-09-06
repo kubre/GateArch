@@ -396,7 +396,8 @@
                                 '&totalMarks='+ res.data.totalMarks+
                                 '&totalTime='+ res.data.totalTime+
                                 '&timeTaken='+ res.data.timeTaken+
-                                '&maxMarks='+ examApp.exam.marks
+                                '&maxMarks='+ examApp.exam.marks+
+                                '&rank='+ res.data.rank
                                 );
                             });
                         },

@@ -32,6 +32,6 @@ Route::post('/result', function (Request $request) {
         'timeTaken' => $r->time_taken,
         'rightMarks' => $r->right_marks,
         'negativeMarks' => $r->negative_marks,
-        'totalMarks' => $r->total_marks
+        'rank' => $r->getRank(),
     ];
 });

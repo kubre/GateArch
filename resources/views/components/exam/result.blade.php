@@ -1,7 +1,7 @@
 @props([
     'total-questions', 'max-marks', 'total-attempted',
     'correct-answers', 'total-time', 'time-taken',
-    'right-marks', 'negative-marks'
+    'right-marks', 'negative-marks', 'rank',
 ])
 
 <div>
@@ -61,11 +61,20 @@
                     <canvas id="marksChart"></canvas>                        
                 </div>
                 <div class="col">
-                    <canvas id="timeChart"></canvas>                        
+                    <div style="font-weight: bold" class="text-center mb-3">Ranking Statistics</div>
+                    <div class="bg-info rounded text-white text-center p-4">
+                        <h3 style="font-weight: bold; font-size: 2.5em;">AIR</h3>
+                        <h1 class='rounded bg-white text-info w-50 mx-auto' style="font-weight: bold; font-size: 4.5em;">{{ $rank }}</h1>
+                    </div>
                 </div>
             </div>
-            <div class='mt-3'>
-                <canvas id="statisticsChart"></canvas>
+            <div class="row my-5">
+                <div class="col">
+                    <canvas id="timeChart"></canvas>                        
+                </div>
+                <div class='col h-100 w-100'>
+                    <canvas id="statisticsChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
