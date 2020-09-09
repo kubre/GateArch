@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 class TestSeries extends Model
 {
+
+    use SoftDeletes;
+
     protected $fillable = [
         'title', 'description', 'price', 'discount', 'start_date'
     ];
