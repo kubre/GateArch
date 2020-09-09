@@ -67,6 +67,8 @@ class ExamController extends CrudController
             ->rules('nullable|date|after_or_equal:today');
 
         $this->widgets[] = BelongsToPickerWidget::create('test_series')
+            ->nullable()
+            ->withNull('None')
             ->format('%title (₹ %price)');
 
 
