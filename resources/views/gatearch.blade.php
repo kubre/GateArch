@@ -136,4 +136,13 @@
                 <li>Previous Year Papers 2012-2019 & Latest Syllabus.</li>
             </ol>
         </p>
+        <p>
+            <h3>
+                Official Links
+            </h3>
+            <a target="_blank" href="https://www.gate.iitb.ac.in/index.php">GATE 2021 Official website</a><br>
+            <a href="https://appsgate.iitb.ac.in/" target="_blank">GATE 2021 GOAPS LINK</a><br>
+            <a href="https://drive.google.com/file/d/1dZVyVji1ScGxt2GmsARTyvh2qtBsp76n/view" target="_blank">GATE 2021 Information brochure</a><br>
+            You will find all updates regarding syllabus and question pattern in official brochure.
+        </p>
 </x-simple-layout>

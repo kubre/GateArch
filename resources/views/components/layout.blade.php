@@ -124,6 +124,12 @@
         }
 
         strong { font-weight: bold; }
+
+        .show-less {
+            max-height: 130px;
+            overflow-y: hidden;
+            box-shadow: 0 -20px 20px -10px rgba(0, 0, 0, .26) inset;
+        }
     </style>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -212,7 +218,7 @@
         </div>
         <div class="col-md-3 px-md-5 mt-4 mt-md-0 text-align">
           <strong style="font-size: 1.3em">IMPORTANT LINKS</strong>
-          <ul class="text-gate-alt mx-auto mt-3" style="font-size: 1.05em">
+          <ul class="text-gate-alt mx-auto mt-3 pl-3" style="font-size: 1.05em">
             {{-- <li style="border-bottom: 1px solid #909090; margin-bottom: 10px"><a class="text-white" href="/about-us">About</a></li>
             <li style="border-bottom: 1px solid #909090; margin-bottom: 10px"><a class="text-white" href="/contact-us">Contact</a></li> --}}
             <li style="border-bottom: 1px solid #909090; margin-bottom: 10px"><a class="text-white" href="/faqs">FAQs</a></li>

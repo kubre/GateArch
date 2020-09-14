@@ -2,8 +2,8 @@
     @forelse ($serieses as $series)    
     <div style="border-bottom: 1px solid #a9a9a9" class="container d-flex flex-column justify-content-center pb-4">
         <h3>{{ $series->title }}</h3>
-        <p>{!! $series->description !!}</p>
-        <p>
+        <div class="toggle-div show-less">
+            <p>{!! $series->description !!}</p>
             <strong>This Test series will include following exams: </strong>
             <ul>
                 @forelse ($series->exams as $exam)
@@ -12,7 +12,8 @@
                     <li>Coming Soon...</li>
                 @endforelse
             </ul>
-        </p>
+        </div>
+        <button class="mw-50 mx-auto btn bg-gate-alt btn-show-toggle">Show More ▾</button>
         
         <div class="mt-2 mb-4 row">
         <div class="d-flex align-items-center col-md-6"><span class="material-icons mr-2">today</span> Available from: {{ optional($series->start_date)->format('d M Y') ?? $series->created_at->format('d M Y') }}</div>
@@ -36,4 +37,16 @@
     <div class="mt-5">
         {{ $serieses->links() }}
     </div>
+
+    <x-slot name="scripts">
+       <script>
+       $(function() {
+           $(".btn-show-toggle").click(function() {
+                $(this).siblings(".toggle-div").toggleClass('show-less');
+                $(this).text( $(this).text() == 'Show More ▾' ? 'Show Less ▴' : 'Show More ▾' )
+           });
+       });
+       </script> 
+    </x-slot>
 </x-simple-layout>
+    

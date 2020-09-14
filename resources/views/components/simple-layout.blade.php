@@ -53,4 +53,7 @@
     <div class="col-md-3">
     </div>
 </div>
+<x-slot name="scripts">
+    {{ $scripts ?? '' }}
+</x-slot>
 </x-layout>

@@ -76,9 +76,9 @@
         <a style="color: inherit" href="/tests/kcet">
           <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
-              K-CET (Architecture)
+            PGCET-KARNATAKA
             </strong>
-            <div class='mt-2'>Karnataka Common Entrance Test</div>
+            <div class='mt-2'>Karnataka Post Graduate Common Entrance Test</div>
           </div>
         </a>
         <a style="color: inherit" href="/tests/aai">

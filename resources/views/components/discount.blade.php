@@ -7,6 +7,6 @@
     @endif
     <strong class="ml-2">₹ {{ $discountedPrice ?: "FREE" }} /-</strong>
     @if($discount != 0)
-    <strong class="bg-danger rounded-pill text-white ml-2 py-1 px-3">Save {{ $discount }}%</strong>
+    <div style="font-weight bold; display: inline-block" class="bg-danger rounded-pill text-white ml-2 py-1 px-3">Save {{ $discount }}%</div>
     @endif
 </span>
