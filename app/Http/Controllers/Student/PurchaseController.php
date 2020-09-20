@@ -19,12 +19,8 @@ class PurchaseController extends Controller
         /** @var Student */
         $user = auth('student')->user();
 
-        if ($series->price == 0) {
-            $user
-                ->test_series()
-                ->syncWithoutDetaching([(int)$id]);
-            return redirect(route('students.exams'))
-                ->with('message', 'Added Test Series SuccessfullY!');
+        if ($user->test_series()->find($id)) {
+            return redirect(route('students.myexams', $id));
         }
 
         $txnId = Str::random(20);

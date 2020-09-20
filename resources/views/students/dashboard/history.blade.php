@@ -18,7 +18,7 @@ Purchase History
                 <table class="w-100">
                 <tr>
                     <th>Test Series</th>
-                    <td >{{ $transaction->test_series->title }}</td>
+                    <td >{{ optional($transaction->test_series)->title ?? '--NA--' }}</td>
                 </tr>
                 <tr>
                     <th>TXN ID</th>

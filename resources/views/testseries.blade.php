@@ -26,9 +26,15 @@
             />
         </div>
         @if($series->isStarted())
-        <a href="{{ route('students.purchase.show', $series->id) }}" class='btn bg-gate btn-sm text-white py-2 px-3'>
-            {{ $series->discounted_price == 0 ? "Add Free" : "Buy Now" }}
-        </a>
+            @if($series->discounted_price == 0)
+                <a href="{{ route('students.myexams', $series->id) }}" class='btn bg-gate btn-sm text-white py-2 px-3'>
+                    Free(Account Required)
+                </a>
+            @else
+                <a href="{{ route('students.purchase.show', $series->id) }}" class='btn bg-gate btn-sm text-white py-2 px-3'>
+                    Buy Now
+                </a>
+            @endif
         @endif
     </div>
     @empty

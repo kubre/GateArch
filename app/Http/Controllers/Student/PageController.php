@@ -73,7 +73,10 @@ class PageController extends Controller
 
     public function exams()
     {
-        $tests = $this->student()->test_series()->get();
+        $tests = $this->student()
+            ->test_series()
+            ->get();
+        $tests = $tests->merge(TestSeries::where('price', 0)->get());
         return view(
             'students.dashboard.listseries',
             ['tests' => $tests]
@@ -96,6 +99,7 @@ class PageController extends Controller
                     'id',
                     $this->student()->test_series()->get(['test_series.id'])->pluck('id')->toArray()
                 )
+                ->where('price', '!=', 0)
                 ->orderBy('price')
                 ->orderBy('created_at', 'DESC')
                 ->paginate(10),

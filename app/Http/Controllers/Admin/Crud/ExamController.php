@@ -75,14 +75,20 @@ class ExamController extends CrudController
         $this->cards[] = StatsCard::create('Ongoing Exams')
             ->icon(MaterialIcons::TIMER)
             ->variant('warning')
-            ->value((new Exam)->getValidExams()->count());
+            ->value(function () {
+                return (new Exam)->getValidExams()->count();
+            });
         $this->cards[] = StatsCard::create('Expired Exams')
             ->icon(MaterialIcons::TIMER_OFF)
             ->variant('danger')
-            ->value(Exam::where('end_at', '<', Carbon::today())->count());
+            ->value(function () {
+                return Exam::where('end_at', '<', Carbon::today())->count();
+            });
         $this->cards[] = StatsCard::create('Not Started')
             ->icon(MaterialIcons::AV_TIMER)
             ->variant('info')
-            ->value(Exam::where('start_at', '>', Carbon::today())->count());
+            ->value(function () {
+                return Exam::where('start_at', '>', Carbon::today())->count();
+            });
     }
 }
