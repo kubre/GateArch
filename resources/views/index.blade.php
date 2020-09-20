@@ -30,8 +30,63 @@
       </section>
 
       {{--  Recent Exam Screen --}}
-      <section class="container-fluid" style="max-width: 1300px">
-       <div class="mt-3 px-3 px-md-5">
+      <section class="container-fluid">
+       <div style="max-width: 1300px" class="mt-4 pt-3 mb-5 mx-auto">
+         {{-- <h2 class="text-center mt-3" style="text-decoration: underline; font-weight: bold">Upcoming Tests</h2> --}}
+         {{-- <hr style="background: #ff9900; width: 80px;"> --}}
+        <section class="h-100 d-flex flex-column flex-md-row px-1 align-items-center">
+          <aside style="font-size: 1.5em; line-height: 1.5em;" class="w-100 h-100 px-3 px-md-5 d-flex flex-column justify-content-between align-items-stretch">
+            {{-- CARD --}}
+            {{-- @forelse ($exams as $exam)
+            <div class="bg-white shadow-lg rounded d-flex flex-column flex-md-row align-items-center px-4 py-4 px-md-3 mb-3">
+              <div style="font-size: 1.2em; font-weight: bold" class="h-100 px-4 text-center text-gate d-flex flex-column">
+                <strong class="text-gate-alt">
+                  {{ $exam->created_at->format('d') }}
+                </strong>
+                <strong class="my-0">
+                  {{ $exam->created_at->format('M') }}
+                </strong>
+                <strong>
+                  {{ $exam->created_at->format('Y') }}
+                </strong>
+              </div>
+              <div class="d-flex flex-column px-2 mt-4 mt-md-0 text-align">
+                <div>
+                  {{ $exam->created_at->format('l, h:m A') }}
+                </div>
+                <h3 class="mb-0">{{ $exam->subject }}</h3>
+              </div>
+            </div>
+            @empty
+             <div class="bg-white shadow-lg rounded d-flex flex-column flex-md-row align-items-center px-4 py-4 px-md-3">
+              <div style="font-size: 1.2em; font-weight: bold" class="h-100 px-4 text-center text-gate d-flex flex-column">
+                <strong class="text-gate-alt">00</strong>
+                <strong class="my-0">###</strong>
+                <strong>2020</strong>
+              </div>
+              <div class="d-flex flex-column px-2 mt-4 mt-md-0 text-align">
+                <div>
+                  Sunday 10AM
+                </div>
+                <h3 class="mb-0">No Exams Added</h3>
+              </div>
+            </div>
+   
+            @endforelse --}}
+            {{-- END CARD --}}
+            <p>GATE-Arch is the finest and a diamond cut platform which ensures Subject wise preparation for Gate Architecture, givesactualhandsontrainingfortheGATEexam, stimulating its environment and feel, as a result making the student familiar to the examination setting with the help of Gate architecture online test series</p>
+            <p>Predominant exams like GATE need more effective and efficient preparation strategies. We make it feasible by involving elite professionals working in architectural fieldsincemanyyearsforformingandformulating questions in our free demo test for Gate Architecture and practice tests for Gate architecture 2021. </p>
+          </aside>
+          <aside class="text-center px-3 px-md-5 mt-3 mt-md-0">
+            <div class="bg-white shadow-lg rounded py-5 px-4">    
+            <img class="w-100 h-auto px-3" style="max-width: 960px" src="/images/index/desktop.png" alt="dekstop graphic">
+            </div>
+          </aside>
+        </section>
+       </div> 
+      </section>
+      <section class="container-fluid pt-3 pb-5" style="border-top: 7px solid #ed9800">
+       <div style="max-width: 1280px;" class="px-3 px-md-5 mx-auto">
           <h2 class="text-center mb-0 mt-3" style="text-decoration: underline; font-weight: bold">Exams</h2>
          <hr style="background: #ff9900; width: 80px;">
          <aside class="mt-3 grid-3">
@@ -81,6 +136,8 @@
             <div class='mt-2'>Karnataka Post Graduate Common Entrance Test</div>
           </div>
         </a>
+        <span>
+        </span>
         <a style="color: inherit" href="/tests/aai">
           <div class="px-3 py-4 bg-white shadow-lg rounded text-center">
             <strong class="text-gate" style="font-weight: bold;font-size: 1.3em">
@@ -91,58 +148,8 @@
         </a>
          </aside>
        </div>
-       <div class="mt-4 mb-5">
-         <h2 class="text-center mt-3" style="text-decoration: underline; font-weight: bold">Upcoming Tests</h2>
-         <hr style="background: #ff9900; width: 80px;">
-        <section class="h-100 d-flex flex-column flex-md-row px-1 align-items-center">
-          <aside class="w-100 h-100 mt-3 px-3 px-md-5 d-flex flex-column justify-content-between align-items-stretch">
-            {{-- CARD --}}
-            @forelse ($exams as $exam)
-            <div class="bg-white shadow-lg rounded d-flex flex-column flex-md-row align-items-center px-4 py-4 px-md-3 mb-3">
-              <div style="font-size: 1.2em; font-weight: bold" class="h-100 px-4 text-center text-gate d-flex flex-column">
-                <strong class="text-gate-alt">
-                  {{ $exam->created_at->format('d') }}
-                </strong>
-                <strong class="my-0">
-                  {{ $exam->created_at->format('M') }}
-                </strong>
-                <strong>
-                  {{ $exam->created_at->format('Y') }}
-                </strong>
-              </div>
-              <div class="d-flex flex-column px-2 mt-4 mt-md-0 text-align">
-                <div>
-                  {{ $exam->created_at->format('l, h:m A') }}
-                </div>
-                <h3 class="mb-0">{{ $exam->subject }}</h3>
-              </div>
-            </div>
-            @empty
-             <div class="bg-white shadow-lg rounded d-flex flex-column flex-md-row align-items-center px-4 py-4 px-md-3">
-              <div style="font-size: 1.2em; font-weight: bold" class="h-100 px-4 text-center text-gate d-flex flex-column">
-                <strong class="text-gate-alt">00</strong>
-                <strong class="my-0">###</strong>
-                <strong>2020</strong>
-              </div>
-              <div class="d-flex flex-column px-2 mt-4 mt-md-0 text-align">
-                <div>
-                  Sunday 10AM
-                </div>
-                <h3 class="mb-0">No Exams Added</h3>
-              </div>
-            </div>
-   
-            @endforelse
-            {{-- END CARD --}}
-          </aside>
-          <aside class="text-center px-3 px-md-5 mt-3 mt-md-0">
-            <div class="bg-white shadow-lg rounded py-5 px-4">    
-            <img class="w-100 h-auto px-3" style="max-width: 960px" src="/images/index/desktop.png" alt="dekstop graphic">
-            </div>
-          </aside>
-        </section>
-       </div> 
       </section>
+      
       
       <section style="background: #f1f8fc; border-top: 7px solid #ed9800" class="d-flex flex-column flex-md-row px-3 px-md-5 py-5">
         <div class="text-center">
