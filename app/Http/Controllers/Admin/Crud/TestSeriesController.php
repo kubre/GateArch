@@ -40,6 +40,7 @@ class TestSeriesController extends CrudController
             ->rules('nullable|date|after_or_equal:today');
         $this->widgets[] = MoneyWidget::create('price')
             ->prefix('₹ ')
+            ->value(0)
             ->postfix('')
             ->precision(0)
             ->rules('numeric|min:0');
