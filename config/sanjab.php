@@ -21,6 +21,7 @@ return [
         App\Http\Controllers\Admin\Crud\ExamController::class,
         App\Http\Controllers\Admin\Crud\SectionController::class,
         App\Http\Controllers\Admin\Crud\InquiryController::class,
+        App\Http\Controllers\Admin\Crud\PostController::class,
     ],
 
     /*
