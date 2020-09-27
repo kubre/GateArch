@@ -250,7 +250,7 @@
         </div>
         <div class="col-md-3 mt-4 mt-md-0">
           <div class="bg-gate-alt text-center rounded px-4 py-3 h-100">
-            <strong style="font-size: 1.3em">CAREER</strong>
+            <strong style="font-size: 1.3em">CAREERS</strong>
             <p style="font-size: 1.05em; margin-top: 10px">We here by welcome all teaching Professionals in Architecture to Join us for various activities like course development, Books content design.</p>
             <a style="font-weight: bold" class="btn bg-white rounded text-gate-alt mt-1" href="/contact-us">Join With Us</a>
           </div>

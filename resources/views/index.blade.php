@@ -74,8 +74,8 @@
    
             @endforelse --}}
             {{-- END CARD --}}
-            <p>GATE-Arch is the finest and a diamond cut platform which ensures Subject wise preparation for Gate Architecture, givesactualhandsontrainingfortheGATEexam, stimulating its environment and feel, as a result making the student familiar to the examination setting with the help of Gate architecture online test series</p>
-            <p>Predominant exams like GATE need more effective and efficient preparation strategies. We make it feasible by involving elite professionals working in architectural fieldsincemanyyearsforformingandformulating questions in our free demo test for Gate Architecture and practice tests for Gate architecture 2021. </p>
+            <p>GATE-Arch is the finest and a diamond cut platform which ensures Subject wise preparation for Gate Architecture, gives actual hands on training for the GATE exam, stimulating its environment and feel, as a result making the student familiar to the examination setting with the help of Gate architecture online test series</p>
+            <p>Predominant exams like GATE need more effective and efficient preparation strategies. We make it feasible by involving elite professionals working in architectural field since many years for forming and formulating questions in our free demo test for Gate Architecture and practice tests for Gate architecture 2021.</p>
           </aside>
           <aside class="text-center px-3 px-md-5 mt-3 mt-md-0">
             <div class="bg-white shadow-lg rounded py-5 px-4">    
