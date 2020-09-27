@@ -1,8 +1,7 @@
 <?php
 
-use App\Student;
+use App\Post;
 use App\TestSeries;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +27,16 @@ Route::post('/contact-us', 'Student\ActionController@contactUs');
 Route::view('/terms-and-conditions', 'terms');
 Route::view('/privacy-policy', 'privacy');
 Route::view('/online-test-series', 'testseries', ['serieses' => TestSeries::latest()->paginate(5)]);
+
 Route::view('/faqs', 'site.coming');
-Route::view('/blog', 'site.coming');
 Route::view('/shop', 'site.coming');
+
+Route::view('/blog', 'blog', [
+    'posts' => Post::orderBy('created_at', 'DESC')->paginate(10),
+]);
+Route::get('/posts/{post}', function (Post $post) {
+    return view('post', ['post' => $post]);
+})->name('posts');
 
 Route::prefix('tests')->group(function () {
     Route::view('aai', 'site.aai');
