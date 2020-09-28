@@ -6,6 +6,7 @@ use App\Exam;
 use App\Result;
 
 use App\Http\Controllers\Controller;
+use App\Post;
 use App\Student;
 use App\TestSeries;
 use App\Transaction;
@@ -29,10 +30,12 @@ class PageController extends Controller
     {
         $exams_count = $this->student()->with('test_series.exams')->first()->test_series->count();
         $results_count = Result::count();
+        $post = Post::latest()->first();
         return view('students.dashboard.home', [
             'exams_count' => $exams_count,
             'results_count' => $results_count,
             'user' => $this->student(),
+            'post' => $post,
         ]);
     }
 

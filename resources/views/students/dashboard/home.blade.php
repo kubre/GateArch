@@ -19,6 +19,8 @@
         </div>
     </div>
 
+
+
     @empty($user->email_verified_at)
     <div class="row">
         <div class="col-md-12">
@@ -43,6 +45,19 @@
     </div>
     @endempty
 
+    <h3>Latest Blog Post</h3>
+    <a style="display: block" href="{{ route('posts', $post->id) }}">
+    <div class="container-fluid d-flex flex-column justify-content-center pb-1 post-wrapper card">
+        <div class="card-body">
+        <h3 class="card-title text-gate">{{ $post->title }}</h3>
+            <div class="mt-2 row">
+                <div class="d-flex align-items-center col-md-6"><span class="material-icons mr-2">today</span>Published On: &nbsp;<strong>{{ $post->publish_date }}</strong></div>
+                <div class="d-flex align-items-center col-md-6"><span class="material-icons mr-2">person</span>Written By: &nbsp;<strong>{{ $post->writer_name }}</strong></div>
+            </div>
+        <div class="d-flex align-items-center my-2"><span class="material-icons mr-2">label</span>Tags: &nbsp;<strong>{{ $post->tags }}</strong></div>
+        </div>
+    </div>
+    </a>
     {{-- @empty ($user->member_at)
     <div class="row">
         <div class="col-md-12">

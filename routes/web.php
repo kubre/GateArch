@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 | 
 */
 
-Route::get('/test', function () {
-    return \App\Result::find(2)->getRanking();
-});
-Route::view('/', 'index', ['exams' => App\Exam::orderBy('created_at', 'DESC')->take(3)->get()]);
+Route::view('/', 'index');
 Route::view('/gatearch', 'gatearch');
 Route::view('/about-us', 'about');
 Route::get('/contact-us', function () {
