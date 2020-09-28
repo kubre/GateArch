@@ -100,6 +100,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/blog">
+              <i class="material-icons">edit</i>
+              <p>Blog</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <form method='post' id='logoutForm' action="{{ route('students.logout') }}">
             @csrf
             </form>

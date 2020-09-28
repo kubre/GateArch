@@ -1,5 +1,6 @@
 <x-layout>
 <x-slot name="header">
+    {{ $styles ?? '' }}
     <style>
         html, body {
             height: 100%;
