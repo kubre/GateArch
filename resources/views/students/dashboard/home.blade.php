@@ -45,10 +45,7 @@
     </div>
     @endempty
 
-<<<<<<< HEAD
     @if($post)
-=======
->>>>>>> deeb79d2b4e94f201c6348706e63fc2604f4cac4
     <h3>Latest Blog Post</h3>
     <a style="display: block" href="{{ route('posts', $post->id) }}">
     <div class="container-fluid d-flex flex-column justify-content-center pb-1 post-wrapper card">
@@ -62,10 +59,7 @@
         </div>
     </div>
     </a>
-<<<<<<< HEAD
     @endif
-=======
->>>>>>> deeb79d2b4e94f201c6348706e63fc2604f4cac4
     {{-- @empty ($user->member_at)
     <div class="row">
         <div class="col-md-12">
