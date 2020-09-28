@@ -28,9 +28,10 @@ Route::view('/online-test-series', 'testseries', ['serieses' => TestSeries::late
 Route::view('/faqs', 'site.coming');
 Route::view('/shop', 'site.coming');
 
-// Route::view('/blog', 'blog', [
-//     'posts' => Post::orderBy('created_at', 'DESC')->paginate(10),
-// ]);
+Route::view('/blog', 'blog', [
+    'posts' => Post::latest()->paginate(10),
+]);
+
 Route::get('/posts/{post}', function (Post $post) {
     return view('post', ['post' => $post]);
 })->name('posts');
