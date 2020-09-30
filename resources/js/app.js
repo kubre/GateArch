@@ -8,6 +8,7 @@ try {
     window.qs = require('qs')
     window.Swal = require('sweetalert2')
     window.require = window.requirejs = require('shebang-loader!requirejs')
+    // window.tinymce = require('tinymce');
 
     require('bootstrap')
     require('bootstrap-material-design')

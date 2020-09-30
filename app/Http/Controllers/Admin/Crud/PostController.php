@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Admin\Crud;
 
 use App\Post;
+use App\Widgets\TinyMCEWidget;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Sanjab\Controllers\CrudController;
 use Sanjab\Helpers\CrudProperties;
 use Sanjab\Helpers\MaterialIcons;
-use Sanjab\Widgets\File\ElFinderWidget;
 use Sanjab\Widgets\IdWidget;
 use Sanjab\Widgets\ShowWidget;
 use Sanjab\Widgets\TagWidget;
 use Sanjab\Widgets\TextWidget;
-use Sanjab\Widgets\Wysiwyg\QuillWidget;
 
 class PostController extends CrudController
 {
@@ -31,7 +30,8 @@ class PostController extends CrudController
         $this->widgets[] = IdWidget::create();
         $this->widgets[] = TextWidget::create('title')->required();
         $this->widgets[] = TagWidget::create('tags')->nullable();
-        $this->widgets[] = QuillWidget::create('body')
+        $this->widgets[] = TinyMCEWidget::create('body')
+            ->onIndex(false)
             ->required()
             ->customStore(function (Request $request, Post $post) {
                 $post->body = $request->body;

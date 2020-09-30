@@ -8,4 +8,7 @@
     <div>{!! $post->body !!}</div>
     <hr>
     <div class="d-flex align-items-center mt-2"><span class="material-icons mr-2">label</span>Tags: &nbsp;<strong>{{ $post->tags }}</strong></div>
+
+    <x-slot name="scripts">
+    </x-slot>
 </x-simple-layout>
