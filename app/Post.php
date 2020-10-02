@@ -17,6 +17,11 @@ class Post extends Model
         return $this->updated_at->format('d/m/Y');
     }
 
+    public function getSlugAttribute()
+    {
+        return str_slug($this->title);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

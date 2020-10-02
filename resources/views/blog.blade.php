@@ -19,14 +19,14 @@
         <div>Click on the post to read more</div>
     </div>
     @forelse ($posts as $post)    
-    <a style="display: block; color: #343434" href="{{ route('posts', $post->id) }}">
+    <a style="display: block; color: #343434" href="{{ route('posts', [$post->id,$post->slug]) }}">
     <div class="container d-flex flex-column justify-content-center pb-1 post-wrapper">
         <h3>{{ $post->title }}</h3>
         <div class="mt-2 row">
             <div class="d-flex align-items-center col-md-6"><span class="material-icons mr-2">today</span>Published On: &nbsp;<strong>{{ $post->publish_date }}</strong></div>
-            <div class="d-flex align-items-center col-md-6"><span class="material-icons mr-2">person</span>Written By: &nbsp;<strong>{{ $post->writer_name }}</strong></div>
+            <div class="d-flex align-items-center col-md-6 my-2 my-md-0"><span class="material-icons mr-2">person</span>Written By: &nbsp;<strong>{{ $post->writer_name }}</strong></div>
         </div>
-        <div class="d-flex align-items-center my-2"><span class="material-icons mr-2">label</span>Tags: &nbsp;<strong>{{ $post->tags }}</strong></div>
+        <div class="d-flex align-items-start my-2"><span class="material-icons mr-2">label</span>Tags: &nbsp;<strong style="margin-left: 5px">{{ $post->tags }}</strong></div>
         {{-- <p>{!! Str::of($post->body)->words(10, '...') !!}</p> --}}
         {{-- <a href="" class="mw-50 mx-auto btn bg-gate-alt">Read More</a> --}}
     </div>
