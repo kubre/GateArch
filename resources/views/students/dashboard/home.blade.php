@@ -47,7 +47,7 @@
 
     @if($post)
     <h3>Latest Blog Post</h3>
-    <a style="display: block" href="{{ route('posts', $post->id) }}">
+    <a style="display: block" href="{{ route('posts', [$post->id,$post->slug]) }}">
     <div class="container-fluid d-flex flex-column justify-content-center pb-1 post-wrapper card">
         <div class="card-body">
         <h3 class="card-title text-gate">{{ $post->title }}</h3>
