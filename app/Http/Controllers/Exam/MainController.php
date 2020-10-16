@@ -22,7 +22,9 @@ class MainController extends Controller
     public function showInstructions(Exam $exam)
     {
         abort_unless(
-            $exam->isValid() && $this->student()->canTake($exam),
+            $exam->isValid() 
+            && ($exam->test_series->price == 0 
+                || $this->student()->canTake($exam)),
             Response::HTTP_FORBIDDEN
         );
         return view('students.exam.instructions', ['exam' => $exam]);
@@ -31,7 +33,9 @@ class MainController extends Controller
     public function startExam(Exam $exam)
     {
         abort_unless(
-            $exam->isValid() && $this->student()->canTake($exam),
+            $exam->isValid() 
+            && ($exam->test_series->price == 0 
+                || $this->student()->canTake($exam)),
             Response::HTTP_FORBIDDEN
         );
         return view('students.exam.main', ['exam' => $exam]);
