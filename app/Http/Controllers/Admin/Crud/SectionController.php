@@ -39,6 +39,7 @@ class SectionController extends CrudController
                     ->cols(6),
                 SelectWidget::create('type')
                     ->addOption('mcq', 'MCQ')
+                    ->addOption('msq', 'MSQ')
                     ->addOption('nat', 'NAT')
                     ->cols(4),
                 TextWidget::create('answer')

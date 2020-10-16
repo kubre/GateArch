@@ -1,5 +1,5 @@
 /* @preserve
- * Leaflet 1.6.0, a JS library for interactive maps. http://leafletjs.com
+ * Leaflet 1.7.1, a JS library for interactive maps. http://leafletjs.com
  * (c) 2010-2019 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
@@ -21,9 +21,9 @@
  */
 
 /*!
-  * Bootstrap v4.5.0 (https://getbootstrap.com/)
+  * Bootstrap v4.5.2 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 
 /*!
@@ -33,7 +33,7 @@
 */
 
 /*!
- * BootstrapVue Icons, generated from Bootstrap Icons 1.0.0-alpha5
+ * BootstrapVue Icons, generated from Bootstrap Icons 1.0.0
  *
  * @link https://icons.getbootstrap.com/
  * @license MIT
@@ -73,8 +73,8 @@
  */
 
 /*!
- * Vue.js v2.6.11
- * (c) 2014-2019 Evan You
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
  * Released under the MIT License.
  */
 
@@ -269,7 +269,7 @@
  */
 
 /*!
- * vue-datetime v1.0.0-beta.13
+ * vue-datetime v1.0.0-beta.14
  * (c) 2020 Mario Juárez
  * Released under the MIT License.
  */
@@ -432,15 +432,6 @@
  * SOFTWARE.
  */
 
-/**!
- * Sortable 1.10.2
- * @author	RubaXa   <trash@rubaxa.org>
- * @author	owenm    <owen23355@gmail.com>
- * @license MIT
- */
-
 //! moment.js
-
-//! moment.js language configuration
 
 //! moment.js locale configuration

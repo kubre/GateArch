@@ -4,10 +4,6 @@
     -moz-box-sizing: border-box;
 }
 
-body {
-    font-family: Arial;
-}
-
 .calc_close {
     background: none repeat scroll 0 0 black;
     border-radius: 50%;
@@ -28,7 +24,7 @@ body {
 	background:#c0392b;
 }*/
 .calc_container {
-    background: none repeat scroll 0 0 #dadada;
+    background: none repeat scroll 0 0 #545454;
     border: 1px solid #aaa;
     border-radius: 5px;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1) inset;
@@ -124,8 +120,9 @@ body {
 /* INPUT/MEM TEXT BOXES*/
 .keyPad_TextBox,
 .keyPad_TextBox1 {
-    background: none repeat scroll 0 0 #fff;
-    border-color: #aaa;
+    background: none repeat scroll 0 0 #232323;
+    border-color: #787878;
+    color: #07d44b;
     border-image: none;
     border-radius: 3px;
     border-style: solid;
@@ -168,15 +165,15 @@ body {
 
 /* ENTER a: QUAD WIDTH */
 #keyPad #keyPad_btnEnter {
-    background: none repeat scroll 0 0 #2ecc71;
-    border-color: #27ae60;
+    background: none repeat scroll 0 0 #1dce66;
+    border-color: #0d9e4a;
     bottom: 17px;
     color: #fff;
     font-size: 20px;
-    line-height: 47px;
+    line-height: 52px;
     right: 10px;
     width: 35px;
-    height: 53px;
+    height: 60px;
     position: absolute;
     /* LINE-HEIGHT: 65PX; */
     font-size: 20px;
@@ -236,11 +233,11 @@ body {
 }
 
 body {
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .calc_close {
-    background: url("../images/Sprite_New.png") no-repeat -204px -13px;
+    background: url("/Images/Sprite_New.png") no-repeat -204px -13px;
     width: 16px;
     height: 16px;
     color: #fff;
@@ -365,13 +362,14 @@ body {
 }
 
 .calc_container {
-    background: none repeat scroll 0 0 #dadada;
-    border: 1px solid #aaa;
+    background: none repeat scroll 0 0 #545454;
+    border: 1px solid #222;
     border-radius: 5px;
+    color: #fff;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1) inset;
     padding: 0px;
     width: 463px;
-    border-bottom: 7px solid #999;
+    border-bottom: 7px solid #111;
     position: relative;
 }
 
@@ -399,20 +397,21 @@ body {
 
 /* KEY BUTTONS */
 #keyPad a {
-    background: #f1f1f1;
-    border-color: #aaa;
+    font-family: 'Courier New', Courier, monospace;
+    background: #bdbdbd;
+    border-color: #868686;
     border-image: none;
     border-radius: 4px;
     border-style: solid;
     border-width: 1px 1px 3px;
-    color: #444;
+    color: #232323;
     cursor: pointer;
     /*  display: block; */
     float: left;
     font-size: 12px;
     font-weight: bold;
-    height: 25px;
-    line-height: 20px;
+    height: 30px;
+    line-height: 25px;
     margin-right: 5px;
     text-align: center;
     text-decoration: none;
@@ -466,13 +465,12 @@ body {
 /* INPUT/MEM TEXT BOXES*/
 .keyPad_TextBox,
 .keyPad_TextBox1 {
-    background: none repeat scroll 0 0 #fff;
-    border-color: #aaa;
     border-image: none;
     border-radius: 3px;
     border-style: solid;
     border-width: 1px 1px 3px;
     font-size: 20px;
+    font-weight: bold;
     height: 30px;
     line-height: 30px;
     text-align: right;
@@ -482,16 +480,23 @@ body {
     float: left;
     margin-bottom: 7px;
     padding-right: 5px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .degree_radian {
     float: left;
-    height: 25px;
-    width: 80px;
+    height: 30px;
+    width: 120px;
     display: inline-block;
     font-size: 9px;
-    margin-top: 4px;
+    margin-top: 5px;
     vertical-align: middle;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.degree_radian input {
+    margin-right: 5px;
+    margin-left: 10px;
 }
 
 #keyPad_btnDot {
@@ -535,16 +540,16 @@ body {
 #keyPad #keyPad_btnClr,
 #keyPad #keyPad_btnInverseSign,
 #keyPad #keyPad_btnAllClr {
-    background: none repeat scroll 0 0 #e74c3c;
+    background: none repeat scroll 0 0 #f5331e;
     color: #fff;
-    border-color: #c0392b;
+    border-color: #d12714;
     width: 35px !important;
 }
 
 #keyPad #keyPad_btnBack {
-    background: none repeat scroll 0 0 #e74c3c;
+    background: none repeat scroll 0 0 #f5331e;
     color: #fff;
-    border-color: #c0392b;
+    border-color: #d12714;
     width: 76px !important;
 }
 

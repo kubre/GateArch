@@ -57,14 +57,16 @@ class ExamController extends CrudController
             ->customStore(function (Request $request, Model $exam) {
                 $exam->start_at = $request->start_at ?: null;
             })
-            ->rules('nullable|date|after_or_equal:today');
+            ->rules('nullable|date')
+            ->createRules('after_or_equal:today');
         $this->widgets[] = DateTimeWidget::create('end_at', 'End Date')
             ->description("leave empty if needs to be available all the time after start date.")
             ->dateOnly()
             ->customStore(function (Request $request, Model $exam) {
                 $exam->end_at = $request->end_at ?: null;
             })
-            ->rules('nullable|date|after_or_equal:today');
+            ->rules('nullable|date')
+            ->createRules('after_or_equal:today');
 
         $this->widgets[] = BelongsToPickerWidget::create('test_series')
             ->nullable()

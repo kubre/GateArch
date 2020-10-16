@@ -37,6 +37,8 @@ class Result extends Model
                     $isCorrect = false;
                     if ($question['type'] == 'mcq') {
                         $isCorrect = in_array($question['userAnswer'], $ans);
+                    } elseif($question['type'] == 'msq') {
+                        $isCorrect = empty(array_diff($question['userAnswer'], $ans));
                     } else {
                         if (count($ans) == 1)
                             $isCorrect = $ans[0] == $question['userAnswer'];

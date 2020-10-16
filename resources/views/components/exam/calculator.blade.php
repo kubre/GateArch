@@ -33,7 +33,6 @@
 
                     <a id="keyPad_btnPi" class="keyPad_btnConst" style="visibility:hidden;">&#960;</a>
 
-                    <a id="keyPad_btnE" class="keyPad_btnConst" style="visibility:hidden;">e</a>
 
                     <a id="keyPad_btnE" class="keyPad_btnConst" style="visibility:hidden;">e</a>
 

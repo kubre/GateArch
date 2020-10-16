@@ -79,7 +79,7 @@
 
     .ic-calculator {
         height: 24px;
-        background: url('../images/Icon-sprite.png') no-repeat -148px -91px;
+        background: url('/images/Icon-sprite.png') no-repeat -148px -91px;
     }
 
     .tab-container {
@@ -167,6 +167,8 @@
                         v-on:click='openQuestion("/storage/"+question.image)' v-bind:src="'/storage/'+question.image">
                 </div>
                 <div class="h-25 px-5 mt-5 container-fluid d-flex flex-column justify-content-around">
+                    {{-- If clear is clicked this is set --}}
+                    <input id='dummyRadio' style='display: none' v-model="tempAnswer" type="radio" value="">
                     <template v-if="question.type == 'mcq'">
                         <div>
                             <label>
@@ -192,7 +194,32 @@
                                 <span class='ml-3'>D</span>
                             </label>
                         </div>
-                        <input id='dummyRadio' style='display: none' v-model="tempAnswer" type="radio" value="">
+                    </template>
+                    <template v-else-if="question.type == 'msq'">
+                        <div>
+                            <label>
+                                <input v-model="tempAnswer" name="A" id="chkA" type="checkbox" value="A">
+                                <span class='ml-3'>A</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input v-model="tempAnswer" name="B" id="chkB" type="checkbox" value="B">
+                                <span class='ml-3'>B</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input v-model="tempAnswer" name="C" id="chkC" type="checkbox" value="C">
+                                <span class='ml-3'>C</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input v-model="tempAnswer" name="D" id="chkD" type="checkbox" value="D">
+                                <span class='ml-3'>D</span>
+                            </label>
+                        </div>
                     </template>
                     <template v-else>
                         <div class="border p-2 bg-white" style="width: 300px; margin-top: 120px;">
@@ -297,6 +324,7 @@
         $(window).keydown(false);
         $(document).contextmenu(function (e) {
             e.preventDefault();
+            alert("Right click is not allowed!");
         });
 
         var images = [];
@@ -321,7 +349,7 @@
                     sections: null,
                     questionIndex: 0,
                     sectionIndex: 0,
-                    tempAnswer: '',
+                    tmp: null,
                     State: Object.freeze({
                         NOT_VISITED: 0,
                         VISITED: 1,
@@ -345,6 +373,14 @@
                 },
                 section: function () {
                     return this.sections[this.sectionIndex];
+                },
+                tempAnswer: {
+                    get: function () {
+                        return this.tmp || (this.question.type === 'msq' ? [] : '');
+                    }, 
+                    set: function(newValue) {
+                        this.tmp = newValue;
+                    }
                 }
             },
 
@@ -414,7 +450,7 @@
 
                 loadQuestion: function (i) {
                     this.questionIndex = i;
-                    this.tempAnswer = this.question.userAnswer || '';
+                    this.tempAnswer = this.question.userAnswer;
                     this.changeState(this.State.VISITED);
                 },
 
